@@ -49,7 +49,7 @@ body {
 }
 
 /* Make clickable elements have a pointer cursor */
-button, .header-image {
+button, .header-image, .preview-box {
     cursor: pointer;
 }
 
