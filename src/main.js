@@ -2,14 +2,13 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import firebase from 'firebase'
+import VueFire from 'vuefire'
 import router from './router'
-import { store } from './store/store'
+import store from './store'
 
 Vue.config.productionTip = false
 
-// Initialize Firebase
-firebase.initializeApp(process.env.FIREBASE)
+Vue.use(VueFire)
 
 /* eslint-disable no-new */
 new Vue({

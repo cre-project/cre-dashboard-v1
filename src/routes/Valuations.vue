@@ -5,26 +5,26 @@
             <router-link id="header-button" to="/property-info" tag="button">New Valuations</router-link>
         </header>
         <div class="home">
-            <valuation-preview v-for="valuation in valuations" :key="valuation"></valuation-preview>
+            <valuation-preview v-for="id in valuationIds" :key="id" :id="id" :valuation="valuations[id]"></valuation-preview>
         </div>
     </div>
 </template>
 <script>
 import ValuationPreview from '@/components/ValuationPreview'
-// import { mapGetters, mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
-  computed: {
-    valuations () {
-      return this.$store.getters.valuations
+  data () {
+    return {
+      vals: []
     }
   },
-  methods: {
-    // ...mapGetters({vals: 'valuations'}),
-    // xxx () {
-    //   console.log('xxx')
-    // },
-    // ...mapActions('saveValuation')
+  computed: {
+    ...mapState({
+      valuations: state => state.valuations.all,
+      valuationIds: state => state.valuations.allIds
+    }),
+    ...mapActions(['addValuations'])
   },
   components: {
     ValuationPreview: ValuationPreview

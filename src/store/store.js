@@ -1,19 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { db } from '../main'
 
-Vue.use(Vuex)
+// Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    valuations: [],
-    wipData: {},
     user: {},
     isLoggedIn: false
   },
   getters: {
-    valuations: state => {
-      return state.valuations
-    },
     user: state => {
       return state.user
     },
@@ -30,14 +26,12 @@ export const store = new Vuex.Store({
       state.isLoggedIn = false
       state.user = {}
     },
-    addValuation: state => {
-      state.valuations.push(state.wipData)
-      state.wipData = {}
-    },
-    addValuationAlt: (state, payload) => {
-      console.log(payload)
-      state.valuations.push(state.wipData)
-      state.wipData = {}
+    setValuations: (state, payload) => {
+      if (payload) {
+        state.valuations = payload
+      } else {
+        state.valuations = []
+      }
     }
   },
   actions: {
@@ -47,16 +41,6 @@ export const store = new Vuex.Store({
     },
     clearUser: ({ commit }) => {
       commit('clearUser')
-    },
-    // Valuations
-    saveValuation: context => {
-      context.commit('addValuation')
-    },
-    saveValuationAsync: ({ commit }, payload) => {
-      setTimeout(() => {
-        commit('addValuation')
-        console.log(payload)
-      }, 1000)
     }
   }
 })

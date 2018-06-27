@@ -1,30 +1,51 @@
 <template>
-    <div class="preview-box">
-        <div class="preview-title">North Beach Villa</div>
+    <div class="preview-box" @click="editValuation">
+        <div class="preview-title">{{ valuation.property.name }}</div>
         <div class="preview-content">
-            {{ address }}
+            {{ valuation.property.address }}
             <br><br>
-            Created on     {{ createdOn }}
+            Created on     {{ valuation.createdOn.toDate().toUTCString() }}
             <br><br><br><br>
             <span>
-                Cap Rate     {{ capRate }}%
+                Cap Rate     {{ valuation.capRate }}%
                 <br>
-                PPSF   ${{ PPSF }}
+                PPSF   ${{ valuation.PPSF }}
             </span>
-            <span id="price">${{ price }}</span>
+            <span id="price">${{ valuation.price }}</span>
+            <!-- <div>{{ JSON.stringify(valuation) }}</div> -->
         </div>
     </div>
 </template>
 <script>
+import { mapActions, mapState } from 'vuex'
+import router from '../router/index'
+import store from '../store/index'
+
 export default {
-  data () {
-    return {
-      title: 'North Beach Villa',
-      address: '690 Chestnut Street, San Francisco, CA 94133',
-      capRate: 4.50,
-      PPSF: 125.22,
-      createdOn: '23-01-2017',
-      price: 7000000
+  props: {
+    valuation: {
+      type: Object,
+      required: true
+    },
+    id: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    ...mapState({
+      current: state => state.valuations.current,
+      wip: state => state.valuations.wip
+    })
+  },
+  methods: {
+    ...mapActions({
+      setCurrent: state => state.valuations.setCurrent
+    }),
+    editValuation () {
+      store.dispatch('valuations/setCurrent', this.id, { root: true })
+      store.dispatch('valuations/toggleWip', null, { root: true })
+      router.push('/property-info')
     }
   }
 }
