@@ -1,17 +1,17 @@
 <template>
     <div class="preview-box" @click="editValuation">
-        <div class="preview-title">{{ valuation.property.name }}</div>
+        <div class="preview-title">{{ valuation.property.name || "New Valuation" }}</div>
         <div class="preview-content">
             {{ valuation.property.address }}
             <br><br>
             Created on     {{ valuation.createdOn.toDate().toUTCString() }}
             <br><br><br><br>
-            <span>
+            <span v-show="valuation.capRate && valuation.PPSF">
                 Cap Rate     {{ valuation.capRate }}%
                 <br>
                 PPSF   ${{ valuation.PPSF }}
             </span>
-            <span id="price">${{ valuation.price }}</span>
+            <span id="price" v-show="valuation.price">${{ valuation.price }}</span>
             <!-- <div>{{ JSON.stringify(valuation) }}</div> -->
         </div>
     </div>
