@@ -14,11 +14,6 @@ import ValuationPreview from '@/components/ValuationPreview'
 import { mapActions, mapState } from 'vuex'
 
 export default {
-  data () {
-    return {
-      vals: []
-    }
-  },
   computed: {
     ...mapState({
       valuations: state => state.valuations.all,
@@ -28,6 +23,10 @@ export default {
   },
   components: {
     ValuationPreview: ValuationPreview
+  },
+  created () {
+    if (!this.valuationIds.length) this.$store.dispatch('valuations/get')
   }
+
 }
 </script>

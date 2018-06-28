@@ -1,8 +1,22 @@
+const empty = {
+  property: {
+    name: null,
+    address: null,
+    city: null,
+    state: null,
+    zip: null,
+    yearBuilt: null,
+    numberOfStories: null,
+    lotSize: null,
+    price: null
+  }
+}
 const state = {
   all: {},
   allIds: [],
+  isEditing: false,
   currentId: null,
-  wip: false
+  wip: empty
 }
 const mutations = {
   SET_VALUATION (state, { valuation }) {
@@ -13,12 +27,13 @@ const mutations = {
     }
     state.allIds.push(valuation.id)
   },
-  SET_CURRENT (state, valuationId) {
-    console.log('SET CURRENT:', valuationId)
-    state.currentId = valuationId
+  SET_WIP (state, {val, id}) {
+    console.log('SET WIP:', val)
+    state.currentId = id
+    state.wip = val
   },
-  TOGGLE_WIP (state) {
-    state.wip = !state.wip
+  TOGGLE_EDITING (state) {
+    state.isEditing = !state.isEditing
   }
 }
 const actions = {
@@ -27,12 +42,14 @@ const actions = {
     let valuations = await valuationRef.get()
     valuations.forEach(valuation => commit('SET_VALUATION', { valuation }))
   },
-  setCurrent ({ commit }, valuationId) {
-    console.log('set current action. id: ', valuationId)
-    commit('SET_CURRENT', valuationId)
+  setWip ({ commit }, {valuation, id}) {
+    console.log('set wip action. valuation: ', valuation)
+    let val = valuation || empty
+    console.log('val', val)
+    commit('SET_WIP', {val, id})
   },
-  toggleWip ({ commit }) {
-    commit('TOGGLE_WIP')
+  toggleEditing ({ commit }) {
+    commit('TOGGLE_EDITING')
   }
 }
 

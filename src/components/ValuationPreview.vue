@@ -19,7 +19,6 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import router from '../router/index'
-import store from '../store/index'
 
 export default {
   props: {
@@ -34,17 +33,16 @@ export default {
   },
   computed: {
     ...mapState({
-      current: state => state.valuations.current,
-      wip: state => state.valuations.wip
+      current: state => state.valuations.currentId,
+      wip: state => state.valuations.wip,
+      isEditing: state => state.valuations.isEditing
     })
   },
   methods: {
-    ...mapActions({
-      setCurrent: state => state.valuations.setCurrent
-    }),
+    ...mapActions('valuations', ['setWip', 'toggleEditing']),
     editValuation () {
-      store.dispatch('valuations/setCurrent', this.id, { root: true })
-      store.dispatch('valuations/toggleWip', null, { root: true })
+      this.setWip({valuation: this.valuation, id: this.id})
+      this.toggleEditing()
       router.push('/property-info')
     }
   }

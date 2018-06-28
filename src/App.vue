@@ -7,10 +7,7 @@
 
 <script>
 export default {
-  name: 'App',
-  created () {
-    this.$store.dispatch('valuations/get')
-  }
+  name: 'App'
 }
 </script>
 
