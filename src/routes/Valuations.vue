@@ -2,7 +2,7 @@
     <div>
         <header id="large-sub-header">
             <div id="index">All Valuations</div>
-            <router-link id="header-button" to="/property-info" tag="button">New Valuations</router-link>
+            <router-link id="header-button" to="/property-info" tag="button" @click.native="setWip">Add New Valuation</router-link>
         </header>
         <div class="home">
             <valuation-preview v-for="id in valuationIds" :key="id" :id="id" :valuation="valuations[id]"></valuation-preview>
@@ -18,8 +18,10 @@ export default {
     ...mapState({
       valuations: state => state.valuations.all,
       valuationIds: state => state.valuations.allIds
-    }),
-    ...mapActions(['addValuations'])
+    })
+  },
+  methods: {
+    ...mapActions('valuations', ['setWip'])
   },
   components: {
     ValuationPreview: ValuationPreview
@@ -27,6 +29,5 @@ export default {
   created () {
     if (!this.valuationIds.length) this.$store.dispatch('valuations/get')
   }
-
 }
 </script>

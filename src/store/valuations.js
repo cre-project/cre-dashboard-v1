@@ -46,14 +46,23 @@ const actions = {
     valuations.forEach(valuation => commit('SET_VALUATION', { valuation }))
   },
   async persist ({ commit, rootState }) {
+    let valuationRef = rootState.db.collection('valuations')
+    // add new document
     if (!state.currentId) {
-      console.warn('Could not update DB record: no valuation ID in the store')
-      return
+      state.wip.createdOn = new Date()
+      valuationRef.add(state.wip)
+        .then(docRef => {
+          console.log('Document written with ID: ', docRef.id)
+          return docRef.get()
+        })
+        .then(valuation => commit('SET_VALUATION', { valuation }))
+        .catch(error => console.error('Error adding document: ', error))
+    } else {
+      // update existing document
+      valuationRef.doc(state.currentId).update(state.wip)
+        .then(res => console.log('Data saved'))
+        .catch(err => console.error('something went wrong', err))
     }
-    let valuationRef = rootState.db.collection('valuations').doc(state.currentId)
-    valuationRef.update(state.wip)
-      .then(res => console.log('Data saved'))
-      .catch(err => console.error('something went wrong', err))
   },
   // LOCAL STORE ACTIONS
   setWip ({ commit }, {valuation, id}) {
