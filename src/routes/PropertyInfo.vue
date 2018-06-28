@@ -48,7 +48,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import router from '../router/index'
 
 export default {
@@ -56,12 +56,6 @@ export default {
     return {
       property: {}
     }
-  },
-  computed: {
-    ...mapState({
-      wip: state => state.valuations.wip,
-      currentId: state => state.valuations.currentId
-    })
   },
   methods: {
     ...mapActions('valuations', ['setWipProperty', 'persist']),
