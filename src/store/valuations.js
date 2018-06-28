@@ -1,4 +1,4 @@
-const empty = {
+const emptyProperty = {
   property: {
     name: null,
     address: null,
@@ -16,7 +16,7 @@ const state = {
   allIds: [],
   isEditing: false,
   currentId: null,
-  wip: empty
+  wip: emptyProperty
 }
 const mutations = {
   SET_VALUATION (state, { valuation }) {
@@ -28,25 +28,41 @@ const mutations = {
     state.allIds.push(valuation.id)
   },
   SET_WIP (state, {val, id}) {
-    console.log('SET WIP:', val)
     state.currentId = id
     state.wip = val
+  },
+  SET_WIP_PROPERTY (state, property) {
+    state.wip.property = property
   },
   TOGGLE_EDITING (state) {
     state.isEditing = !state.isEditing
   }
 }
 const actions = {
+  // DB ACTIONS
   async get ({ commit, rootState }) {
     let valuationRef = rootState.db.collection('valuations')
     let valuations = await valuationRef.get()
     valuations.forEach(valuation => commit('SET_VALUATION', { valuation }))
   },
+  async persist ({ commit, rootState }) {
+    if (!state.currentId) {
+      console.warn('Could not update DB record: no valuation ID in the store')
+      return
+    }
+    let valuationRef = rootState.db.collection('valuations').doc(state.currentId)
+    valuationRef.update(state.wip)
+      .then(res => console.log('Data saved'))
+      .catch(err => console.error('something went wrong', err))
+  },
+  // LOCAL STORE ACTIONS
   setWip ({ commit }, {valuation, id}) {
-    console.log('set wip action. valuation: ', valuation)
-    let val = valuation || empty
-    console.log('val', val)
+    let val = valuation || emptyProperty
     commit('SET_WIP', {val, id})
+  },
+  setWipProperty ({ commit }, property) {
+    property = property || emptyProperty
+    commit('SET_WIP_PROPERTY', property)
   },
   toggleEditing ({ commit }) {
     commit('TOGGLE_EDITING')
