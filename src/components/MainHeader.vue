@@ -1,8 +1,8 @@
 <template>
     <header>
-        <div class="header-image"  id="logo-small">
-            <img class="header-image" src="~@/assets/t-logo-small.png" alt="Your logo here" />
-        </div>
+        <router-link class="header-image" to="/valuations">
+          <i class="material-icons">home</i>
+        </router-link>
         <div id="menu">
             <div id="beta-tag">BETA</div>
             <button id="logout" v-if="isLoggedIn" @click="logOut">Log Out</button>
@@ -40,5 +40,10 @@ export default {
         padding: 0.25em 0.5em;
         margin-top: 17px;
         margin-right: 2em;
+    }
+    .material-icons {
+      font-size: 3rem;
+      padding: 0.5rem;
+      color:#F2F2F2;
     }
 </style>
