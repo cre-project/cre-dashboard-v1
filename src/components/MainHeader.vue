@@ -4,11 +4,14 @@
           <i class="material-icons">home</i>
         </router-link>
         <div id="menu">
-            <div id="beta-tag">BETA</div>
-            <button id="logout" v-if="isLoggedIn" @click="logOut">Log Out</button>
+            <!-- <div id="beta-tag">BETA</div> -->
+          <router-link class="header-image" to="/user-settings">
+              <i class="material-icons">person</i>
+          </router-link>
+            <!-- <button id="logout" v-if="isloggedIn" @click="logOut">Log Out</button> -->
             <!-- <div id="symbol">&#8964;</div> -->
             <div class="header-image" id="search">
-                <img class="header-image" src="~@/assets/search-icon.png" alt="Search" />
+                <!-- <img class="header-image" src="~@/assets/search-icon.png" alt="Search" /> -->
             </div>
         </div>
     </header>

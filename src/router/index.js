@@ -10,6 +10,7 @@ import UnitMix from '@/routes/UnitMix'
 import RentComparables from '@/routes/RentComparables'
 import SalesComparables from '@/routes/SalesComparables'
 import OperatingStatement from '@/routes/OperatingStatement'
+import UserSettings from '@/routes/UserSettings'
 
 // Sub-components
 import MainHeader from '@/components/MainHeader'
@@ -30,7 +31,8 @@ export const routes = [
   { path: '/unit-mix', name: 'Unit Mix', component: UnitMix, meta: { requiresAuth: true } },
   { path: '/rent-comparables', name: 'Rent Comparables', component: RentComparables, meta: { requiresAuth: true } },
   { path: '/sales-comparables', name: 'Sales Comparables', component: SalesComparables, meta: { requiresAuth: true } },
-  { path: '/operating-statement', name: 'Operating Statement', component: OperatingStatement, meta: { requiresAuth: true } }
+  { path: '/operating-statement', name: 'Operating Statement', component: OperatingStatement, meta: { requiresAuth: true } },
+  { path: '/user-settings', name: 'User Settings', component: UserSettings, meta: { requiresAuth: true } }
 ]
 
 let router = new Router({

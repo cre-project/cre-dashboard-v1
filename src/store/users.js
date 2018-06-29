@@ -1,13 +1,20 @@
+const emptyUser = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  licenseNumber: '',
+  phoneNumber: '',
+  companyName: '',
+  websiteUrl: '',
+  title: ''
+}
 const state = {
   all: {},
-  currentUser: 'm_ke'
+  currentUser: emptyUser
 }
 const mutations = {
   SET_USER (state, { user }) {
-    state.all = {
-      ...state.all,
-      [user.id]: user.data()
-    }
+    state.currentUser = user
   }
 }
 const actions = {
@@ -22,6 +29,10 @@ const actions = {
     let userRef = rootState.db.collection('users')
     let users = await userRef.get()
     users.forEach(user => commit('SET_USER', { user }))
+  },
+  set ({ commit }, payload) {
+    let user = payload || emptyUser
+    commit('SET_USER', { user })
   }
 }
 export default {
