@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from 'firebase'
+// import store from ''
+import store from '@/store/index'
+// import * as actions from 'vuex/actions'
 import Login from '@/routes/Login'
 import SignUp from '@/routes/SignUp'
 import Preview from '@/routes/Preview'
@@ -45,8 +48,7 @@ router.beforeEach((to, from, next) => {
   // need to add callback on authState observer because on page load currentUser is still null (firebase not yet initialized)
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      // if user is logged in, save user data in the store
-      // this.$store.dispatch('setUser', user)
+      store.dispatch('users/loggedIn', user)
       if (!requiresAuth) next('valuations')
       else next()
     } else {
