@@ -1,22 +1,19 @@
-const emptyProperty = {
-  property: {
-    name: null,
-    address: null,
-    city: null,
-    state: null,
-    zip: null,
-    yearBuilt: null,
-    numberOfStories: null,
-    lotSize: null,
-    price: null
-  }
-}
+import { emptyCurrentOperatingStatement, emptyPotentialOperatingStatement, emptyProperty } from './tools/templates'
+
 const state = {
   all: {},
   allIds: [],
   isEditing: false,
   currentId: null,
-  wip: emptyProperty
+  wip: emptyProperty,
+  rentalUnits: [],
+  salesComps: [],
+  rentComps: [],
+  price: 0,
+  pricePerUnit: 0,
+  pricePerSf: 0,
+  statementCurrent: emptyCurrentOperatingStatement,
+  statementPotential: emptyPotentialOperatingStatement
 }
 const mutations = {
   SET_VALUATION (state, { valuation }) {
@@ -33,6 +30,10 @@ const mutations = {
   },
   SET_WIP_PROPERTY (state, property) {
     state.wip.property = property
+  },
+  SET_WIP_OS (state, {current, potential}) {
+    state.wip.operatingStatementCurrent = current
+    state.wip.operatingStatementPotential = potential
   },
   TOGGLE_EDITING (state) {
     state.isEditing = !state.isEditing
@@ -72,6 +73,9 @@ const actions = {
   setWipProperty ({ commit }, property) {
     property = property || emptyProperty
     commit('SET_WIP_PROPERTY', property)
+  },
+  setWipOS ({ commit }, {current, potential}) {
+    commit('SET_WIP_OS', {current, potential})
   },
   toggleEditing ({ commit }) {
     commit('TOGGLE_EDITING')

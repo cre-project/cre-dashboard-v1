@@ -1,4 +1,4 @@
-import { persist } from './db'
+import { persist } from './tools/db'
 
 const emptyUser = {
   firstName: '',
