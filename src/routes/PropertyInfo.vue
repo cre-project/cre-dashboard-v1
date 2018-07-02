@@ -71,3 +71,8 @@ export default {
   }
 }
 </script>
+<style>
+h1 {
+  width: unset;
+}
+</style>
