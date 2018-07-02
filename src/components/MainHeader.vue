@@ -5,12 +5,12 @@
         </router-link>
         <div id="menu">
             <!-- <div id="beta-tag">BETA</div> -->
-          <router-link class="header-image" to="/user-settings">
+          <router-link class="header-image" to="/user-settings" v-if="isAuthenticated">
               <i class="material-icons">person</i>
           </router-link>
-            <!-- <button id="logout" v-if="isloggedIn" @click="logOut">Log Out</button> -->
+          <i class="material-icons" v-if="isAuthenticated" @click="logOut" title="log out">lock_open</i>
+          <div class="header-image" id="search">
             <!-- <div id="symbol">&#8964;</div> -->
-            <div class="header-image" id="search">
                 <!-- <img class="header-image" src="~@/assets/search-icon.png" alt="Search" /> -->
             </div>
         </div>
@@ -18,20 +18,22 @@
 </template>
 <script>
 import firebase from 'firebase'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   computed: {
-    user () {
-      return this.$store.getters.user
-    },
-    isLoggedIn () {
-      return this.$store.getters.isLoggedIn
+    ...mapState({
+      currentId: state => state.users.currentId
+    }),
+    isAuthenticated () {
+      return this.currentId.length !== 0
     }
   },
   methods: {
+    ...mapActions('users', ['clear']),
     logOut () {
       firebase.auth().signOut().then(() => {
-        this.$store.dispatch('clearUser')
+        this.clear()
         this.$router.replace('login')
       })
     }
@@ -48,5 +50,6 @@ export default {
       font-size: 3rem;
       padding: 0.5rem;
       color:#F2F2F2;
+      cursor: pointer;
     }
 </style>

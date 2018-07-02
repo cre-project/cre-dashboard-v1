@@ -20,11 +20,13 @@ const mutations = {
     state.currentUser = user
   },
   SET_USER (state, { user }) {
-    console.log('user: ', user)
     let data = user.data()
-    console.log('user data: ', data)
     state.currentId = user.id
     state.currentUser = data
+  },
+  CLEAR (state) {
+    state.currentId = ''
+    state.currentUser = emptyUser
   }
 }
 const actions = {
@@ -66,6 +68,9 @@ const actions = {
         }
       })
     })
+  },
+  clear ({ commit }) {
+    commit('CLEAR')
   }
 }
 export default {

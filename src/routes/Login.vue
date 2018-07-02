@@ -34,8 +34,6 @@ export default {
       let vm = this
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         function (user) {
-          alert('user logged in successfully')
-          vm.$store.dispatch('storeUser', user)
           vm.$router.replace('valuations')
         },
         function (err) {
