@@ -12,7 +12,6 @@
                 PPSF   ${{ valuation.PPSF }}
             </span>
             <span id="price" v-show="valuation.price">${{ valuation.price }}</span>
-            <!-- <div>{{ JSON.stringify(valuation) }}</div> -->
         </div>
     </div>
 </template>

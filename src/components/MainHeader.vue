@@ -47,7 +47,7 @@ export default {
         margin-right: 2em;
     }
     .material-icons {
-      font-size: 3rem;
+      font-size: 2.7rem;
       padding: 0.5rem;
       color:#F2F2F2;
       cursor: pointer;
