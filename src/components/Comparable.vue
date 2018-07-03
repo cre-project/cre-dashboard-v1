@@ -1,0 +1,120 @@
+<template>
+    <div id="add-more">
+        <span class="add-more-content" v-show="!open">Add Another Unit</span>
+        <div class="add-more-content" id="plus" v-show="!open" @click="open = true">+</div>
+        <span class="add-more-content text ita bold" v-show="open">Property Information</span>
+        <span class="add-more-content text ita bold" id="right" v-show="open">Rent Information</span>
+        <div class="popup-form" v-show="open">
+            <!-- part 1 of the form -->
+            <form id="form-1">
+                <label>
+                    <div>Property Name</div>
+                    <input v-model="comp.name">
+                </label>
+                <label>
+                    <div>Property Address</div>
+                    <input v-model="comp.address">
+                </label>
+                <label>
+                    <div>City</div>
+                    <input v-model="comp.city">
+                </label>
+            </form>
+            <!-- part 2 of the form -->
+            <form id="form-2">
+                <label class="half-size">
+                    <div class="half-size">State</div>
+                    <input  class="half-size" v-model="comp.state">
+                </label>
+                <label class="half-size">
+                    <div class="half-size">ZIP</div>
+                    <input class="half-size" v-model="comp.zip">
+                </label>
+                <label class="half-size">
+                    <div class="half-size">Year built</div>
+                    <input class="half-size" v-model="comp.yearBuilt">
+                </label>
+            </form>
+            <!-- part 3 of the form -->
+            <form id="form-5">
+                <label class="half-size">
+                    <div class="half-size more-padding">Unit Type</div>
+                    <!-- TODO add binding to bedrooms/ bathrooms -->
+                    <select class="buttonize down-arrow more-padding">
+                        <option>1 Bedroom</option>
+                        <option>2 Bedroom</option>
+                        <option>3 Bedroom</option>
+                    </select>
+                    <select class="buttonize down-arrow more-padding">
+                        <option>1 Bathroom</option>
+                        <option>2 Bathroom</option>
+                        <option>3 Bathroom</option>
+                    </select>
+                </label>
+                <label class="half-size l-margin">
+                    <div class="half-size more-padding">Current Rent/Mo.</div>
+                    <input class="half-size" v-model="comp.rent">
+                </label>
+            </form>
+            <button class="add" v-show="open" @click="add">Add</button>
+        </div>
+    </div>
+</template>
+<script>
+import { mapState, mapActions } from 'vuex'
+
+export default {
+  data () {
+    return {
+      open: false,
+      comp: {
+        name: '',
+        address: '',
+        city: '',
+        state: '',
+        zip: '',
+        yearBuilt: null,
+        rent: null,
+        bedrooms: 0,
+        bathrooms: 0
+      }
+    }
+  },
+  props: {
+    compType: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    ...mapState({
+      comparables: state => state.valuations.comparables
+    })
+  },
+  methods: {
+    ...mapActions('valuations', ['addRentComparable']),
+    add () {
+      if (this.compType === 'rent') this.addRentComparable()
+      // otherwise it's a salesComp
+      this.open = false
+    }
+  }
+}
+</script>
+<style>
+input {
+  width: 15em;
+}
+.down-arrow {
+ margin-bottom: 2em;
+}
+#form-1 {
+  margin-left: 3em;
+}
+#form-5 {
+  margin-left: 9em;
+}
+#plus {
+  cursor: pointer;
+}
+</style>

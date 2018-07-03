@@ -6,9 +6,15 @@ const state = {
   isEditing: false,
   currentId: null,
   wip: emptyProperty,
-  rentalUnits: [],
+  units: [],
   salesComps: [],
-  rentComps: [],
+  rentComps: [{
+    state: 'CA',
+    name: 'test',
+    address: 'xxx',
+    type: '123',
+    rent: 1500
+  }],
   price: 0,
   pricePerUnit: 0,
   pricePerSf: 0,
@@ -34,6 +40,9 @@ const mutations = {
   SET_WIP_OS (state, {current, potential}) {
     state.wip.operatingStatementCurrent = current
     state.wip.operatingStatementPotential = potential
+  },
+  ADD_RENT_COMPARABLE (state, comparable) {
+    state.rentComps.push(comparable)
   },
   TOGGLE_EDITING (state) {
     state.isEditing = !state.isEditing
@@ -76,6 +85,10 @@ const actions = {
   },
   setWipOS ({ commit }, {current, potential}) {
     commit('SET_WIP_OS', {current, potential})
+  },
+  addRentComparable ({ commit }, comparable) {
+    console.log('adding comparable', comparable)
+    commit('ADD_RENT_COMPARABLE', comparable)
   },
   toggleEditing ({ commit }) {
     commit('TOGGLE_EDITING')
