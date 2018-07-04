@@ -39,7 +39,7 @@
             <form id="form-5">
                 <label class="half-size">
                     <div class="half-size more-padding">Unit Type # Bedrooms</div>
-                    <select class="buttonize down-arrow more-padding" v-model="comp.bedrooms">
+                    <select class="buttonize down-arrow" v-model="comp.bedrooms">
                         <option disabled value="">Please select one</option>
                         <option>1</option>
                         <option>2</option>

@@ -11,7 +11,6 @@ const emptyUser = {
   title: ''
 }
 const state = {
-  all: {},
   currentUser: emptyUser,
   currentId: ''
 }
@@ -30,18 +29,12 @@ const mutations = {
   }
 }
 const actions = {
-  async get ({ commit, rootState }) {
-    let userRef = rootState.db.collection('users')
-    let users = await userRef.get()
-    users.forEach(user => commit('SET_USER', { user }))
-  },
   set ({ commit, rootState }, payload) {
     let user = payload || emptyUser
     // store locally
     commit('SET_LOCAL_USER', { user })
     // save in DB
-    let userRef = rootState.db.collection('users')
-    persist(userRef, state.currentId, user)
+    persist(rootState, 'users', state.currentId, user)
       .then((docId) => {
         if (docId) state.currentId = docId
       })
@@ -56,12 +49,10 @@ const actions = {
           // need to save user in DB
           let user = state.currentUser
           // data that comes from firebase auth after login
-          if (data.firstName) user.firstName = data.firstName
-          if (data.lastName) user.lastName = data.lastName
           if (data.email) user.email = data.email
 
           commit('SET_LOCAL_USER', { user })
-          persist(usersRef, state.currentId, user)
+          persist(rootState, 'users', state.currentId, user)
             .then((newDocId) => {
               if (newDocId) state.currentId = newDocId
             })

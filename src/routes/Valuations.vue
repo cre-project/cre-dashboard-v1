@@ -27,7 +27,7 @@ export default {
     ValuationPreview: ValuationPreview
   },
   created () {
-    if (!this.valuationIds.length) this.$store.dispatch('valuations/get')
+    if (!this.valuationIds.length) this.$store.dispatch('valuations/fetchAll')
   }
 }
 </script>

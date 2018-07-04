@@ -32,11 +32,11 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState({
-      current: state => state.valuations.statementCurrent,
-      potential: state => state.valuations.statementPotential,
-      price: state => state.valuations.price,
-      pricePerUnit: state => state.valuations.pricePerUnit,
-      pricePerSf: state => state.valuations.pricePerSf
+      current: state => state.valuations.selectedValuation.statementCurrent,
+      potential: state => state.valuations.selectedValuation.statementPotential,
+      price: state => state.valuations.selectedValuation.price,
+      pricePerUnit: state => state.valuations.selectedValuation.pricePerUnit,
+      pricePerSf: state => state.valuations.selectedValuation.pricePerSf
     })
   }
 }

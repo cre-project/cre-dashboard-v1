@@ -16,7 +16,8 @@
     </div>
 </template>
 <script>
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 export default {
   data () {
@@ -28,7 +29,7 @@ export default {
   methods: {
     signUp () {
       let vm = this
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+      firebase.createUserWithEmailAndPassword(this.email, this.password).then(
         function (user) {
           vm.$store.dispatch('storeUser', user)
           vm.$router.replace('valuations')

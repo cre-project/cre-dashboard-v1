@@ -58,16 +58,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions('valuations', ['setWipProperty', 'persist']),
+    ...mapActions('valuations', ['setProperty', 'persist']),
     save () {
-      this.setWipProperty(this.property)
+      this.setProperty(this.property)
       this.persist()
       router.push('./unit-mix')
     }
   },
   created () {
     // fill up the local property object
-    this.property = this.$store.state.valuations.wip.property
+    this.property = this.$store.state.valuations.selectedValuation.property
   }
 }
 </script>

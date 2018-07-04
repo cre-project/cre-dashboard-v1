@@ -128,8 +128,6 @@ export default {
   methods: {
     ...mapActions('valuations', ['setWipOS', 'persist']),
     save () {
-      console.log('saving. current:', this.current)
-      console.log('saving. potential:', this.potential)
       this.setWipOS({current: this.current, potential: this.potential})
       this.persist()
       router.push('./sales-comparables')
@@ -145,8 +143,8 @@ export default {
   },
   created () {
     // fill up the local user object
-    this.current = this.$store.state.valuations.statementCurrent
-    this.potential = this.$store.state.valuations.statementPotential
+    this.current = this.$store.state.valuations.selectedValuation.statementCurrent
+    this.potential = this.$store.state.valuations.selectedValuation.statementPotential
   }
 }
 </script>

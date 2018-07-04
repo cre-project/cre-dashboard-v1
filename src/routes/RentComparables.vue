@@ -38,14 +38,14 @@ export default {
   },
   computed: {
     ...mapState({
-      comparables: state => state.valuations.rentComps
+      comparables: state => state.valuations.selectedValuation.rentComps
     })
   },
   methods: {
-    ...mapActions('valuations', ['setWipOS', 'persist']),
+    ...mapActions('valuations', ['persist']),
     save () {
       this.persist()
-      router.push('./sales-comparables')
+      router.push('./preview')
     },
     toggle () {
       this.showButton = !this.showButton
@@ -53,3 +53,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+input {
+  width: 100%;
+  text-align: center;
+}
+</style>

@@ -1,4 +1,13 @@
-export function persist (tableRef, id, data) {
+export function fetchAll (state, collection) {
+  return state.db.collection(collection).get()
+    .catch(error => {
+      console.log('Could not fetch data from database', error)
+      return []
+    })
+}
+
+export function persist (state, collection, id, data) {
+  let tableRef = state.db.collection(collection)
   // add new document
   if (!id.length) {
     data.createdOn = new Date()

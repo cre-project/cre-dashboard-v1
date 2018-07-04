@@ -1,15 +1,13 @@
 export const emptyProperty = {
-  property: {
-    name: null,
-    address: null,
-    city: null,
-    state: null,
-    zip: null,
-    yearBuilt: null,
-    numberOfStories: null,
-    lotSize: null,
-    price: null
-  }
+  name: null,
+  address: null,
+  city: null,
+  state: null,
+  zip: null,
+  yearBuilt: null,
+  numberOfStories: null,
+  lotSize: null,
+  price: null
 }
 export const emptyCurrentOperatingStatement = {
   expenses: {
@@ -65,4 +63,21 @@ export const emptyComparable = {
   rent: null,
   bedrooms: '',
   bathrooms: ''
+}
+export const emptyValuation = {
+  property: emptyProperty,
+  units: [],
+  salesComps: [],
+  rentComps: [{
+    state: 'CA',
+    name: 'test',
+    address: 'xxx',
+    type: '123',
+    rent: 1500
+  }],
+  price: 0,
+  pricePerUnit: 0,
+  pricePerSf: 0,
+  statementCurrent: emptyCurrentOperatingStatement,
+  statementPotential: emptyPotentialOperatingStatement
 }
