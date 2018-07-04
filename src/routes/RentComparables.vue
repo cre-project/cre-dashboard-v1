@@ -10,15 +10,15 @@
                     <th>Type</th>
                     <th>Rent</th>
                 </tr>
-                <tr v-for="comp in comparables" :key="comp">
+                <tr v-for="(comp, i) in comparables" :key="comp.name + i">
                     <th><input class="disabled" :value="comp.name"></th>
                     <th><input class="disabled" :value="comp.address"></th>
                     <th><input class="disabled" :value="comp.type"></th>
                     <th><input class="disabled" :value="comp.rent"></th>
                 </tr>
             </table>
-            <new-comparable :compType="'rent'"></new-comparable>
-            <button class="save" type="submit" @click="save">Save & Next</button>
+            <new-comparable :compType="'rent'" v-on:toggleSaveButton="toggle"></new-comparable>
+            <button v-show="showButton" class="save" type="submit" @click="save">Save & Next</button>
         </div>
     </div>
 </template>
@@ -28,12 +28,17 @@ import router from '../router/index'
 import { mapState, mapActions } from 'vuex'
 
 export default {
+  data () {
+    return {
+      showButton: true
+    }
+  },
   components: {
     newComparable: Comparable
   },
   computed: {
     ...mapState({
-      comparables: state => state.valuations.comparables
+      comparables: state => state.valuations.rentComps
     })
   },
   methods: {
@@ -41,6 +46,9 @@ export default {
     save () {
       this.persist()
       router.push('./sales-comparables')
+    },
+    toggle () {
+      this.showButton = !this.showButton
     }
   }
 }

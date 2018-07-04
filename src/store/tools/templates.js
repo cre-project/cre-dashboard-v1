@@ -55,3 +55,14 @@ export const emptyPotentialOperatingStatement = {
   totalRent: 0,
   netOperatingIncome: 0
 }
+export const emptyComparable = {
+  name: '',
+  address: '',
+  city: '',
+  state: '',
+  zip: '',
+  yearBuilt: null,
+  rent: null,
+  bedrooms: '',
+  bathrooms: ''
+}

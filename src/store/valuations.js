@@ -87,7 +87,6 @@ const actions = {
     commit('SET_WIP_OS', {current, potential})
   },
   addRentComparable ({ commit }, comparable) {
-    console.log('adding comparable', comparable)
     commit('ADD_RENT_COMPARABLE', comparable)
   },
   toggleEditing ({ commit }) {

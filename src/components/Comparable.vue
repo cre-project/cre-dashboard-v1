@@ -1,10 +1,10 @@
 <template>
-    <div id="add-more">
-        <span class="add-more-content" v-show="!open">Add Another Unit</span>
-        <div class="add-more-content" id="plus" v-show="!open" @click="open = true">+</div>
-        <span class="add-more-content text ita bold" v-show="open">Property Information</span>
-        <span class="add-more-content text ita bold" id="right" v-show="open">Rent Information</span>
-        <div class="popup-form" v-show="open">
+    <div id="add-more" v-bind:class="{expanded: expanded}">
+        <span class="add-more-content" v-show="!expanded">Add Another Unit</span>
+        <div class="add-more-content" id="plus" v-show="!expanded" @click="expand">+</div>
+        <span class="add-more-content text ita bold" v-show="expanded">Property Information</span>
+        <span class="add-more-content text ita bold" id="right" v-show="expanded">Rent Information</span>
+        <div class="popup-form" v-show="expanded">
             <!-- part 1 of the form -->
             <form id="form-1">
                 <label>
@@ -39,8 +39,8 @@
             <form id="form-5">
                 <label class="half-size">
                     <div class="half-size more-padding">Unit Type # Bedrooms</div>
-                    <!-- TODO add binding to bedrooms/ bathrooms -->
-                    <select class="buttonize down-arrow more-padding">
+                    <select class="buttonize down-arrow more-padding" v-model="comp.bedrooms">
+                        <option disabled value="">Please select one</option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -49,7 +49,8 @@
                 </label>
                 <label class="half-size">
                     <div class="half-size more-padding">Unit Type # Bathrooms</div>
-                    <select class="buttonize down-arrow more-padding">
+                    <select class="buttonize down-arrow more-padding" v-model="comp.bathrooms">
+                        <option disabled value="">Please select one</option>
                         <option>1</option>
                         <option>1.5</option>
                         <option>2</option>
@@ -62,28 +63,19 @@
                     <input class="half-size" v-model="comp.rent">
                 </label>
             </form>
-            <button class="add" v-show="open" @click="add">Add</button>
+            <button class="add" v-show="expanded" @click="add">Add</button>
         </div>
     </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
+import { emptyComparable } from '@/store/tools/templates'
 
 export default {
   data () {
     return {
-      open: false,
-      comp: {
-        name: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        yearBuilt: null,
-        rent: null,
-        bedrooms: 0,
-        bathrooms: 0
-      }
+      expanded: false,
+      comp: {}
     }
   },
   props: {
@@ -100,10 +92,22 @@ export default {
   methods: {
     ...mapActions('valuations', ['addRentComparable']),
     add () {
-      if (this.compType === 'rent') this.addRentComparable()
+      if (this.compType === 'rent') this.addRentComparable(this.comp)
       // otherwise it's a salesComp
-      this.open = false
+      this.reset()
+      this.$emit('toggleSaveButton')
+    },
+    expand () {
+      this.expanded = true
+      this.$emit('toggleSaveButton')
+    },
+    reset () {
+      this.comp = Object.assign({}, emptyComparable)
+      this.expanded = false
     }
+  },
+  created () {
+    this.reset()
   }
 }
 </script>
