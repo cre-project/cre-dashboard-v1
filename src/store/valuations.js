@@ -31,6 +31,10 @@ const mutations = {
   ADD_RENT_COMPARABLE (state, comparable) {
     state.selectedValuation.rentComps.push(comparable)
   },
+  ADD_SALES_COMPARABLE (state, comparable) {
+    console.log('adding comp', comparable)
+    state.selectedValuation.salesComps.push(comparable)
+  },
   TOGGLE_EDITING (state) {
     state.isEditing = !state.isEditing
   }
@@ -59,8 +63,13 @@ const actions = {
   setWipOS ({ commit }, {current, potential}) {
     commit('SET_WIP_OS', {current, potential})
   },
-  addRentComparable ({ commit }, comparable) {
-    commit('ADD_RENT_COMPARABLE', comparable)
+  addComparable ({ commit }, {comparable, compType}) {
+    console.log('adding comp, type', compType)
+    if (compType === 'rent') {
+      commit('ADD_RENT_COMPARABLE', comparable)
+    } else if (compType === 'sales') {
+      commit('ADD_SALES_COMPARABLE', comparable)
+    }
   },
   toggleEditing ({ commit }) {
     commit('TOGGLE_EDITING')

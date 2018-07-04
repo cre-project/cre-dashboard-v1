@@ -90,10 +90,9 @@ export default {
     })
   },
   methods: {
-    ...mapActions('valuations', ['addRentComparable']),
+    ...mapActions('valuations', ['addComparable']),
     add () {
-      if (this.compType === 'rent') this.addRentComparable(this.comp)
-      // otherwise it's a salesComp
+      this.addComparable({comparable: this.comp, compType: this.compType})
       this.reset()
       this.$emit('toggleSaveButton')
     },
@@ -111,7 +110,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 input {
   width: 15em;
 }
