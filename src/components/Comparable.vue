@@ -38,17 +38,23 @@
             <!-- part 3 of the form -->
             <form id="form-5">
                 <label class="half-size">
-                    <div class="half-size more-padding">Unit Type</div>
+                    <div class="half-size more-padding">Unit Type # Bedrooms</div>
                     <!-- TODO add binding to bedrooms/ bathrooms -->
                     <select class="buttonize down-arrow more-padding">
-                        <option>1 Bedroom</option>
-                        <option>2 Bedroom</option>
-                        <option>3 Bedroom</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
                     </select>
+                </label>
+                <label class="half-size">
+                    <div class="half-size more-padding">Unit Type # Bathrooms</div>
                     <select class="buttonize down-arrow more-padding">
-                        <option>1 Bathroom</option>
-                        <option>2 Bathroom</option>
-                        <option>3 Bathroom</option>
+                        <option>1</option>
+                        <option>1.5</option>
+                        <option>2</option>
+                        <option>2.5</option>
+                        <option>3</option>
                     </select>
                 </label>
                 <label class="half-size l-margin">
