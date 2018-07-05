@@ -3,7 +3,7 @@
         <span class="add-more-content" v-show="!expanded">Add Another Unit</span>
         <div class="add-more-content" id="plus" v-show="!expanded" @click="expand">+</div>
         <span class="add-more-content text ita bold" v-show="expanded">Property Information</span>
-        <span class="add-more-content text ita bold" id="right" v-show="expanded">Rent Information</span>
+        <span class="add-more-content text ita bold right" v-show="expanded">Rent Information</span>
         <div class="popup-form" v-show="expanded">
             <!-- part 1 of the form -->
             <form id="form-1">
@@ -37,8 +37,9 @@
             </form>
             <!-- part 3 of the form -->
             <form id="form-5">
+                <h3 v-show="expanded">Unit Type:</h3>
                 <label class="half-size">
-                    <div class="half-size more-padding">Unit Type # Bedrooms</div>
+                    <div class="half-size"># Bedrooms</div>
                     <select class="buttonize down-arrow" v-model="comp.bedrooms">
                         <option disabled value="">Please select one</option>
                         <option>1</option>
@@ -48,8 +49,8 @@
                     </select>
                 </label>
                 <label class="half-size">
-                    <div class="half-size more-padding">Unit Type # Bathrooms</div>
-                    <select class="buttonize down-arrow more-padding" v-model="comp.bathrooms">
+                    <div class="half-size"># Bathrooms</div>
+                    <select class="buttonize down-arrow" v-model="comp.bathrooms">
                         <option disabled value="">Please select one</option>
                         <option>1</option>
                         <option>1.5</option>
@@ -58,12 +59,14 @@
                         <option>3</option>
                     </select>
                 </label>
-                <label class="half-size l-margin">
+            </form>
+            <form id="form-6">
+                <label class="half-size">
                     <div class="half-size more-padding">Current Rent/Mo.</div>
                     <input class="half-size" v-model="comp.rent">
                 </label>
+              <button class="add" v-show="expanded" @click="add">Add</button>
             </form>
-            <button class="add" v-show="expanded" @click="add">Add</button>
         </div>
     </div>
 </template>
@@ -120,10 +123,19 @@ input {
 #form-1 {
   margin-left: 3em;
 }
-#form-5 {
-  margin-left: 9em;
+#form-6{
+  width: 10%;
+  float: left;
+  display: block;
 }
 #plus {
   cursor: pointer;
+}
+.right {
+  margin-left: 30em;
+}
+.add {
+  margin-left: 7em;
+  margin-top: 6em;
 }
 </style>

@@ -357,14 +357,10 @@ form {
 }
 
 #form-5 {
+    margin-left: 9em;
+    width: 18%;
+    display: block;
     float: left;
-    margin-left: 1.5em;
-    width: 40%;
-    display: flex;
-}
-
-#right {
-    margin-left: 30em;
 }
 
 label {
