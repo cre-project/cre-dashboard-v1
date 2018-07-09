@@ -29,13 +29,13 @@ export const routes = [
   { path: '*', redirect: '/login' },
   { path: '/login', name: 'Login', component: Login },
   { path: '/signup', name: 'Sign Up', component: SignUp },
-  { path: '/preview', name: 'Preview', component: Preview, meta: { requiresAuth: true } },
   { path: '/valuations', name: 'Valuations', component: Valuations, meta: { requiresAuth: true } },
-  { path: '/property-info', name: 'Property Info', component: PropertyInfo, meta: { requiresAuth: true } },
-  { path: '/unit-mix', name: 'Unit Mix', component: UnitMix, meta: { requiresAuth: true } },
-  { path: '/rent-comparables', name: 'Rent Comparables', component: RentComparables, meta: { requiresAuth: true } },
-  { path: '/sales-comparables', name: 'Sales Comparables', component: SalesComparables, meta: { requiresAuth: true } },
-  { path: '/operating-statement', name: 'Operating Statement', component: OperatingStatement, meta: { requiresAuth: true } },
+  { path: '/property-info', name: 'PROPERTY INFO', component: PropertyInfo, meta: { requiresAuth: true, isNav: true } },
+  { path: '/unit-mix', name: 'UNIT MIX', component: UnitMix, meta: { requiresAuth: true, isNav: true } },
+  { path: '/operating-statement', name: 'OPERATING STATEMENT', component: OperatingStatement, meta: { requiresAuth: true, isNav: true } },
+  { path: '/sales-comparables', name: 'SALES COMPARABLES', component: SalesComparables, meta: { requiresAuth: true, isNav: true } },
+  { path: '/rent-comparables', name: 'RENT COMPARABLES', component: RentComparables, meta: { requiresAuth: true, isNav: true } },
+  { path: '/preview', name: 'PREVIEW', component: Preview, meta: { requiresAuth: true, isNav: true } },
   { path: '/user-settings', name: 'User Settings', component: UserSettings, meta: { requiresAuth: true } }
 ]
 

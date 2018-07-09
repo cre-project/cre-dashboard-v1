@@ -2,7 +2,7 @@
   <header id="sub-header">
     <nav>
       <ul>
-        <li v-for="route in r" :key="route.name" v-if="route.name != 'Login' && route.name != 'Sign Up'">
+        <li v-for="route in r" :key="route.name" v-if="route.meta && route.meta.isNav">
           <router-link :to="route.path">{{ route.name }}</router-link>
         </li>
       </ul>
