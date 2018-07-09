@@ -1,4 +1,5 @@
 import { persist } from './tools/db'
+import { eb } from '../main'
 
 const emptyUser = {
   firstName: '',
@@ -29,7 +30,7 @@ const mutations = {
   }
 }
 const actions = {
-  set ({ commit, rootState }, payload) {
+  async set ({ commit, rootState }, payload) {
     let user = payload || emptyUser
     // store locally
     commit('SET_LOCAL_USER', { user })
@@ -39,12 +40,13 @@ const actions = {
         if (docId) state.currentId = docId
       })
   },
-  loggedIn ({ commit, rootState }, data) {
+  async loggedIn ({ commit, rootState }, data) {
     let usersRef = rootState.db.collection('users')
     usersRef.where('email', '==', data.email).onSnapshot(function (userSnapshot) {
       userSnapshot.forEach(user => {
         if (user.exists) {
           commit('SET_USER', { user })
+          eb.$emit('loadUserData', state.currentId)
         } else {
           // need to save user in DB
           let user = state.currentUser
@@ -55,6 +57,7 @@ const actions = {
           persist(rootState, 'users', state.currentId, user)
             .then((newDocId) => {
               if (newDocId) state.currentId = newDocId
+              eb.$emit('loadUserData', state.currentId)
             })
         }
       })

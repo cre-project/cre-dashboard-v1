@@ -65,16 +65,11 @@ export const emptyComparable = {
   bathrooms: ''
 }
 export const emptyValuation = {
-  property: emptyProperty,
+  property: Object.assign({}, emptyProperty),
+  userId: '',
   units: [],
   salesComps: [],
-  rentComps: [{
-    state: 'CA',
-    name: 'test',
-    address: 'xxx',
-    type: '123',
-    rent: 1500
-  }],
+  rentComps: [],
   price: 0,
   pricePerUnit: 0,
   pricePerSf: 0,

@@ -49,7 +49,9 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
+import { eb } from '../main'
 import router from '../router/index'
+import { emptyProperty } from '../store/tools/templates'
 
 export default {
   data () {
@@ -68,6 +70,9 @@ export default {
   created () {
     // fill up the local property object
     this.property = this.$store.state.valuations.selectedValuation.property
+    eb.$on('newValuation', () => {
+      this.property = Object.assign({}, emptyProperty)
+    })
   }
 }
 </script>

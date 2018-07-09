@@ -1,12 +1,18 @@
-export function fetchAll (state, collection) {
-  return state.db.collection(collection).get()
+export async function fetchAll (state, collection, userId) {
+  return state.db.collection(collection).where('userId', '==', userId).get()
+    // .then(querySnapshot => {
+    //   querySnapshot.forEach(doc => {
+    //     console.log(doc.id, ' => ', doc.data())
+    //   })
+    //   return querySnapshot
+    // })
     .catch(error => {
       console.log('Could not fetch data from database', error)
       return []
     })
 }
 
-export function persist (state, collection, id, data) {
+export async function persist (state, collection, id, data) {
   let tableRef = state.db.collection(collection)
   // add new document
   if (!id.length) {

@@ -18,3 +18,6 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+// event bus
+export const eb = new Vue()

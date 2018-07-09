@@ -3,19 +3,20 @@ import { fetchAll, persist } from './tools/db'
 
 const state = {
   all: {},
-  allIds: [],
   isEditing: false,
   selectedValuationId: '',
   selectedValuation: emptyValuation
 }
 const mutations = {
-  SET_VALUATION (state, { valuation }) {
-    let data = valuation.data()
-    state.all = {
-      ...state.all,
-      [valuation.id]: data
+  SET_VALUATION (state, { valuation, id }) {
+    if (Object.keys(state.all).indexOf(id) === -1) {
+      state.all = {
+        ...state.all,
+        [id]: valuation
+      }
+    } else {
+      state.all[id] = valuation
     }
-    state.allIds.push(valuation.id)
   },
   SET_WIP (state, {val, id}) {
     state.selectedValuationId = id
@@ -41,23 +42,37 @@ const mutations = {
 }
 const actions = {
   // DB ACTIONS
-  async fetchAll ({ commit, rootState }) {
-    fetchAll(rootState, 'valuations').then(valuations => {
-      valuations.forEach(valuation => commit('SET_VALUATION', { valuation }))
+  async fetchAll ({ commit, rootState }, userId) {
+    fetchAll(rootState, 'valuations', userId).then(valuations => {
+      valuations.forEach(valuation => commit('SET_VALUATION', { valuation: valuation.data(), id: valuation.id }))
     })
   },
   async persist ({ commit, rootState }) {
+    // tie the valuation to user
+    if (!state.selectedValuation.userId || state.selectedValuation.userId === '') {
+      state.selectedValuation.userId = rootState.users.currentId
+    }
     persist(rootState, 'valuations', state.selectedValuationId, state.selectedValuation).then((docId) => {
-      if (docId) state.selectedValuationId = docId
+      if (docId) {
+        // new valuation was inserted
+        commit('SET_VALUATION', { valuation: state.selectedValuation, id: docId })
+      } else {
+        console.log('Existing  valuation was updated')
+      }
     })
   },
   // LOCAL STORE ACTIONS
   setWip ({ commit }, {valuation, id}) {
-    let val = valuation || emptyProperty
+    let val = valuation || Object.assign({}, emptyValuation)
+    commit('SET_WIP', {val, id})
+  },
+  newWip ({ commit }) {
+    let val = Object.assign({}, emptyValuation)
+    let id = ''
     commit('SET_WIP', {val, id})
   },
   setProperty ({ commit }, property) {
-    property = property || emptyProperty
+    property = property || Object.assign({}, emptyProperty)
     commit('SET_WIP_PROPERTY', property)
   },
   setWipOS ({ commit }, {current, potential}) {
