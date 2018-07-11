@@ -558,6 +558,7 @@ img {
     border: 1px dashed darkgray;
     border-radius: 25%;
     float: left;
+    cursor: pointer;
 }
 
 #header-button {

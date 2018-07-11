@@ -128,9 +128,6 @@ input {
   float: left;
   display: block;
 }
-#plus {
-  cursor: pointer;
-}
 .right {
   margin-left: 30em;
 }
