@@ -32,6 +32,9 @@ const mutations = {
     state.selectedValuation.operatingStatementCurrent = current
     state.selectedValuation.operatingStatementPotential = potential
   },
+  SET_UNITS (state, units) {
+    state.selectedValuation.units = units
+  },
   ADD_RENT_COMPARABLE (state, comparable) {
     state.selectedValuation.rentComps.push(comparable)
   },
@@ -93,6 +96,9 @@ const actions = {
     } else if (compType === 'sales') {
       commit('ADD_SALES_COMPARABLE', comparable)
     }
+  },
+  addUnits ({ commit }, units) {
+    commit('SET_UNITS', units)
   },
   toggleEditing ({ commit }) {
     commit('TOGGLE_EDITING')
