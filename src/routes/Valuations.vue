@@ -23,10 +23,10 @@ export default {
     })
   },
   methods: {
-    ...mapActions('valuations', ['newWip']),
+    ...mapActions('valuations', ['resetWip']),
     startNew () {
       eb.$emit('newValuation')
-      this.newWip()
+      this.resetWip()
     }
   },
   components: {
@@ -35,8 +35,16 @@ export default {
   created () {
     eb.$on('loadUserData', (userId) => {
       if (this.valuationIds.length === 0) {
-        this.$store.dispatch('valuations/fetchAll', this.userId)
+        this.$store.dispatch('valuations/fetchAll', this.userId).then(() => {
+          this.$store.dispatch('valuations/resetWip')
+        })
       }
+    })
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      // access to component instance via `vm`
+      vm.$store.dispatch('valuations/resetWip')
     })
   }
 }

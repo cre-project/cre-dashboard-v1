@@ -16,7 +16,7 @@
     </div>
 </template>
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions } from 'vuex'
 import router from '../router/index'
 
 export default {
@@ -29,13 +29,6 @@ export default {
       type: String,
       required: true
     }
-  },
-  computed: {
-    ...mapState({
-      current: state => state.valuations.currentId,
-      wip: state => state.valuations.wip,
-      isEditing: state => state.valuations.isEditing
-    })
   },
   methods: {
     ...mapActions('valuations', ['setWip', 'toggleEditing']),

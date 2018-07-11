@@ -16,7 +16,6 @@ export async function persist (state, collection, id, data) {
   let tableRef = state.db.collection(collection)
   // add new document
   if (!id.length) {
-    data.createdOn = new Date()
     return tableRef.add(data)
       .then(docRef => {
         console.log('Document written with ID: ', docRef.id)

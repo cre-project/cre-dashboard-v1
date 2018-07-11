@@ -18,6 +18,9 @@ const mutations = {
       state.all[id] = valuation
     }
   },
+  SET_SELECTED_ID (state, id) {
+    state.selectedValuationId = id
+  },
   SET_WIP (state, {val, id}) {
     state.selectedValuationId = id
     state.selectedValuation = val
@@ -52,10 +55,15 @@ const actions = {
     if (!state.selectedValuation.userId || state.selectedValuation.userId === '') {
       state.selectedValuation.userId = rootState.users.currentId
     }
+    if (!state.selectedValuation.createdOn) {
+      state.selectedValuation.createdOn = new Date()
+    }
     persist(rootState, 'valuations', state.selectedValuationId, state.selectedValuation).then((docId) => {
-      if (docId) {
+      if (docId && docId !== state.selectedValuationId) {
+        console.log('New valuation was inserted')
         // new valuation was inserted
         commit('SET_VALUATION', { valuation: state.selectedValuation, id: docId })
+        commit('SET_SELECTED_ID', docId)
       } else {
         console.log('Existing  valuation was updated')
       }
@@ -66,7 +74,7 @@ const actions = {
     let val = valuation || Object.assign({}, emptyValuation)
     commit('SET_WIP', {val, id})
   },
-  newWip ({ commit }) {
+  resetWip ({ commit }) {
     let val = Object.assign({}, emptyValuation)
     let id = ''
     commit('SET_WIP', {val, id})
