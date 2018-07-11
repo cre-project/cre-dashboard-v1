@@ -34,7 +34,9 @@ export default {
   },
   created () {
     eb.$on('loadUserData', (userId) => {
-      this.$store.dispatch('valuations/fetchAll', this.userId)
+      if (this.valuationIds.length === 0) {
+        this.$store.dispatch('valuations/fetchAll', this.userId)
+      }
     })
   }
 }
