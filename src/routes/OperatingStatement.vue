@@ -14,8 +14,8 @@
                     </thead>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">GROSS POTENTIAL RENT</td>
-                        <td>$<span id="gpr-current">{{ current.grossRent }}</span></td>
-                        <td>$<span id="gpr-future">{{ potential.grossRent }}</span></td>
+                        <td>$<span id="gpr-current">{{ grossRentCurrent }}</span></td>
+                        <td>$<span id="gpr-future">{{ grossRentPotential }}</span></td>
                     </tr>
                     <tr>
                         <td>Less: Vacancy/Deduction</td>
@@ -24,13 +24,13 @@
                             <span id="vacancy">  {{ vacancy }}% </span>
                             <button class="percent" @click="decrease('vacancy')">-</button>
                         </td>
-                        <td>- $<span id="vacancy-current">{{ current.vacancy }}</span></td>
-                        <td>- $<span id="vacancy-future">{{ potential.vacancy }}</span></td>
+                        <td>- $<span id="vacancy-current">{{ currentVacancy }}</span></td>
+                        <td>- $<span id="vacancy-future">{{ potentialVacancy }}</span></td>
                     </tr>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">EFFECTIVE RENTAL INCOME</td>
-                        <td>${{ current.totalRent }}</td>
-                        <td>${{ potential.totalRent }}</td>
+                        <td>${{ currentRent }}</td>
+                        <td>${{ potentialRent }}</td>
                     </tr>
                     <tr>
                         <td class="sub-section l-align bolder" span="4">Expenses</td>
@@ -108,7 +108,7 @@
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import router from '../router/index'
 import SideForm from '@/components/SideForm'
 
@@ -122,23 +122,41 @@ export default {
       taxes: 5
     }
   },
+  computed: {
+    ...mapGetters('valuations', ['grossRentCurrent', 'grossRentPotential']),
+    currentVacancy () {
+      return (this.grossRentCurrent / 100) * this.vacancy
+    },
+    potentialVacancy () {
+      return (this.grossRentPotential / 100) * this.vacancy
+    },
+    currentRent () {
+      return this.grossRentCurrent - this.currentVacancy
+    },
+    potentialRent () {
+      return this.grossRentPotential - this.potentialVacancy
+    }
+  },
   components: {
     SideForm: SideForm
   },
   methods: {
     ...mapActions('valuations', ['setWipOS', 'persist']),
     save () {
+      // TODO set percentage values (vacancy, mgmtFee, taxes) in Wip (selectedVacancy)
+      this.current.grossRent = this.grossRentCurrent
+      this.current.totalRent = this.currentRent
+      this.potential.grossRent = this.grossRentPotential
+      this.potential.totalRent = this.potentialRent
       this.setWipOS({current: this.current, potential: this.potential})
       this.persist()
       router.push('./sales-comparables')
     },
     increase (prop) {
       this.$data[prop]++
-      // TODO percentage calculation here
     },
     decrease (prop) {
       this.$data[prop]--
-      // TODO percentage calculation here
     }
   },
   created () {

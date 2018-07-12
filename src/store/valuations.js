@@ -7,6 +7,14 @@ const state = {
   selectedValuationId: '',
   selectedValuation: emptyValuation
 }
+const getters = {
+  grossRentCurrent () {
+    return state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.currentRent) || 0), 0)
+  },
+  grossRentPotential () {
+    return state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.potentialRent) || 0), 0)
+  }
+}
 const mutations = {
   SET_VALUATION (state, { valuation, id }) {
     if (Object.keys(state.all).indexOf(id) === -1) {
@@ -106,5 +114,5 @@ const actions = {
 }
 
 export default {
-  namespaced: true, state, mutations, actions
+  namespaced: true, state, mutations, actions, getters
 }
