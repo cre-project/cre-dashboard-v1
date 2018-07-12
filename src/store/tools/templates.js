@@ -62,7 +62,14 @@ export const emptyComparable = {
   yearBuilt: null,
   rent: null,
   bedrooms: '',
-  bathrooms: ''
+  bathrooms: '',
+  salesPrice: null,
+  numUnits: null,
+  pricePerUnit: null,
+  closeOfEscrow: '',
+  capRate: null,
+  grm: null,
+  pricePerSf: null
 }
 export const emptyValuation = {
   property: Object.assign({}, emptyProperty),

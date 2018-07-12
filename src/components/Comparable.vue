@@ -3,7 +3,7 @@
         <span class="add-more-content" v-show="!expanded">Add Another Unit</span>
         <div class="add-more-content" id="plus" v-show="!expanded" @click="expand">+</div>
         <span class="add-more-content text ita bold" v-show="expanded">Property Information</span>
-        <span class="add-more-content text ita bold right" v-show="expanded">Rent Information</span>
+        <span class="add-more-content text ita bold right" v-show="expanded">{{ subTitle }}</span>
         <div class="popup-form" v-show="expanded">
             <!-- part 1 of the form -->
             <form id="form-1">
@@ -35,8 +35,8 @@
                     <input class="half-size" v-model="comp.yearBuilt">
                 </label>
             </form>
-            <!-- part 3 of the form -->
-            <form id="form-5">
+            <!-- part 3 of the form for rentals -->
+            <form id="form-5" v-if="this.compType === 'rent'">
                 <h3 v-show="expanded">Unit Type:</h3>
                 <label class="half-size">
                     <div class="half-size"># Bedrooms</div>
@@ -60,12 +60,46 @@
                     </select>
                 </label>
             </form>
-            <form id="form-6">
+            <form id="form-6" v-if="this.compType === 'rent'">
                 <label class="half-size">
                     <div class="half-size more-padding">Current Rent/Mo.</div>
                     <input class="half-size" v-model="comp.rent">
                 </label>
               <button class="add" v-show="expanded" @click="add">Add</button>
+            </form>
+            <!-- part 3 of the form for sales comps -->
+            <form id="form-5" v-if="this.compType !== 'rent'">
+                <label class="narrow">
+                    <div class="narrow">Sales Price</div>
+                    <input  class="narrow" v-model="comp.salesPrice">
+                </label>
+                <label class="narrow">
+                    <div class="narrow">Total Number of Units</div>
+                    <input class="narrow" v-model="comp.numUnits">
+                </label>
+                <label class="narrow">
+                    <div class="narrow">Price / Unit</div>
+                    <input class="narrow" v-model="comp.pricePerUnit">
+                </label>
+                <label class="narrow">
+                    <div class="narrow">Close of Escrow</div>
+                    <input class="narrow" v-model="comp.closeOfEscrow">
+                </label>
+            </form>
+            <form id="form-6" v-if="this.compType !== 'rent'">
+                <label class="narrow">
+                    <div class="narrow">Cap Rate</div>
+                    <input  class="narrow" v-model="comp.capRate">
+                </label>
+                <label class="narrow">
+                    <div class="narrow">GRM</div>
+                    <input class="narrow" v-model="comp.grm">
+                </label>
+                <label class="narrow">
+                    <div class="narrow">Price / SF</div>
+                    <input class="narrow" v-model="comp.pricePerSf">
+                </label>
+                <button class="add" id="add-sales" v-show="expanded" @click="add">Add</button>
             </form>
         </div>
     </div>
@@ -90,7 +124,10 @@ export default {
   computed: {
     ...mapState({
       comparables: state => state.valuations.comparables
-    })
+    }),
+    subTitle () {
+      return this.compType === 'rent' ? 'Rent Information' : 'Financial Information'
+    }
   },
   methods: {
     ...mapActions('valuations', ['addComparable']),
@@ -134,5 +171,11 @@ input {
 .add {
   margin-left: 7em;
   margin-top: 6em;
+}
+.narrow {
+  width: 80%;
+}
+#add-sales {
+  margin-top: unset;
 }
 </style>
