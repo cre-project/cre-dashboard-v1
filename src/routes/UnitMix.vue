@@ -6,6 +6,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th class="half-size"></th>
                         <th>Unit Type</th>
                         <th>Square Feet</th>
                         <th>Current Rent/Mo.</th>
@@ -14,6 +15,13 @@
                 </thead>
                 <tbody>
                     <unit v-for="unit in units" :key="unit.id" :unit="unit"></unit>
+                    <tr>
+                        <td class="half-size">Total</td>
+                        <td></td>
+                        <td>{{ totalSqFt }} SF</td>
+                        <td>$ {{ totalRentCurrent }}</td>
+                        <td>$ {{ totalRentPotential }}</td>
+                    </tr>
                 </tbody>
             </table>
             <div id="add-more">
@@ -43,6 +51,17 @@ export default {
     return {
       units: [],
       currentUnit: ''
+    }
+  },
+  computed: {
+    totalSqFt () {
+      return this.units.reduce((acc, unit) => acc + (Number(unit.squareFeet) || 0), 0)
+    },
+    totalRentCurrent () {
+      return this.units.reduce((acc, unit) => acc + (Number(unit.currentRent) || 0), 0)
+    },
+    totalRentPotential () {
+      return this.units.reduce((acc, unit) => acc + (Number(unit.potentialRent) || 0), 0)
     }
   },
   methods: {

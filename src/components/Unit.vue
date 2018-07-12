@@ -1,5 +1,6 @@
 <template>
   <tr class="editable">
+      <td class="half-size"></td>
       <td>
           <select class="buttonize down-arrow">
               <option>1 Bedroom & 1 Bathroom</option>
