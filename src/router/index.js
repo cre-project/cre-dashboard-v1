@@ -43,13 +43,20 @@ let router = new Router({
   routes: routes
 })
 
+// keep track of first auth state change
+let authStateChanged = false
+
 // check whether a user is logged in a redirect depending on whether auth is required for the given route
 router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   // need to add callback on authState observer because on page load currentUser is still null (firebase not yet initialized)
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      store.dispatch('users/loggedIn', user)
+      // onAuthStateChanged gets called too many times but users/loggedIn should only be called once
+      if (!authStateChanged) {
+        store.dispatch('users/loggedIn', user)
+        authStateChanged = true
+      }
       if (!requiresAuth) next('valuations')
       else next()
     } else {

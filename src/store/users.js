@@ -42,25 +42,28 @@ const actions = {
   },
   async loggedIn ({ commit, rootState }, data) {
     let usersRef = rootState.db.collection('users')
+    console.log('userloggedin', data.email)
     usersRef.where('email', '==', data.email).onSnapshot(function (userSnapshot) {
-      userSnapshot.forEach(user => {
-        if (user.exists) {
-          commit('SET_USER', { user })
-          eb.$emit('loadUserData', state.currentId)
-        } else {
-          // need to save user in DB
-          let user = state.currentUser
-          // data that comes from firebase auth after login
-          if (data.email) user.email = data.email
-
-          commit('SET_LOCAL_USER', { user })
-          persist(rootState, 'users', state.currentId, user)
-            .then((newDocId) => {
-              if (newDocId) state.currentId = newDocId
-              eb.$emit('loadUserData', state.currentId)
-            })
-        }
-      })
+      if (userSnapshot.empty) {
+        console.log('saving user in db')
+        // need to save user in DB
+        let user = state.currentUser
+        // data that comes from firebase auth after login
+        if (data.email) user.email = data.email
+        commit('SET_LOCAL_USER', { user })
+        persist(rootState, 'users', state.currentId, user)
+          .then((newDocId) => {
+            if (newDocId) state.currentId = newDocId
+            eb.$emit('loadUserData', state.currentId)
+          })
+      } else {
+        userSnapshot.forEach(user => {
+          if (user.exists) {
+            commit('SET_USER', { user })
+            eb.$emit('loadUserData', state.currentId)
+          }
+        })
+      }
     })
   },
   clear ({ commit }) {

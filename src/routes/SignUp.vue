@@ -28,15 +28,8 @@ export default {
   },
   methods: {
     signUp () {
-      let vm = this
-      firebase.createUserWithEmailAndPassword(this.email, this.password).then(
-        function (user) {
-          vm.$store.dispatch('storeUser', user)
-          vm.$router.replace('valuations')
-        },
-        function (err) {
-          alert('Something went wrong: ' + err.message)
-        })
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .catch((err) => alert('Something went wrong: ' + err.message))
     }
   }
 }
