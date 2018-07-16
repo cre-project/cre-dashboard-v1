@@ -8,11 +8,12 @@ const state = {
   selectedValuation: emptyValuation
 }
 const getters = {
+  // rent per year for all units combined
   grossRentCurrent () {
-    return state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.currentRent) || 0), 0)
+    return state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.currentRent) || 0), 0) * 12
   },
   grossRentPotential () {
-    return state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.potentialRent) || 0), 0)
+    return state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.potentialRent) || 0), 0) * 12
   }
 }
 const mutations = {
