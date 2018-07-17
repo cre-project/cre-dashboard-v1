@@ -4,7 +4,7 @@
         <div class="preview-content">
             {{ valuation.property.address }}
             <br><br>
-            Created on     {{ valuation.createdOn.toDate().toUTCString() }}
+            Created on     {{ date }}
             <br><br><br><br>
             <span v-show="valuation.capRate && valuation.PPSF">
                 Cap Rate     {{ valuation.capRate }}%
@@ -36,6 +36,16 @@ export default {
       this.setWip({valuation: this.valuation, id: this.id})
       this.toggleEditing()
       router.push('/property-info')
+    }
+  },
+  computed: {
+    date () {
+      let createdOn = this.valuation.createdOn
+      if (createdOn instanceof Date) {
+        return createdOn.toUTCString()
+      } else {
+        return createdOn.toDate().toUTCString()
+      }
     }
   }
 }
