@@ -19,20 +19,28 @@
                     <div>City</div>
                     <input v-model="comp.city">
                 </label>
+                <label class="side-by-side">
+                    <div>State</div>
+                    <input class="side-by-side" v-model="comp.state">
+                </label>
+                <label class="side-by-side">
+                    <div >ZIP</div>
+                    <input class="side-by-side" v-model="comp.zip">
+                </label>
             </form>
             <!-- part 2 of the form -->
             <form id="form-2">
-                <label class="half-size">
-                    <div class="half-size">State</div>
-                    <input  class="half-size" v-model="comp.state">
+                <label class="narrow">
+                    <div class="narrow">Year built</div>
+                    <input class="narrow" v-model="comp.yearBuilt">
                 </label>
-                <label class="half-size">
-                    <div class="half-size">ZIP</div>
-                    <input class="half-size" v-model="comp.zip">
+                <label class="narrow">
+                    <div class="narrow">Square Feet</div>
+                    <input class="narrow" v-model="comp.sf">
                 </label>
-                <label class="half-size">
-                    <div class="half-size">Year built</div>
-                    <input class="half-size" v-model="comp.yearBuilt">
+                <label class="narrow">
+                    <div class="narrow">Total Number of Units</div>
+                    <input class="narrow" v-model="comp.numUnits">
                 </label>
             </form>
             <!-- part 3 of the form for rentals -->
@@ -74,14 +82,6 @@
                     <input  class="narrow" v-model="comp.salesPrice">
                 </label>
                 <label class="narrow">
-                    <div class="narrow">Total Number of Units</div>
-                    <input class="narrow" v-model="comp.numUnits">
-                </label>
-                <label class="narrow">
-                    <div class="narrow">Price / Unit</div>
-                    <input class="narrow" v-model="comp.pricePerUnit">
-                </label>
-                <label class="narrow">
                     <div class="narrow">Close of Escrow</div>
                     <input class="narrow" v-model="comp.closeOfEscrow">
                 </label>
@@ -95,11 +95,17 @@
                     <div class="narrow">GRM</div>
                     <input class="narrow" v-model="comp.grm">
                 </label>
-                <label class="narrow">
-                    <div class="narrow">Price / SF</div>
-                    <input class="narrow" v-model="comp.pricePerSf">
-                </label>
                 <button class="add" id="add-sales" v-show="expanded" @click="add">Add</button>
+            </form>
+            <form id="form-7" v-if="this.compType !== 'rent'">
+                <label class="half-size">
+                    <div class="narrow">Price / SF</div>
+                    <input class="narrow" v-model="pricePerSf" readonly>
+                </label>
+                <label class="half-size">
+                    <div class="narrow">Price / Unit</div>
+                    <input class="narrow" v-model="pricePerUnit" readonly>
+                </label>
             </form>
         </div>
     </div>
@@ -127,6 +133,14 @@ export default {
     }),
     subTitle () {
       return this.compType === 'rent' ? 'Rent Information' : 'Financial Information'
+    },
+    pricePerUnit () {
+      let avg = (this.comp.salesPrice || 0) / (this.comp.numUnits || 1)
+      return avg.toFixed(2)
+    },
+    pricePerSf () {
+      let avg = (this.comp.salesPrice || 0) / (this.comp.sf || 1)
+      return avg.toFixed(2)
     }
   },
   methods: {
@@ -165,6 +179,11 @@ input {
   float: left;
   display: block;
 }
+#form-7{
+  width: 10%;
+  float: left;
+  display: block;
+}
 .right {
   margin-left: 30em;
 }
@@ -175,7 +194,12 @@ input {
 .narrow {
   width: 80%;
 }
+.side-by-side {
+  width: 45%;
+  float: left;
+  margin-top: 0;
+}
 #add-sales {
-  margin-top: unset;
+  margin-top: 3em;
 }
 </style>
