@@ -1,7 +1,7 @@
 :root {
-  --header-blue: #557A95;
-  --button-blue: #7395AE;
-  --light-brown: #B1A296;
+  --header-blue: #393A3D;
+  --button-blue: #439F76;
+  --light-brown: #2D9F1C;
 }
 
 /* Reset */
@@ -93,7 +93,7 @@ nav ul {
 nav ul li {
     display: inline-block;
     margin-left: 3em;
-    margin-right: 3em; 
+    margin-right: 3em;
     padding-bottom: 0.5em;
     font-size: 0.9em;
     border-bottom: 2px solid transparent;
@@ -156,7 +156,7 @@ nav ul li a {
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 1fr 9fr;
-    grid-template-areas: 
+    grid-template-areas:
         "top    right"
         "left   right";
     height: 100vh;
@@ -173,7 +173,7 @@ iframe {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
-    grid-row-end: 3; 
+    grid-row-end: 3;
 }
 
 aside {
@@ -290,7 +290,7 @@ td button {
 #os {
     margin: auto auto auto 10em;
     grid-area: left;
-    font-size: 0.9em;           
+    font-size: 0.9em;
     text-align: left;
 }
 
@@ -406,7 +406,7 @@ input {
 
 input[disabled].inline-edit {
   border-bottom: none;
-} 
+}
 
 input:not([disabled]).inline-edit {
     border: inset 1px gray;
@@ -432,9 +432,9 @@ label:hover input {
 }
 
 .side-form {
-    margin-top: 1em; 
-    margin-left: 2em; 
-    line-height: 3em; 
+    margin-top: 1em;
+    margin-left: 2em;
+    line-height: 3em;
     font-size:1.5em;
 }
 
@@ -532,7 +532,7 @@ img {
 
 #rent {
     margin-left: 1em;
-    margin-top: 7em; 
+    margin-top: 7em;
 }
 
 #completed {
@@ -568,7 +568,7 @@ img {
     margin-right: 2em;
     margin-top: 2.1em;
     float: right;
-} 
+}
 
 .auto-margin {
   margin: auto;
@@ -586,7 +586,7 @@ img {
 
 .preview-box {
   width: 90%;
-  height: 14em; 
+  height: 14em;
   padding: 0.5em;
   background-color: #F2F2F2;
   align-content: center;
@@ -659,7 +659,7 @@ br {
 .down-arrow {
   -moz-appearance:none; /* Firefox */
   -webkit-appearance:none; /* Safari and Chrome */
-  appearance:none;  
+  appearance:none;
 
   background-image:
     linear-gradient(45deg, transparent 50%, white 50%),
@@ -673,7 +673,7 @@ br {
     5px 5px,
     5px 5px,
     2.5em 2.5em;
-  background-repeat: no-repeat;    
+  background-repeat: no-repeat;
 }
 
 .l-align {
@@ -700,4 +700,3 @@ br {
     width: auto;
     margin: 0;
 }
-
