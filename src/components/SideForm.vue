@@ -2,7 +2,8 @@
   <aside class="total">
     <div class="side-form">
       <div class="bold l-align">Price</div>
-      <input type="text" id="os-right" v-bind="price">
+      <input id="os-right" v-model.number="localPrice">
+      <!-- price per unit/ sf - units & sf from unit mix -->
       <p class="bold l-align">Price/Unit: <span>${{ pricePerUnit }}</span><br>Price/SF: <span>${{ pricePerSf }}</span></p>
     </div>
     <table>
@@ -27,17 +28,27 @@
   </aside>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
     ...mapState({
       current: state => state.valuations.selectedValuation.statementCurrent,
       potential: state => state.valuations.selectedValuation.statementPotential,
-      price: state => state.valuations.selectedValuation.price,
-      pricePerUnit: state => state.valuations.selectedValuation.pricePerUnit,
-      pricePerSf: state => state.valuations.selectedValuation.pricePerSf
-    })
+      price: state => state.valuations.selectedValuation.price
+    }),
+    ...mapGetters('valuations', ['pricePerUnit', 'pricePerSf']),
+    localPrice: {
+      get () {
+        return this.price
+      },
+      set (value) {
+        this.setPrice(value)
+      }
+    }
+  },
+  methods: {
+    ...mapActions('valuations', ['setPrice'])
   }
 }
 </script>

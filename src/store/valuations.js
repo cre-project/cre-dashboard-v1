@@ -14,6 +14,13 @@ const getters = {
   },
   grossRentPotential () {
     return state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.potentialRent) || 0), 0) * 12
+  },
+  pricePerUnit () {
+    return (Number(state.selectedValuation.price) / (state.selectedValuation.units.length || 1)).toFixed(2)
+  },
+  pricePerSf () {
+    let sf = state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.squareFeet) || 0), 0)
+    return (Number(state.selectedValuation.price) / (sf || 1)).toFixed(2)
   }
 }
 const mutations = {
@@ -43,6 +50,9 @@ const mutations = {
   },
   SET_UNITS (state, units) {
     state.selectedValuation.units = units
+  },
+  SET_PRICE (state, price) {
+    state.selectedValuation.price = price
   },
   ADD_RENT_COMPARABLE (state, comparable) {
     state.selectedValuation.rentComps.push(comparable)
@@ -77,7 +87,7 @@ const actions = {
         commit('SET_VALUATION', { valuation: state.selectedValuation, id: docId })
         commit('SET_SELECTED_ID', docId)
       } else {
-        console.log('Existing  valuation was updated')
+        console.log('Existing valuation was updated')
       }
     })
   },
@@ -97,6 +107,9 @@ const actions = {
   },
   setWipOS ({ commit }, {current, potential}) {
     commit('SET_WIP_OS', {current, potential})
+  },
+  setPrice ({ commit }, price) {
+    commit('SET_PRICE', price || 0)
   },
   addComparable ({ commit }, {comparable, compType}) {
     console.log('adding comp, type', compType)

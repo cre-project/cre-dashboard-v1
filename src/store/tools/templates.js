@@ -72,8 +72,6 @@ export const emptyValuation = {
   salesComps: [],
   rentComps: [],
   price: 0,
-  pricePerUnit: 0,
-  pricePerSf: 0,
   taxes: 5,
   vacancy: 5,
   mgmtFee: 5,
