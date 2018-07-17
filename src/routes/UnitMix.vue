@@ -17,7 +17,7 @@
                     <unit v-for="unit in units" :key="unit.id" :unit="unit"></unit>
                     <tr>
                         <td class="half-size">Total</td>
-                        <td></td>
+                        <td>{{ numUnits }} units</td>
                         <td>{{ totalSqFt }} SF</td>
                         <td>$ {{ totalRentCurrent }}</td>
                         <td>$ {{ totalRentPotential }}</td>
@@ -54,6 +54,9 @@ export default {
     }
   },
   computed: {
+    numUnits () {
+      return this.units.length || '# '
+    },
     totalSqFt () {
       return this.units.reduce((acc, unit) => acc + (Number(unit.squareFeet) || 0), 0)
     },
@@ -75,10 +78,10 @@ export default {
       let id = uuidv4()
       this.units.push({id: id})
       this.currentUnit = id
-    },
-    created () {
-      this.units = this.$store.state.valuations.selectedValuation.units
     }
+  },
+  created () {
+    this.units = this.$store.state.valuations.selectedValuation.units
   },
   components: {
     Unit: Unit
