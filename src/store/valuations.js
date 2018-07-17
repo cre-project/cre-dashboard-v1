@@ -58,7 +58,6 @@ const mutations = {
     state.selectedValuation.rentComps.push(comparable)
   },
   ADD_SALES_COMPARABLE (state, comparable) {
-    console.log('adding comp', comparable)
     state.selectedValuation.salesComps.push(comparable)
   },
   TOGGLE_EDITING (state) {
@@ -112,7 +111,6 @@ const actions = {
     commit('SET_PRICE', price || 0)
   },
   addComparable ({ commit }, {comparable, compType}) {
-    console.log('adding comp, type', compType)
     if (compType === 'rent') {
       commit('ADD_RENT_COMPARABLE', comparable)
     } else if (compType === 'sales') {

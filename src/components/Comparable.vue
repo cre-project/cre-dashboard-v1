@@ -34,11 +34,11 @@
                     <div class="narrow">Year built</div>
                     <input class="narrow" v-model="comp.yearBuilt">
                 </label>
-                <label class="narrow">
+                <label class="narrow" v-if="this.compType !== 'rent'">
                     <div class="narrow">Square Feet</div>
                     <input class="narrow" v-model="comp.sf">
                 </label>
-                <label class="narrow">
+                <label class="narrow" v-if="this.compType !== 'rent'">
                     <div class="narrow">Total Number of Units</div>
                     <input class="narrow" v-model="comp.numUnits">
                 </label>
@@ -146,6 +146,8 @@ export default {
   methods: {
     ...mapActions('valuations', ['addComparable']),
     add () {
+      this.comp.pricePerUnit = this.pricePerUnit
+      this.comp.pricePerSf = this.pricePerSf
       this.addComparable({comparable: this.comp, compType: this.compType})
       this.reset()
       this.$emit('toggleSaveButton')

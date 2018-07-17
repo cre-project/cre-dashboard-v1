@@ -5,16 +5,16 @@
             <h1>Sales Comparables</h1>
             <table>
                 <tr>
-                    <th>Name</th>
                     <th>Address</th>
-                    <th>Type</th>
-                    <th>Rent</th>
+                    <th>Price</th>
+                    <th>Cap Rate</th>
+                    <th>Price / Unit</th>
                 </tr>
                 <tr v-for="(comp, i) in comparables" :key="comp.name + i">
-                    <th><input class="disabled" :value="comp.name"></th>
                     <th><input class="disabled" :value="comp.address"></th>
-                    <th><input class="disabled" :value="comp.type"></th>
-                    <th><input class="disabled" :value="comp.rent"></th>
+                    <th><input class="disabled" :value="comp.salesPrice"></th>
+                    <th><input class="disabled" :value="comp.capRate"></th>
+                    <th><input class="disabled" :value="comp.pricePerUnit"></th>
                 </tr>
             </table>
             <new-comparable :compType="'sales'" v-on:toggleSaveButton="toggle"></new-comparable>
