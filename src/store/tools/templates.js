@@ -9,7 +9,7 @@ export const emptyProperty = {
   lotSize: null,
   price: null
 }
-export const emptyCurrentOperatingStatement = {
+export const emptyFinancials = {
   expenses: {
     insurance: 0,
     electric: 0,
@@ -17,35 +17,9 @@ export const emptyCurrentOperatingStatement = {
     garbage: 0,
     maintenance: 0,
     landscaping: 0,
-    other: 0,
-    total: 0
+    other: 0
   },
-  stats: {
-    capRate: 0,
-    grm: 0
-  },
-  grossRent: 0,
-  totalRent: 0,
-  netOperatingIncome: 0
-}
-export const emptyPotentialOperatingStatement = {
-  expenses: {
-    insurance: 0,
-    electric: 0,
-    water: 0,
-    garbage: 0,
-    maintenance: 0,
-    landscaping: 0,
-    other: 0,
-    total: 0
-  },
-  stats: {
-    capRate: 0,
-    grm: 0
-  },
-  grossRent: 0,
-  totalRent: 0,
-  netOperatingIncome: 0
+  otherIncome: 0
 }
 export const emptyComparable = {
   name: '',
@@ -75,6 +49,6 @@ export const emptyValuation = {
   taxes: 5,
   vacancy: 5,
   mgmtFee: 5,
-  statementCurrent: emptyCurrentOperatingStatement,
-  statementPotential: emptyPotentialOperatingStatement
+  statementCurrent: Object.assign({}, emptyFinancials),
+  statementPotential: Object.assign({}, emptyFinancials)
 }

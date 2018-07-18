@@ -16,13 +16,13 @@
       </thead>
       <tr>
         <td>CAP Rate</td>
-        <td>{{ current.stats.capRate }}</td>
-        <td>{{ potential.stats.capRate }}</td>
+        <td>{{ stats.currentCapRate }}</td>
+        <td>{{ stats.potentialCapRate }}</td>
       </tr>
       <tr>
         <td>GRM</td>
-        <td>{{ current.stats.grm }}</td>
-        <td>{{ potential.stats.grm }}</td>
+        <td>{{ stats.currentGrm }}</td>
+        <td>{{ stats.potentialGrm }}</td>
       </tr>
     </table>
   </aside>
@@ -31,6 +31,12 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
+  props: {
+    stats: {
+      type: Object,
+      required: true
+    }
+  },
   computed: {
     ...mapState({
       current: state => state.valuations.selectedValuation.statementCurrent,
