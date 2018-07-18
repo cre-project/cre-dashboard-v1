@@ -5,7 +5,7 @@ const state = {
   all: {},
   isEditing: false,
   selectedValuationId: '',
-  selectedValuation: emptyValuation
+  selectedValuation: JSON.parse(JSON.stringify(emptyValuation))
 }
 const getters = {
   // rent per year for all units combined
@@ -92,11 +92,11 @@ const actions = {
   },
   // LOCAL STORE ACTIONS
   setWip ({ commit }, {valuation, id}) {
-    let val = valuation || Object.assign({}, emptyValuation)
+    let val = valuation || JSON.parse(JSON.stringify(emptyValuation))
     commit('SET_WIP', {val, id})
   },
   resetWip ({ commit }) {
-    let val = Object.assign({}, emptyValuation)
+    let val = JSON.parse(JSON.stringify(emptyValuation))
     let id = ''
     commit('SET_WIP', {val, id})
   },
