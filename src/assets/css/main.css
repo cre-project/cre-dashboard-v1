@@ -1,7 +1,7 @@
 :root {
-  --header-blue: #393A3D;
-  --button-blue: #439F76;
-  --light-brown: #2D9F1C;
+  --header-blue: #1F2833;
+  --button-blue: #1B6AFF;
+  --light-brown: #1B6AFF;
 }
 
 /* Reset */
@@ -113,7 +113,7 @@ nav ul li a {
 }
 
 #sub-header {
-    background-color: #F2F2F2;
+    background-color: #C5C6C7;
 }
 
 #menu {
@@ -588,7 +588,7 @@ img {
   width: 90%;
   height: 14em;
   padding: 0.5em;
-  background-color: #F2F2F2;
+  background-color: #C5C6C7;
   align-content: center;
   display: inline-block;
   margin: auto;
@@ -596,7 +596,7 @@ img {
 }
 
 #large-sub-header {
-  background-color: #F2F2F2;
+  background-color: #C5C6C7;
   height: 8em;
 }
 

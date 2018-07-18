@@ -47,6 +47,11 @@ export default {
 </script>
 <style scoped>
     #wrapper {
+        background-image: url(http://www.steamatic.com/images/footer-pattern-grey.jpg);
+        background-repeat: repeat;
+        background-position: center center;
+        background-size: cover;
+        overflow: hidden;
         display: grid;
         grid-template-rows: 0.5fr 2fr 4fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
@@ -57,6 +62,7 @@ export default {
         'g h i'
         'j k l';
     }
+
     form {
         grid-area: e;
     }
