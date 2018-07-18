@@ -45,6 +45,10 @@ export default {
     next(vm => {
       // access to component instance via `vm`
       vm.$store.dispatch('valuations/resetWip')
+      // load valuations if there are none
+      if (vm.valuationIds.length === 0 && vm.userId) {
+        vm.$store.dispatch('valuations/fetchAll', vm.userId)
+      }
     })
   }
 }
