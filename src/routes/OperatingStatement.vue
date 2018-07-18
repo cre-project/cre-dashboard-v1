@@ -36,7 +36,6 @@
                         <td colspan="2">Total Other Income</td>
                         <td>$<input class="inline-edit" v-model.number="current.otherIncome"></td>
                         <td>$<input class="inline-edit" v-model.number="potential.otherIncome"></td>
-                        <td></td>
                     </tr>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">EFFECTIVE GROSS INCOME</td>
