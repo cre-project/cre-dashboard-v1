@@ -26,7 +26,10 @@
                 <input v-model="user.phoneNumber">
             </label>
             <label>
-                <div>TODO: User picture</div>
+                <div>Add Profile Picture</div>
+                <img class="hidden" id="profile-preview">
+                <input type="file" class="save hidden" @input="loadProfilePic">
+                <i class="large material-icons clickable" id="profile-icon">add_a_photo</i>
             </label>
         </form>
         <!-- part 2 of the form -->
@@ -44,15 +47,19 @@
                 <input v-model="user.email">
             </label>
             <label>
-                <div>TODO: Add Company logo</div>
+                <div>Add Company Logo</div>
+                <img class="hidden" id="logo-preview" title="click to change picture">
+                <input type="file" class="save hidden" @input="loadLogo">
+                <i class="large material-icons clickable" id="logo-icon">add_a_photo</i>
             </label>
         </form>
         <button class="save" type="submit" @click="save">Save</button>
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import router from '../router/index'
+// import { upload } from '../store/tools/images'
 
 export default {
   data () {
@@ -62,9 +69,39 @@ export default {
   },
   methods: {
     ...mapActions('users', ['set']),
+    ...mapState({
+      userId: state => state.users.currentId
+    }),
     save () {
       this.set(this.user)
       router.push('./valuations')
+    },
+    loadNewImage (previewEl, button, imgName, evt) {
+      let file = evt.target.files[0]
+      let fileName = `${this.userId}/${name}`
+      let reader = new FileReader()
+
+      reader.addEventListener('load', function (evt) {
+        previewEl.src = evt.target.result
+        previewEl.classList.remove('hidden')
+        previewEl.classList.add('clickable')
+        button.classList.remove('clickable')
+        button.classList.add('hidden')
+        // upload(fileName, evt.target.result)
+      })
+      reader.readAsDataURL(file)
+    },
+    loadProfilePic (evt) {
+      const preview = document.querySelector('#profile-preview')
+      const icon = document.querySelector('#profile-icon')
+
+      this.loadNewImage(preview, icon, 'profile.jpg', evt)
+    },
+    loadLogo (evt) {
+      const preview = document.querySelector('#logo-preview')
+      const icon = document.querySelector('#logo-icon')
+
+      this.loadNewImage(preview, icon, 'logo.jpg', evt)
     }
   },
   created () {
@@ -80,5 +117,8 @@ export default {
   }
   .half-size {
     margin-right: 2em;
+  }
+  .clickable {
+    cursor: pointer;
   }
 </style>
