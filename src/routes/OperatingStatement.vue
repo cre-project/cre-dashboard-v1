@@ -50,7 +50,7 @@
                         <td class="setting">
                             <button class="percent" @click="decrease('taxes')">-</button>
                             <!-- percentage of sales price -->
-                            <span id="taxes">  {{ selectedValuation.taxes }}% </span>
+                            <span id="taxes">  {{ formatPercentage (selectedValuation.taxes) }}% </span>
                             <button class="percent" @click="increase('taxes')">+</button>
                         </td>
                         <!-- ONLY ONE TAX VALUE - NO DISTINCTION BETWEEN CURRENT AND POTENTIAL -->
@@ -161,7 +161,7 @@ export default {
     },
     /* EXPENSES  */
     taxes () {
-      return ((this.selectedValuation.price / 100) * this.selectedValuation.taxes).toFixed(0)
+      return ((this.selectedValuation.price / 1000) * this.selectedValuation.taxes).toFixed(0)
     },
     currentMgmtFee () {
       return ((this.effectiveGrossIncome / 100) * this.selectedValuation.mgmtFee).toFixed(0)
@@ -221,6 +221,10 @@ export default {
     formatPrice (value) {
       let val = (value / 1).toFixed().replace(',', '.')
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    },
+    formatPercentage (value) {
+      let val = (value / 10).toFixed(1).replace(',', '.')
+      return val.toString().replace(/\B(?=(\d{1})+(?!\d))/g, ',')
     },
     sum (expenses) {
       return Object.keys(expenses).reduce((acc, key) => acc + expenses[key], 0) + Number(this.taxes)
