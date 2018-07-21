@@ -34,8 +34,8 @@
                     </tr>
                     <tr>
                         <td colspan="2">Total Other Income</td>
-                        <td><input class="inline-edit" v-model.number="current.otherIncome"></td>
-                        <td><input class="inline-edit" v-model.number="potential.otherIncome"></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.otherIncome"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.otherIncome"></vue-numeric></td>
                     </tr>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">EFFECTIVE GROSS INCOME</td>
@@ -59,28 +59,28 @@
                     </tr>
                     <tr>
                         <td class="l-align" colspan="2">Insurance</td>
-                        <td><input class="inline-edit" v-model.number="current.expenses.insurance"></td>
-                        <td><input class="inline-edit" v-model.number="potential.expenses.insurance"></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.insurance"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.insurance"></vue-numeric></td>
                     </tr>
                     <tr>
                         <td class="l-align" colspan="2">Utilities - Electric</td>
-                        <td><input class="inline-edit" v-model.number="current.expenses.electric"></td>
-                        <td><input class="inline-edit" v-model.number="potential.expenses.electric"></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.electric"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.electric"></vue-numeric></td>
                     </tr>
                     <tr>
                         <td class="l-align" colspan="2">Utilities - Water & Sewer</td>
-                        <td><input class="inline-edit" v-model.number="current.expenses.water"></td>
-                        <td><input class="inline-edit" v-model.number="potential.expenses.water"></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.water"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.water"></vue-numeric></td>
                     </tr>
                     <tr>
                         <td class="l-align" colspan="2">Garbage</td>
-                        <td><input class="inline-edit" v-model.number="current.expenses.garbage"></td>
-                        <td><input class="inline-edit" v-model.number="potential.expenses.garbage"></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.garbage"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.garbage"></vue-numeric></td>
                     </tr>
                     <tr>
                         <td class="l-align" colspan="2">Repairs & Maintenance</td>
-                        <td><input class="inline-edit" v-model.number="current.expenses.maintenance"></td>
-                        <td><input class="inline-edit" v-model.number="potential.expenses.maintenance"></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.maintenance"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.maintenance"></vue-numeric></td>
                     </tr>
                     <tr>
                         <!-- PERCENTAGE OF EFFECTIVE GROSS INCOME -->
@@ -95,13 +95,13 @@
                     </tr>
                     <tr>
                         <td class="l-align" colspan="2">Landscaping</td>
-                        <td><input class="inline-edit" v-model.number="current.expenses.landscaping"></td>
-                        <td><input class="inline-edit" v-model.number="potential.expenses.landscaping"></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.landscaping"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.landscaping"></vue-numeric></td>
                     </tr>
                     <tr>
                         <td class="l-align" colspan="2">Other Expenses</td>
-                        <td><input class="inline-edit" v-model.number="current.expenses.other"></td>
-                        <td><input class="inline-edit" v-model.number="potential.expenses.other"></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.other"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.other"></vue-numeric></td>
                     </tr>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">TOTAL EXPENSES</td>
@@ -125,6 +125,7 @@
 import { mapActions, mapGetters, mapState } from 'vuex'
 import router from '../router/index'
 import SideForm from '@/components/SideForm'
+import VueNumeric from 'vue-numeric'
 
 export default {
   data () {
@@ -202,7 +203,8 @@ export default {
     }
   },
   components: {
-    SideForm: SideForm
+    SideForm: SideForm,
+    VueNumeric: VueNumeric
   },
   methods: {
     ...mapActions('valuations', ['setWipOS', 'persist']),

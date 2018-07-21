@@ -2,7 +2,7 @@
   <aside class="total">
     <div class="side-form">
       <div class="bold l-align">Price</div>
-      <input id="os-right" v-model.number="localPrice">
+      <vue-numeric input id="os-right" currency="$" separator="," v-model.number="localPrice"></vue-numeric>
       <!-- price per unit/ sf - units & sf from unit mix -->
       <p class="bold l-align">
       Price/Unit: <span>${{ pricePerUnit }}</span>
@@ -33,6 +33,7 @@
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
+import VueNumeric from 'vue-numeric'
 
 export default {
   props: {

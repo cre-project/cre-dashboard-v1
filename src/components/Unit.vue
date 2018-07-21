@@ -20,12 +20,13 @@
               <option>3</option>
           </select>
       </td>
-      <td><input class="inline-edit" v-model="unit.squareFeet" value=""></td>
-      <td>$<input class="inline-edit" v-model="unit.currentRent" value=""></td>
-      <td>$<input class="inline-edit" v-model="unit.potentialRent" value=""></td>
+      <td><vue-numeric input class="inline-edit" separator="," v-model="unit.squareFeet" value=""></vue-numeric></td>
+      <td>$<vue-numeric input class="inline-edit" separator="," v-model="unit.currentRent" value=""></vue-numeric></td>
+      <td>$<vue-numeric input class="inline-edit" separator="," v-model="unit.potentialRent" value=""></vue-numeric></td>
   </tr>
 </template>
 <script>
+import VueNumeric from 'vue-numeric'
 
 export default {
   props: {

@@ -18,9 +18,9 @@
                     <tr>
                         <td class="half-size">Total</td>
                         <td>{{ numUnits }} units</td>
-                        <td>{{ totalSqFt }} SF</td>
-                        <td>$ {{ totalRentCurrent }}</td>
-                        <td>$ {{ totalRentPotential }}</td>
+                        <td>{{ formatPrice (totalSqFt) }} SF</td>
+                        <td>$ {{ formatPrice (totalRentCurrent) }}</td>
+                        <td>$ {{ formatPrice (totalRentPotential) }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -36,6 +36,7 @@
 import router from '../router/index'
 import Unit from '@/components/Unit'
 import { mapActions } from 'vuex'
+import VueNumeric from 'vue-numeric'
 
 // generate a semi-random uuid
 function uuidv4 () {
@@ -78,6 +79,10 @@ export default {
       let id = uuidv4()
       this.units.push({id: id})
       this.currentUnit = id
+    },
+    formatPrice (value) {
+      let val = (value / 1).toFixed().replace(',', '.')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
   },
   created () {

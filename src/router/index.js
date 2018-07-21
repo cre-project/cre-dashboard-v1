@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import VueNumeric from 'vue-numeric'
 // import store from ''
 import store from '@/store/index'
 // import * as actions from 'vuex/actions'
@@ -24,6 +25,7 @@ Vue.component('main-header', MainHeader)
 Vue.component('navigation-header', NavigationHeader)
 
 Vue.use(Router)
+Vue.use(VueNumeric)
 
 export const routes = [
   { path: '*', redirect: '/login' },
