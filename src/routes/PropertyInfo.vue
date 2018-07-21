@@ -28,7 +28,7 @@
                     </label>
                 </div>
                 <label class="half-size">
-                    <div class="half-size">Lot Size</div>
+                    <div class="half-size">Lot Size Sq. Ft.</div>
                     <input class="half-size" v-model="property.lotSize">
                 </label>
             </form>

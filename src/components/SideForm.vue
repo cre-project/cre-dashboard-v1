@@ -4,7 +4,11 @@
       <div class="bold l-align">Price</div>
       <input id="os-right" v-model.number="localPrice">
       <!-- price per unit/ sf - units & sf from unit mix -->
-      <p class="bold l-align">Price/Unit: <span>${{ pricePerUnit }}</span><br>Price/SF: <span>${{ pricePerSf }}</span></p>
+      <p class="bold l-align">
+      Price/Unit: <span>${{ pricePerUnit }}</span>
+      <br>
+      Price/SF: <span>${{ pricePerSf }}</span>
+      </p>
     </div>
     <table>
       <thead>
@@ -55,6 +59,10 @@ export default {
   },
   methods: {
     ...mapActions('valuations', ['setPrice'])
+  },
+  formatPrice (value) {
+    let val = (value / 1).toFixed().replace(',', '.')
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '', '')
   }
 }
 </script>

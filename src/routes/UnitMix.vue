@@ -6,8 +6,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="half-size"></th>
-                        <th>Unit Type</th>
+                        <th>Bedrooms</th>
+                        <th>Bathrooms</th>
                         <th>Square Feet</th>
                         <th>Current Rent/Mo.</th>
                         <th>Potential Rent/Mo.</th>

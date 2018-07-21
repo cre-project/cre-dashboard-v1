@@ -1,11 +1,23 @@
 <template>
   <tr class="editable">
-      <td class="half-size"></td>
       <td>
           <select class="buttonize down-arrow" v-model="unit.type">
-              <option>1 Bedroom & 1 Bathroom</option>
-              <option>1 Bedroom & 2 Bathroom</option>
-              <option>2 Bedroom & 1 Bathroom</option>
+              <option disabled value="">Please select one</option>
+              <option>Studio</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+          </select>
+      </td>
+      <td>
+          <select class="buttonize down-arrow" v-model="unit.bathroom">
+              <option disabled value="">Please select one</option>
+              <option>1</option>
+              <option>1.5</option>
+              <option>2</option>
+              <option>2.5</option>
+              <option>3</option>
           </select>
       </td>
       <td><input class="inline-edit" v-model="unit.squareFeet" value=""></td>

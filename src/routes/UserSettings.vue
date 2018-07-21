@@ -78,7 +78,6 @@ export default {
     },
     loadNewImage (previewEl, button, imgName, evt) {
       let file = evt.target.files[0]
-      let fileName = `${this.userId}/${name}`
       let reader = new FileReader()
 
       reader.addEventListener('load', function (evt) {
