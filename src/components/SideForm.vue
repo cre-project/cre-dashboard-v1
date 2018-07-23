@@ -33,7 +33,6 @@
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
-import VueNumeric from 'vue-numeric'
 
 export default {
   props: {

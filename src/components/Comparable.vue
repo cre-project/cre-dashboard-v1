@@ -8,10 +8,6 @@
             <!-- part 1 of the form -->
             <form id="form-1">
                 <label>
-                    <div>Property Name</div>
-                    <input v-model="comp.name">
-                </label>
-                <label>
                     <div>Property Address</div>
                     <input v-model="comp.address">
                 </label>
@@ -36,7 +32,7 @@
                 </label>
                 <label class="narrow" v-if="this.compType !== 'rent'">
                     <div class="narrow">Square Feet</div>
-                    <input class="narrow" v-model="comp.sf">
+                    <vue-numeric input class="narrow" separator="," v-model="comp.sf"></vue-numeric>
                 </label>
                 <label class="narrow" v-if="this.compType !== 'rent'">
                     <div class="narrow">Total Number of Units</div>
@@ -71,7 +67,7 @@
             <form id="form-6" v-if="this.compType === 'rent'">
                 <label class="half-size">
                     <div class="half-size more-padding">Current Rent/Mo.</div>
-                    <input class="half-size" v-model="comp.rent">
+                    <vue-numeric input class="half-size" currency="$" separator="," v-model="comp.rent"></vue-numeric>
                 </label>
               <button class="add" v-show="expanded" @click="add">Add</button>
             </form>
@@ -79,7 +75,7 @@
             <form id="form-5" v-if="this.compType !== 'rent'">
                 <label class="narrow">
                     <div class="narrow">Sales Price</div>
-                    <input  class="narrow" v-model="comp.salesPrice">
+                    <vue-numeric input  class="narrow" currency="$" separator="," v-model="comp.salesPrice"></vue-numeric>
                 </label>
                 <label class="narrow">
                     <div class="narrow">Close of Escrow</div>
@@ -100,11 +96,11 @@
             <form id="form-7" v-if="this.compType !== 'rent'">
                 <label class="half-size">
                     <div class="narrow">Price / SF</div>
-                    <input class="narrow" v-model="pricePerSf" readonly>
+                    <vue-numeric input class="narrow" currency="$" separator="," v-model="pricePerSf" readonly></vue-numeric>
                 </label>
                 <label class="half-size">
                     <div class="narrow">Price / Unit</div>
-                    <input class="narrow" v-model="pricePerUnit" readonly>
+                    <vue-numeric input class="narrow" currency="$" separator="," v-model="pricePerUnit" readonly></vue-numeric>
                 </label>
             </form>
         </div>

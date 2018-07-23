@@ -6,10 +6,6 @@
             <!-- part 1 of the form -->
             <form id="form-left">
                 <label>
-                    <div>Property Name</div>
-                    <input v-model="property.name">
-                </label>
-                <label>
                     <div>Property Address</div>
                     <input v-model="property.address">
                 </label>
@@ -29,7 +25,7 @@
                 </div>
                 <label class="half-size">
                     <div class="half-size">Lot Size Sq. Ft.</div>
-                    <input class="half-size" v-model="property.lotSize">
+                    <vue-numeric input class="half-size" separator="," v-model="property.lotSize"></vue-numeric>
                 </label>
             </form>
             <!-- part 2 of the form -->
@@ -38,10 +34,12 @@
                     <div>City</div>
                     <input v-model="property.city">
                 </label>
+              <div class="box">
                 <label>
                     <div>ZIP</div>
                     <input v-model="property.zip">
                 </label>
+              </div>
             </form>
             <button class="save" id="property-info" type="submit" @click="save">Save & Next</button>
         </div>

@@ -36,7 +36,6 @@
 import router from '../router/index'
 import Unit from '@/components/Unit'
 import { mapActions } from 'vuex'
-import VueNumeric from 'vue-numeric'
 
 // generate a semi-random uuid
 function uuidv4 () {

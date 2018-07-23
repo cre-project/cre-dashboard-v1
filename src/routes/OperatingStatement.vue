@@ -125,7 +125,6 @@
 import { mapActions, mapGetters, mapState } from 'vuex'
 import router from '../router/index'
 import SideForm from '@/components/SideForm'
-import VueNumeric from 'vue-numeric'
 
 export default {
   data () {
@@ -203,8 +202,7 @@ export default {
     }
   },
   components: {
-    SideForm: SideForm,
-    VueNumeric: VueNumeric
+    SideForm: SideForm
   },
   methods: {
     ...mapActions('valuations', ['setWipOS', 'persist']),

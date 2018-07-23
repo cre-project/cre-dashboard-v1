@@ -1,8 +1,8 @@
 <template>
     <div class="preview-box" @click="editValuation">
-        <div class="preview-title">{{ valuation.property.name || "New Valuation" }}</div>
+        <div class="preview-title">{{ valuation.property.address || "New Valuation" }}</div>
         <div class="preview-content">
-            {{ valuation.property.address }}
+            {{ valuation.property.city }}
             <br><br>
             Created on     {{ date }}
             <br><br><br><br>
@@ -11,7 +11,7 @@
                 <br>
                 PPSF   ${{ valuation.PPSF }}
             </span>
-            <span id="price" v-show="valuation.price">${{ valuation.price }}</span>
+            <span id="price" v-show="valuation.price">${{ formatPrice (valuation.price) }}</span>
         </div>
     </div>
 </template>
@@ -36,6 +36,10 @@ export default {
       this.setWip({valuation: this.valuation, id: this.id})
       this.toggleEditing()
       router.push('/property-info')
+    },
+    formatPrice (value) {
+      let val = (value / 1).toFixed().replace(',', '.')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
   },
   computed: {

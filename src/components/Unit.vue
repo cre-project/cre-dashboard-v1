@@ -26,7 +26,6 @@
   </tr>
 </template>
 <script>
-import VueNumeric from 'vue-numeric'
 
 export default {
   props: {
