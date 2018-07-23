@@ -14,31 +14,37 @@
                     <input v-model="property.state">
                 </label>
                 <div class="box">
-                    <label class="half-size">
-                        <div class="half-size">Number of Stories</div>
-                        <input class="half-size" v-model="property.numberOfStories">
-                    </label>
-                    <label class="half-size">
-                        <div class="half-size">Year built</div>
-                        <input class="half-size" v-model="property.yearBuilt">
-                    </label>
+                  <label class="half-size">
+                      <div class="half-size">City</div>
+                      <input class="half-size" v-model="property.city">
+                  </label>
+                  <label class="half-size">
+                      <div class="half-size">ZIP</div>
+                      <input class="half-size" v-model="property.zip">
+                  </label>
                 </div>
-                <label class="half-size">
-                    <div class="half-size">Lot Size Sq. Ft.</div>
-                    <vue-numeric input class="half-size" separator="," v-model="property.lotSize"></vue-numeric>
-                </label>
             </form>
             <!-- part 2 of the form -->
             <form id="form-right">
-                <label>
-                    <div>City</div>
-                    <input v-model="property.city">
-                </label>
               <div class="box">
-                <label>
-                    <div>ZIP</div>
-                    <input v-model="property.zip">
-                </label>
+                  <label class="half-size">
+                      <div class="half-size">Number of Stories</div>
+                      <input class="half-size" v-model="property.numberOfStories">
+                  </label>
+                  <label class="half-size">
+                      <div class="half-size">Year built</div>
+                      <input class="half-size" v-model="property.yearBuilt">
+                  </label>
+              </div>
+              <div class="box">
+                  <label class="half-size">
+                      <div class="half-size">Lot Size Sq. Ft.</div>
+                      <vue-numeric input class="half-size" separator="," v-model="property.lotSize"></vue-numeric>
+                  </label>
+                  <label class="half-size">
+                      <div class="half-size">APN</div>
+                      <input class="half-size" v-model="property.apn">
+                  </label>
               </div>
             </form>
             <button class="save" id="property-info" type="submit" @click="save">Save & Next</button>

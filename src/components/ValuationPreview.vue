@@ -1,17 +1,12 @@
 <template>
     <div class="preview-box" @click="editValuation">
-        <div class="preview-title">{{ valuation.property.address || "New Valuation" }}</div>
+        <div class="preview-title">{{ valuation.property.address || "New Valuation" }}, {{ valuation.property.city }}</div>
         <div class="preview-content">
-            {{ valuation.property.city }}
+            APN {{ valuation.property.apn }}
             <br><br>
             Created on     {{ date }}
-            <br><br><br><br>
-            <span v-show="valuation.capRate && valuation.PPSF">
-                Cap Rate     {{ valuation.capRate }}%
-                <br>
-                PPSF   ${{ valuation.PPSF }}
-            </span>
-            <span id="price" v-show="valuation.price">${{ formatPrice (valuation.price) }}</span>
+            <br><br><br>
+            <span id="price" v-show="valuation.price">Price    ${{ formatPrice (valuation.price) }}</span>
         </div>
     </div>
 </template>
