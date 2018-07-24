@@ -48,10 +48,7 @@
                     <tr>
                         <td class="l-align">Real Estate Taxes</td>
                         <td class="setting">
-                            <button class="percent" @click="decrease('taxes')">-</button>
-                            <!-- percentage of sales price -->
-                            <span id="taxes">  {{ formatPercentage (selectedValuation.taxes) }}% </span>
-                            <button class="percent" @click="increase('taxes')">+</button>
+                            <vue-numeric input class="inline-edit" v-bind:precision="4" v-model.number="selectedValuation.taxes"></vue-numeric>%
                         </td>
                         <!-- ONLY ONE TAX VALUE - NO DISTINCTION BETWEEN CURRENT AND POTENTIAL -->
                         <td id="taxes-current">{{ formatPrice (taxes) }}</td>
@@ -161,7 +158,7 @@ export default {
     },
     /* EXPENSES  */
     taxes () {
-      return ((this.selectedValuation.price / 1000) * this.selectedValuation.taxes).toFixed(0)
+      return ((this.selectedValuation.price / 100) * this.selectedValuation.taxes).toFixed(0)
     },
     currentMgmtFee () {
       return ((this.effectiveGrossIncome / 100) * this.selectedValuation.mgmtFee).toFixed(0)

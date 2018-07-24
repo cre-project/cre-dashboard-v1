@@ -12,9 +12,9 @@
                 </tr>
                 <tr v-for="(comp, i) in comparables" :key="comp.name + i">
                     <th><input class="disabled" :value="comp.address"></th>
-                    <th><input class="disabled" :value="comp.salesPrice"></th>
+                    <th><vue-numeric input class="disabled" currency="$" separator="," :value="comp.salesPrice"></vue-numeric></th>
                     <th><input class="disabled" :value="comp.capRate"></th>
-                    <th><input class="disabled" :value="comp.pricePerUnit"></th>
+                    <th><vue-numeric input class="disabled" currency="$" separator="," :value="comp.pricePerUnit"></vue-numeric></th>
                 </tr>
             </table>
             <new-comparable :compType="'sales'" v-on:toggleSaveButton="toggle"></new-comparable>

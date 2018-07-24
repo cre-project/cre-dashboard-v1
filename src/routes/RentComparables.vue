@@ -5,16 +5,18 @@
             <h1>Rent Comparables</h1>
             <table>
                 <tr>
-                    <th>Name</th>
                     <th>Address</th>
-                    <th>Type</th>
+                    <th>Year Built</th>
+                    <th>Bedrooms</th>
+                    <th>Bathrooms</th>
                     <th>Rent</th>
                 </tr>
                 <tr v-for="(comp, i) in comparables" :key="comp.name + i">
-                    <th><input class="disabled" :value="comp.name"></th>
                     <th><input class="disabled" :value="comp.address"></th>
-                    <th><input class="disabled" :value="comp.type"></th>
-                    <th><input class="disabled" :value="comp.rent"></th>
+                    <th><input class="disabled" :value="comp.yearBuilt"></th>
+                    <th><input class="disabled" :value="comp.bedrooms"></th>
+                    <th><input class="disabled" :value="comp.bathrooms"></th>
+                    <th><vue-numeric input class="disabled" currency="$" separator="," :value="comp.rent"></vue-numeric></th>
                 </tr>
             </table>
             <new-comparable :compType="'rent'" v-on:toggleSaveButton="toggle"></new-comparable>

@@ -8,7 +8,7 @@
           <router-link class="header-image" to="/user-settings" v-if="isAuthenticated">
               <i class="material-icons">person</i>
           </router-link>
-          <i class="material-icons" v-if="isAuthenticated" @click="logOut" title="log out">lock_open</i>
+          <i class="material-icons" v-if="isAuthenticated" @click="logOut" title="log out">exit_to_app</i>
           <div class="header-image" id="search">
             <!-- <div id="symbol">&#8964;</div> -->
                 <!-- <img class="header-image" src="~@/assets/search-icon.png" alt="Search" /> -->
