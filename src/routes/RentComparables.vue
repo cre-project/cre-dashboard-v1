@@ -10,13 +10,15 @@
                     <th>Bedrooms</th>
                     <th>Bathrooms</th>
                     <th>Rent</th>
+                    <th></th>
                 </tr>
                 <tr v-for="(comp, i) in comparables" :key="comp.name + i">
-                    <th><input class="disabled" :value="comp.address"></th>
-                    <th><input class="disabled" :value="comp.yearBuilt"></th>
-                    <th><input class="disabled" :value="comp.bedrooms"></th>
-                    <th><input class="disabled" :value="comp.bathrooms"></th>
-                    <th><vue-numeric input class="disabled" currency="$" separator="," :value="comp.rent"></vue-numeric></th>
+                    <th>{{ comp.address }}</th>
+                    <th>{{ comp.yearBuilt }}</th>
+                    <th>{{ comp.bedrooms }}</th>
+                    <th>{{ comp.bathrooms }}</th>
+                    <th>{{ format(comp.rent) }}</th>
+                    <th><i class="material-icons">edit</i></th>
                 </tr>
             </table>
             <new-comparable :compType="'rent'" v-on:toggleSaveButton="toggle"></new-comparable>
@@ -27,6 +29,7 @@
 <script>
 import Comparable from '@/components/Comparable'
 import router from '../router/index'
+import accounting from 'accounting'
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -51,6 +54,9 @@ export default {
     },
     toggle () {
       this.showButton = !this.showButton
+    },
+    format (number) {
+      return accounting.formatMoney(number)
     }
   }
 }

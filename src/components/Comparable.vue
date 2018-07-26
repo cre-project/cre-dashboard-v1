@@ -75,7 +75,7 @@
             <form id="form-5" v-if="this.compType !== 'rent'">
                 <label class="narrow">
                     <div class="narrow">Sales Price</div>
-                    <vue-numeric input  class="narrow" currency="$" separator="," v-model="comp.salesPrice"></vue-numeric>
+                    <vue-numeric input class="narrow" currency="$" separator="," v-model="comp.salesPrice"></vue-numeric>
                 </label>
                 <label class="narrow">
                     <div class="narrow">Close of Escrow</div>
@@ -96,11 +96,11 @@
             <form id="form-7" v-if="this.compType !== 'rent'">
                 <label class="half-size">
                     <div class="narrow">Price / SF</div>
-                    <vue-numeric input class="narrow" currency="$" separator="," v-model="pricePerSf" readonly></vue-numeric>
+                    <input class="narrow" v-model="pricePerSf" readonly>
                 </label>
                 <label class="half-size">
                     <div class="narrow">Price / Unit</div>
-                    <vue-numeric input class="narrow" currency="$" separator="," v-model="pricePerUnit" readonly></vue-numeric>
+                    <input class="narrow" v-model="pricePerUnit" readonly>
                 </label>
             </form>
         </div>
@@ -108,6 +108,7 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
+import accounting from 'accounting'
 import { emptyComparable } from '@/store/tools/templates'
 
 export default {
@@ -132,11 +133,11 @@ export default {
     },
     pricePerUnit () {
       let avg = (this.comp.salesPrice || 0) / (this.comp.numUnits || 1)
-      return avg.toFixed(2)
+      return this.format(avg.toFixed(2))
     },
     pricePerSf () {
       let avg = (this.comp.salesPrice || 0) / (this.comp.sf || 1)
-      return avg.toFixed(2)
+      return this.format(avg.toFixed(2))
     }
   },
   methods: {
@@ -155,6 +156,9 @@ export default {
     reset () {
       this.comp = Object.assign({}, emptyComparable)
       this.expanded = false
+    },
+    format (number) {
+      return accounting.formatMoney(number)
     }
   },
   created () {
