@@ -9,12 +9,17 @@
                     <th>Price</th>
                     <th>Cap Rate</th>
                     <th>Price / Unit</th>
+                    <th></th>
                 </tr>
                 <tr v-for="(comp, i) in comparables" :key="comp.name + i">
                     <th>{{ comp.address }}</th>
                     <th>{{ format(comp.salesPrice) }}</th>
                     <th>{{ comp.capRate }}</th>
                     <th>{{ format(comp.pricePerUnit) }}</th>
+                    <th>
+                        <i class="material-icons">edit</i>
+                        <i class="material-icons" @click="deleteComparable({compId: comp.id, compType: 'sales'})">delete_forever</i>
+                    </th>
                 </tr>
             </table>
             <new-comparable :compType="'sales'" v-on:toggleSaveButton="toggle"></new-comparable>
@@ -43,7 +48,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions('valuations', ['persist']),
+    ...mapActions('valuations', ['persist', 'deleteComparable']),
     save () {
       this.persist()
       router.push('./rent-comparables')

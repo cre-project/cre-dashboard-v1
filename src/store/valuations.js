@@ -60,6 +60,14 @@ const mutations = {
   ADD_SALES_COMPARABLE (state, comparable) {
     state.selectedValuation.salesComps.push(comparable)
   },
+  DELETE_COMPARABLE (state, { compId, compType }) {
+    // filter comps by id (filter creates new array)
+    if (compType === 'rent') {
+      state.selectedValuation.rentComps = state.selectedValuation.rentComps.filter(comp => comp.id !== compId)
+    } else {
+      state.selectedValuation.salesComps = state.selectedValuation.salesComps.filter(comp => comp.id !== compId)
+    }
+  },
   TOGGLE_EDITING (state) {
     state.isEditing = !state.isEditing
   }
@@ -116,6 +124,10 @@ const actions = {
     } else if (compType === 'sales') {
       commit('ADD_SALES_COMPARABLE', comparable)
     }
+  },
+  deleteComparable ({ commit }, {compId, compType}) {
+    console.log('deleting comparable:', compId)
+    commit('DELETE_COMPARABLE', {compId, compType})
   },
   addUnits ({ commit }, units) {
     commit('SET_UNITS', units)

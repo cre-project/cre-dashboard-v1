@@ -117,6 +117,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import accounting from 'accounting'
+import { uuidv4 } from '../utils'
 import { emptyComparable } from '@/store/tools/templates'
 import { upload, getUrl } from '../store/tools/images'
 
@@ -163,7 +164,8 @@ export default {
       this.$emit('toggleSaveButton')
     },
     reset () {
-      this.comp = Object.assign({}, emptyComparable)
+      this.comp = JSON.parse(JSON.stringify(emptyComparable))
+      this.comp.id = uuidv4()
       this.expanded = false
     },
     format (number) {

@@ -18,7 +18,10 @@
                     <th>{{ comp.bedrooms }}</th>
                     <th>{{ comp.bathrooms }}</th>
                     <th>{{ format(comp.rent) }}</th>
-                    <th><i class="material-icons">edit</i></th>
+                    <th>
+                        <i class="material-icons">edit</i>
+                        <i class="material-icons" @click="deleteComparable({compId: comp.id, compType: 'rent'})">delete_forever</i>
+                    </th>
                 </tr>
             </table>
             <new-comparable :compType="'rent'" v-on:toggleSaveButton="toggle"></new-comparable>
@@ -47,7 +50,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions('valuations', ['persist']),
+    ...mapActions('valuations', ['persist', 'deleteComparable']),
     save () {
       this.persist()
       router.push('./preview')
