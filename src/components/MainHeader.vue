@@ -49,8 +49,6 @@ export default {
     }
     .material-icons {
       font-size: 2.7rem;
-      padding: 0.5rem;
       color:#F2F2F2;
-      cursor: pointer;
     }
 </style>

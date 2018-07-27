@@ -700,3 +700,7 @@ br {
     width: auto;
     margin: 0;
 }
+.material-icons {
+    padding: 0.5rem;
+    cursor: pointer;
+}
