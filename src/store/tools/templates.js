@@ -37,7 +37,8 @@ export const emptyComparable = {
   closeOfEscrow: '',
   capRate: null,
   grm: null,
-  pricePerSf: null
+  pricePerSf: null,
+  id: ''
 }
 export const emptyValuation = {
   property: Object.assign({}, emptyProperty),

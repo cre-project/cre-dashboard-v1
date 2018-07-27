@@ -15,13 +15,21 @@
                     <div>City</div>
                     <input v-model="comp.city">
                 </label>
-                <label class="side-by-side">
-                    <div>State</div>
-                    <input class="side-by-side" v-model="comp.state">
-                </label>
-                <label class="side-by-side">
-                    <div >ZIP</div>
-                    <input class="side-by-side" v-model="comp.zip">
+                <div class="box">
+                  <label class="side-by-side">
+                      <div>State</div>
+                      <input class="side-by-side" v-model="comp.state">
+                  </label>
+                  <label class="side-by-side">
+                      <div >ZIP</div>
+                      <input class="side-by-side" v-model="comp.zip">
+                  </label>
+                </div>
+                <label>
+                    <div>Property Picture</div>
+                    <img class="hidden" id="comparable-preview">
+                    <input type="file" class="save hidden" @input="loadComparablePic">
+                    <i class="large material-icons clickable" id="comparable-icon">add_a_photo</i>
                 </label>
             </form>
             <!-- part 2 of the form -->
@@ -110,6 +118,7 @@
 import { mapState, mapActions } from 'vuex'
 import accounting from 'accounting'
 import { emptyComparable } from '@/store/tools/templates'
+import { upload, getUrl } from '../store/tools/images'
 
 export default {
   data () {
@@ -159,10 +168,46 @@ export default {
     },
     format (number) {
       return accounting.formatMoney(number)
+    },
+    loadNewImage (previewEl, button, imgName, evt) {
+      let file = evt.target.files[0]
+      let reader = new FileReader()
+      let fileName = `images/${imgName}`
+
+      reader.addEventListener('load', function (evt) {
+        previewEl.src = evt.target.result
+        previewEl.classList.remove('hidden')
+        previewEl.classList.add('clickable')
+        button.classList.remove('clickable')
+        button.classList.add('hidden')
+        upload(fileName, evt.target.result)
+      })
+      reader.readAsDataURL(file)
+    },
+    loadExistingImage (previewEl, button, url) {
+      previewEl.src = url
+      previewEl.classList.remove('hidden')
+      previewEl.classList.add('clickable')
+      button.classList.remove('clickable')
+      button.classList.add('hidden')
+    },
+    loadComparablePic (evt) {
+      const comparablePreview = document.querySelector('#comparable-preview')
+      const comparableIcon = document.querySelector('#comparable-icon')
+      let fileName = `${this.userId}/comparable.png`
+      this.loadNewImage(comparablePreview, comparableIcon, fileName, evt)
     }
   },
   created () {
     this.reset()
+
+    let vm = this
+    // load logo and preview if they exist
+    getUrl(`images/${this.$store.state.users.currentId}/comparable.png`).then(downloadUrl => {
+      if (downloadUrl) {
+        vm.loadExistingImage(document.querySelector('#comparable-preview'), document.querySelector('#comparable-icon'), downloadUrl)
+      }
+    })
   }
 }
 </script>
@@ -175,6 +220,7 @@ input {
 }
 #form-1 {
   margin-left: 3em;
+  height: 150em;
 }
 #form-6{
   width: 10%;
@@ -197,11 +243,17 @@ input {
   width: 80%;
 }
 .side-by-side {
-  width: 45%;
+  width: 50%;
   float: left;
   margin-top: 0;
 }
+#label div {
+  grid-row-end: 5;
+}
 #add-sales {
   margin-top: 3em;
+}
+.expanded {
+  min-height: 30em;
 }
 </style>

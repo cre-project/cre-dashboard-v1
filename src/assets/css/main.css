@@ -423,7 +423,7 @@ label:hover input {
   display: flex;
   flex: wrap;
   grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-end: 5;
 }
 
 .half-size {
