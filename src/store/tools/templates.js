@@ -7,6 +7,7 @@ export const emptyProperty = {
   yearBuilt: null,
   numberOfStories: null,
   lotSize: null,
+  apn: null,
   price: null
 }
 export const emptyFinancials = {

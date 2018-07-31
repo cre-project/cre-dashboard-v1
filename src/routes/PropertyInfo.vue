@@ -38,7 +38,7 @@
               </div>
               <div class="box">
                   <label class="half-size">
-                      <div class="half-size">Lot Size Sq. Ft.</div>
+                      <div class="half-size">Lot Size Acres</div>
                       <vue-numeric input class="half-size" separator="," v-model="property.lotSize"></vue-numeric>
                   </label>
                   <label class="half-size">

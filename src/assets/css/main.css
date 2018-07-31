@@ -1,6 +1,6 @@
 :root {
   --header-blue: #1F2833;
-  --button-blue: #1B6AFF;
+  --button-blue: #1b6aff;
   --light-brown: #1B6AFF;
 }
 
@@ -215,6 +215,18 @@ h1 {
     grid-row-end: 2;
 }
 
+h2 {
+    width: 50%;
+    margin: auto;
+    margin-left: 40em;
+    font-size: 1.5em;
+    font-weight: bold;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
 /* Tables */
 table {
     margin: 0;
@@ -290,6 +302,13 @@ td button {
 #os {
     margin: auto auto auto 10em;
     grid-area: left;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+#pi {
+    margin-left: 0;
+    margin-top: 0;
     font-size: 0.9em;
     text-align: left;
 }
@@ -587,12 +606,12 @@ img {
 .preview-box {
   width: 90%;
   height: 14em;
-  padding: 0.5em;
+  padding: 0.9em;
   background-color: #C5C6C7;
   align-content: center;
   display: inline-block;
   margin: auto;
-  box-shadow: 0 1.5px 7px 0 rgba(0,0,0,0.25);
+  box-shadow: 5px 10px 8px rgba(27,106,255,0.9);
 }
 
 #large-sub-header {
