@@ -269,6 +269,7 @@ td button {
   color: white;
   font-size: 0.9em;
   padding: 0.5em 1em;
+  text-align: center;
   margin: 0em;
   background-color: var(--button-blue);
   /* background-color: #FF6600; */
@@ -533,6 +534,12 @@ img {
   vertical-align: middle;
   margin: auto 0;
   padding: 0.5em 2em;
+  transition-duration: 0.4s;
+}
+
+.save:hover{
+    background-color: rgb(76, 175, 80); /* Green */
+    color: white;
 }
 
 .status {
@@ -583,10 +590,16 @@ img {
 #header-button {
     background-color: var(--light-brown);
     vertical-align: middle;
-    padding: 0.5em 2em;
+    padding: 1em 3em 2em;
     margin-right: 2em;
-    margin-top: 2.1em;
+    margin-top: 2.5em;
     float: right;
+    transition-duration: 0.4s;
+}
+
+#header-button:hover{
+    background-color: rgb(76, 175, 80); /* Green */
+    color: white;
 }
 
 .auto-margin {
@@ -607,7 +620,7 @@ img {
   width: 90%;
   height: 14em;
   padding: 0.9em;
-  background-color: #C5C6C7;
+  background-color: rgb(219, 220, 221);
   align-content: center;
   display: inline-block;
   margin: auto;
@@ -616,11 +629,11 @@ img {
 }
 
 .preview-box:hover {
-  box-shadow: 5px 10px 8px rgba(27,106,255,0.9);
+  box-shadow: 5px 10px 8px rgba(76, 175, 80,0.9);
 }
 
 #large-sub-header {
-  background-color: #C5C6C7;
+  background-color: rgb(219, 220, 221);
   height: 8em;
 }
 

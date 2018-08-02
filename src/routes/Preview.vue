@@ -97,13 +97,40 @@
                 <p class="transbox-5" id="p3-title">Property Photos</p>
             </section>
             <section id="page7">
-                <h1>Page 7 comes here</h1>
+                <h3>PICTURE PAGE WITH 4 PICTURE BOXES</h3>
             </section>
-            <section id="page8">
-                <h1>Page 8 comes here</h1>
+            <section class="upload-img-wrapper" id="page8">
+                <img class="hidden" id="background-pg8-preview" title="click to change picture">
+                <input id="background-pg8" type="file" @input="loadImg">
+                <i id="background-pg8-icon" class="material-icons" style="font-size: 50px">add_a_photo</i>
+                <p class="transbox-5" id="p3-title">Recent Sales</p>
             </section>
-            <section id="page9">
-                <h1>Page 9 comes here</h1>
+            <section class="upload-img-wrapper" id="page9">
+                <img class="hidden" id="background-pg9-preview" title="click to change picture">
+                <input id="background-pg9" type="file" @input="loadImg">
+                <i id="background-pg9-icon" class="material-icons clickable" style="font-size: 50px">add_a_photo</i>
+                <div class="transbox-3">
+                <p id="p2-street">Recent Sales</p>
+                <hr>
+                  <tr>
+                      <th class="l-align"><c2>X. {{ street }}</c2></th>
+                  </tr>
+                  <tr>
+                      <th class="l-align"><c2>1. {{ street }}</c2></th>
+                  </tr>
+                  <tr>
+                      <th class="l-align"><c2>2. {{ street }}</c2></th>
+                  </tr>
+                  <tr>
+                      <th class="l-align"><c2>3. {{ street }}</c2></th>
+                  </tr>
+                  <tr>
+                      <th class="l-align"><c2>4. {{ street }}</c2></th>
+                  </tr>
+                  <tr>
+                      <th class="l-align"><c2>5. {{ street }}</c2></th>
+                  </tr>
+                </div>
             </section>
             <section id="page10">
                 <h1>Page 10 comes here</h1>
@@ -120,6 +147,7 @@
 import JsPDF from 'jspdf'
 import { mapState } from 'vuex';
 import { upload } from '../store/tools/images'
+import { emptyComparable } from '../store/tools/templates';
 
 export default {
   data () {
@@ -307,6 +335,21 @@ section {
   background-size: cover;
   width: 100%;
   height: 100%;
+  opacity: 0.8;
+}
+
+#background-pg8-preview {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+#background-pg9-preview {
+  position: absolute;
+  width: 65%;
+  height: 100%;
+  left:  0%;
   opacity: 0.8;
 }
 
@@ -582,7 +625,7 @@ c1 {
     width: 60%;
     color: #000000;
     margin: auto;
-    margin-left: 4em;
+    margin-left: 1em;
     font-size: 25px;
     font-weight: bolder;
     grid-column-start: 2;
@@ -592,4 +635,19 @@ c1 {
     text-transform: uppercase;
 }
 
+c2 {
+    width: 100%;
+    color: #ffffff;
+    margin: auto;
+    margin-left: 4em;
+    font-size: 25px;
+    font-weight: normal;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+  .clickable {
+    cursor: pointer;
+  }
 </style>
