@@ -611,6 +611,11 @@ img {
   align-content: center;
   display: inline-block;
   margin: auto;
+  transition: box-shadow .3s;
+  box-shadow: 5px 10px 8px rgba(68, 69, 70, 0.9);
+}
+
+.preview-box:hover {
   box-shadow: 5px 10px 8px rgba(27,106,255,0.9);
 }
 
