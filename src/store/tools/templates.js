@@ -48,7 +48,7 @@ export const emptyValuation = {
   salesComps: [],
   rentComps: [],
   price: 0,
-  taxes: 5,
+  taxes: 1.1212,
   vacancy: 5,
   mgmtFee: 5,
   statementCurrent: Object.assign({}, emptyFinancials),

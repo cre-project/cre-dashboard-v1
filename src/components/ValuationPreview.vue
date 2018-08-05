@@ -1,12 +1,10 @@
 <template>
     <div class="preview-box" @click="editValuation">
+        <img class="preview-image" src="~@/assets/stock.png">
+        <span class="overlay" v-show="valuation.price">Price    ${{ formatPrice (valuation.price) }}</span>
         <div class="preview-title">{{ valuation.property.address || "New Valuation" }}, {{ valuation.property.city }}</div>
         <div class="preview-content">
             APN {{ valuation.property.apn }}
-            <br><br>
-            Created on     {{ date }}
-            <br><br><br>
-            <span id="price" v-show="valuation.price">Price    ${{ formatPrice (valuation.price) }}</span>
         </div>
     </div>
 </template>
