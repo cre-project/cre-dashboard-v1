@@ -2,8 +2,9 @@
     <div>
         <navigation-header selected="preview"></navigation-header>
         <h1 id="tc-header">Preview</h1>
-        <button class="save" @click="showPreview=true">Display preview (doesn't work correctly yet)</button>
-        <div id="preview" v-show="!showPreview">
+        <button class="save" @click="mkPdf">Save pdf</button>
+        <!-- <button class="save" @click="showPreview=true">Display preview (doesn't work correctly yet)</button> -->
+        <div id="preview">
             <section class="upload-img-wrapper" id="page1">
                 <p class="transbox-1" id="p1-address">{{ address }}</p>
                 <img class="hidden" id="background-pg1-preview" title="click to change picture">
@@ -58,35 +59,35 @@
                 <br><br><br><br>
                       <tr>
                           <th class="l-align"><h4>Property Address</h4></th>
-                          <th class="l-align"><c1>{{ street }}</c1></th>
+                          <th class="l-align"><span class="c1">{{ street }}</span></th>
                       </tr>
                       <tr>
                           <th class="l-align"><h4>Property City</h4></th>
-                          <th class="l-align"><c1>{{ city }}</c1></th>
+                          <th class="l-align"><span class="c1">{{ city }}</span></th>
                       </tr>
                       <tr>
                           <th class="l-align"><h4>Property State</h4></th>
-                          <th class="l-align"><c1>{{ state }}</c1></th>
+                          <th class="l-align"><span class="c1">{{ state }}</span></th>
                       </tr>
                       <tr>
                           <th class="l-align"><h4>Property Zip</h4></th>
-                          <th class="l-align"><c1>{{ zip }}</c1></th>
+                          <th class="l-align"><span class="c1">{{ zip }}</span></th>
                       </tr>
                       <tr>
                           <th class="l-align"><h4>Number of Stories</h4></th>
-                          <th class="l-align"><c1>{{ stories }}</c1></th>
+                          <th class="l-align"><span class="c1">{{ stories }}</span></th>
                       </tr>
                       <tr>
                           <th class="l-align"><h4>Year Built</h4></th>
-                          <th class="l-align"><c1>{{ year }}</c1></th>
+                          <th class="l-align"><span class="c1">{{ year }}</span></th>
                       </tr>
                       <tr>
                           <th class="l-align"><h4>Lot Size Acres</h4></th>
-                          <th class="l-align"><c1>{{ formatPrice (lot) }}</c1></th>
+                          <th class="l-align"><span class="c1">{{ formatPrice (lot) }}</span></th>
                       </tr>
                       <tr>
                           <th class="l-align"><h4>APN</h4></th>
-                          <th class="l-align"><c1>{{ apn }}</c1></th>
+                          <th class="l-align"><span class="c1">{{ apn }}</span></th>
                       </tr>
                 </div>
             </section>
@@ -113,22 +114,22 @@
                 <p id="p2-street">Recent Sales</p>
                 <hr>
                   <tr>
-                      <th class="l-align"><c2>X. {{ street }}</c2></th>
+                      <th class="l-align"><span class="c2">X. {{ street }}</span></th>
                   </tr>
                   <tr>
-                      <th class="l-align"><c2>1. {{ street }}</c2></th>
+                      <th class="l-align"><span class="c2">1. {{ street }}</span></th>
                   </tr>
                   <tr>
-                      <th class="l-align"><c2>2. {{ street }}</c2></th>
+                      <th class="l-align"><span class="c2">2. {{ street }}</span></th>
                   </tr>
                   <tr>
-                      <th class="l-align"><c2>3. {{ street }}</c2></th>
+                      <th class="l-align"><span class="c2">3. {{ street }}</span></th>
                   </tr>
                   <tr>
-                      <th class="l-align"><c2>4. {{ street }}</c2></th>
+                      <th class="l-align"><span class="c2">4. {{ street }}</span></th>
                   </tr>
                   <tr>
-                      <th class="l-align"><c2>5. {{ street }}</c2></th>
+                      <th class="l-align"><span class="c2">5. {{ street }}</span></th>
                   </tr>
                 </div>
             </section>
@@ -139,22 +140,18 @@
                 <h1>Page 11 comes here</h1>
             </section>
         </div>
-        <iframe v-if="showPreview" type="application/pdf" width="100%" height="900" frameborder="0" style="position:relative;z-index:999" :src="newPdf"></iframe>
+        <!-- <iframe v-if="showPreview" type="application/pdf" width="100%" height="900" frameborder="0" style="position:relative;z-index:999" :src="newPdf"></iframe> -->
     </div>
 </template>
 <script>
 /* eslint-disable */
-import JsPDF from 'jspdf'
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf'
 import { mapState } from 'vuex';
 import { upload } from '../store/tools/images'
 import { emptyComparable } from '../store/tools/templates';
 
 export default {
-  data () {
-    return {
-      showPreview: false
-    }
-  },
   methods: {
     loadNewImage (previewEl, button, imgName, evt) {
       let file = evt.target.files[0]
@@ -188,6 +185,29 @@ export default {
     formatPrice (value) {
       let val = (value / 1).toFixed().replace(',', '.')
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    },
+    mkPdf () {
+      var doc = new jsPDF('l', 'pt', 'letter')
+      let page1 = document.getElementById('page1')
+      
+      if (page1) {
+        var copyDom = page1.cloneNode(true)
+        document.body.appendChild(copyDom)
+
+        html2canvas(copyDom, {width: 1056, height: 816}).then(function(canvas) {
+            var imgData = canvas.toDataURL('image/png', 1.0)              
+            doc.addImage(imgData, 'PNG', 0, 0, 792, 612)
+            doc.save('sample-file.pdf')
+            return doc.output('datauristring')
+            // return imgData
+        }).catch(e => (console.error(e)))
+      }
+    //   html2canvas(sections[0]).then(canvas => {
+    //     var imgData = canvas.toDataURL('image/png')              
+    //     var doc = new jsPDF('l', 'pt', 'letter')
+    //     doc.addImage(imgData, 'PNG', 10, 10)
+    //     doc.save('sample-file.pdf')
+    //   })
     }
   },
   computed: {
@@ -239,27 +259,32 @@ export default {
       // return `${emptyUser.ompanyName || ''}`
     // },
     newPdf () {
-      var doc = new JsPDF()
+      console.log('exporting pdf...')
+      var doc = new jsPDF('l', 'pt', 'letter')
 
       // We'll make our own renderer to skip this editor
       var specialElementHandlers = {
         '#editor': function (element, renderer) {
-          return true
+            return true
         },
         '.controls': function (element, renderer) {
-          return true
+            return true
         }
       }
-
-      // All units are in the set measurement for the document
-      // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
-      // Default export is a4 paper, portrait, using milimeters for units
-      doc.fromHTML(document.querySelector('#preview'), 15, 15, {
-        'width': 170,
-        'elementHandlers': specialElementHandlers
-      })
-      return doc.output('datauristring')
-    }
+      return this.mkPdf()
+    //   let sections = document.querySelectorAll('section')
+    //   sections.forEach((section) => {
+    //     console.log(doc.internal.getNumberOfPages())
+    //     doc.fromHTML(section, 15, 15, {
+    //         'width': 170,
+    //         'elementHandlers': specialElementHandlers
+    //     })
+    //     if (doc.internal.getNumberOfPages() !== 11){
+    //       doc.addPage()
+    //     }
+    //   })
+    //   return doc.output('datauristring')
+    },
   }
 }
 </script>
@@ -621,7 +646,7 @@ h4 {
     grid-row-end: 2;
 }
 
-c1 {
+.c1 {
     width: 60%;
     color: #000000;
     margin: auto;
@@ -635,7 +660,7 @@ c1 {
     text-transform: uppercase;
 }
 
-c2 {
+.c2 {
     width: 100%;
     color: #ffffff;
     margin: auto;
