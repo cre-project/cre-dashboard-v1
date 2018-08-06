@@ -44,7 +44,7 @@
             </label>
             <label>
                 <div>Website URL</div>
-                <input v-model="user.email">
+                <input v-model="user.website">
             </label>
             <label>
                 <div>Company Logo</div>
