@@ -10,7 +10,7 @@
                 <img class="hidden" id="background-pg1-preview" title="click to change picture">
                 <input id="background-pg1" type="file" @input="loadImg">
                 <i id="background-pg1-icon" class="material-icons clickable" style="font-size: 50px">add_a_photo</i>
-                <p class="transbox-2" id="p1-text">Offering Memorandum</p>
+                <p class="transbox-2" id="p1-text">Proposal</p>
             </section>
             <section class="upload-img-wrapper" id="page2">
                 <img class="hidden" id="background-pg2-preview" title="click to change picture">
@@ -107,9 +107,7 @@
                 <p class="transbox-5" id="p3-title">Recent Sales</p>
             </section>
             <section class="upload-img-wrapper" id="page9">
-                <img class="hidden" id="background-pg9-preview" title="click to change picture">
-                <input id="background-pg9" type="file" @input="loadImg">
-                <i id="background-pg9-icon" class="material-icons clickable" style="font-size: 50px">add_a_photo</i>
+                <google-map :center="{lat: 1.38, lng: 103.8}" :zoom="12" style="width: 65%; height: 100%"></google-map>
                 <div class="transbox-3">
                 <p id="p2-street">Recent Sales</p>
                 <hr>
@@ -150,6 +148,7 @@ import jsPDF from 'jspdf'
 import { mapState } from 'vuex';
 import { upload } from '../store/tools/images'
 import { emptyComparable } from '../store/tools/templates';
+import GoogleMap from '@/components/GoogleMap'
 
 export default {
   methods: {
@@ -194,7 +193,7 @@ export default {
         var copyDom = page1.cloneNode(true)
         document.body.appendChild(copyDom)
 
-        html2canvas(copyDom, {width: 1056, height: 816}).then(function(canvas) {
+        html2canvas(copyDom, {width: 2000, height: 900}).then(function(canvas) {
             var imgData = canvas.toDataURL('image/png', 1.0)              
             doc.addImage(imgData, 'PNG', 0, 0, 792, 612)
             doc.save('sample-file.pdf')
@@ -209,6 +208,9 @@ export default {
     //     doc.save('sample-file.pdf')
     //   })
     }
+  },
+  components: {
+    GoogleMap: GoogleMap
   },
   computed: {
     ...mapState({
@@ -303,9 +305,9 @@ section {
   margin-top: 0.5em;
   height: 60em;
   width: 100%;
-  padding: 0.5em 0.8em;
-  border: 1px dashed darkgray;
-  border-radius: 20px;
+  padding: 0em 0em;
+  border: 1px solid darkgray;
+  border-radius: 0px;
   vertical-align: middle;
 }
 .upload-img-wrapper {
@@ -389,7 +391,6 @@ section {
     border: 1px solid black;
     border-radius: 25px;
     padding: 0.5em 0.8em;
-    overflow: hidden;
     position: relative;
     vertical-align: middle;
 }
@@ -399,9 +400,8 @@ section {
     background: linear-gradient( rgba(255,255,255,0.2), rgba(255,255,255,1));
     border-radius: 25px;
     padding: 1.1em 1.5em;
-    overflow: hidden;
-    position: absolute;
-    vertical-align: middle;
+    position: relative;
+    vertical-align: left;
 }
 
 .transbox-3 {
@@ -458,6 +458,19 @@ section {
     vertical-align: left;
 }
 
+.transbox-8 {
+    margin: 0px;
+    background: linear-gradient( rgba(8,8,8,0.4), rgb(8, 8, 8, 0.4));
+    border-radius: 0px;
+    padding: 25px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left:  65%;
+    width: 500px;
+    height: 100%;
+    vertical-align: left;
+}
 
 #p1-address {
   color: #ffffff;
@@ -672,7 +685,14 @@ h4 {
     grid-row-start: 1;
     grid-row-end: 2;
 }
+
   .clickable {
     cursor: pointer;
-  }
+}
+
+.map {
+  width: 70%;
+  height: 100%;
+  background-color: green;
+}
 </style>

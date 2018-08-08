@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import VueNumeric from 'vue-numeric'
+import * as VueGoogleMaps from 'vue2-google-maps'
 // import store from ''
 import store from '@/store/index'
 // import * as actions from 'vuex/actions'
@@ -24,6 +25,12 @@ import NavigationHeader from '@/components/NavigationHeader'
 Vue.component('main-header', MainHeader)
 Vue.component('navigation-header', NavigationHeader)
 
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAV978wJfYOfnbwRESDjQEhlp8sZOqdSe0',
+    libraries: 'places' // necessary for places input
+  }
+})
 Vue.use(Router)
 Vue.use(VueNumeric)
 
