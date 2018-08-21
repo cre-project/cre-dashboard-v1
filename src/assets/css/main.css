@@ -459,12 +459,13 @@ label:hover input {
 }
 
 #os-right {
-  background-color: #D8D8D8;
-  border-bottom: 2px solid gray;
+  background-color: #f1f1f1;
+  border: 5px groove #1B6AFF;
   width: 8em;
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
+  border-radius: 15px;
 }
 
 #add-more {

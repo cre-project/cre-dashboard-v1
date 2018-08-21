@@ -16,11 +16,11 @@ const getters = {
     return state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.potentialRent) || 0), 0) * 12
   },
   pricePerUnit () {
-    return (Number(state.selectedValuation.price) / (state.selectedValuation.units.length || 1)).toFixed(2)
+    return (Number(state.selectedValuation.price) / (state.selectedValuation.units.length || 1)).toFixed(0)
   },
   pricePerSf () {
     let sf = state.selectedValuation.units.reduce((acc, unit) => acc + (Number(unit.squareFeet) || 0), 0)
-    return (Number(state.selectedValuation.price) / (sf || 1)).toFixed(2)
+    return (Number(state.selectedValuation.price) / (sf || 1)).toFixed(0)
   }
 }
 const mutations = {

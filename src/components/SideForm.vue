@@ -5,9 +5,9 @@
       <vue-numeric input id="os-right" currency="$" separator="," v-model.number="localPrice"></vue-numeric>
       <!-- price per unit/ sf - units & sf from unit mix -->
       <p class="bold l-align">
-      Price/Unit: <span>${{ pricePerUnit }}</span>
+      Price/Unit: <span>$ {{ pricePerUnit }}</span>
       <br>
-      Price/SF: <span>${{ pricePerSf }}</span>
+      Price/SF: <span>$ {{ pricePerSf }}</span>
       </p>
     </div>
     <table>
