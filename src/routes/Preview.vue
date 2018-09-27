@@ -1,6 +1,8 @@
 <template>
     <div>
-        <navigation-header selected="preview"></navigation-header>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+        <!-- <navigation-header selected="preview"></navigation-header> -->
         <div class="right-button">
             <div class="loader"> <i class="fas fa-spinner fa-spin"></i></div>
             <button id="savePDFbutton" class="hide-on-save" :onclick="savePDF()">
@@ -27,7 +29,7 @@
                     </div>
                 </div>
             </section>
-            <section class="page page-2">
+            <section class="page page-2" :style="{'background-image': 'url(' + require('../assets/Untitled_02.jpg') + ')'}">
                 <div id="page-2" class="background">
                     <button class="image-upload hide-on-save" data-target="page-2"><i class="fas fa-camera"></i></button>
                     <input type="file" name="page-2" class="img-inputer"/>
@@ -48,7 +50,7 @@
                     </div>
                 </div>
             </section>
-            <section class="page page-3">
+            <section class="page page-3" :style="{'background-image': 'url(' + require('../assets/Untitled_03.jpg') + ')'}">
                 <div id="page-3" class="background">
                     <button class="image-upload hide-on-save" data-target="page-3"><i class="fas fa-camera"></i></button>
                     <input type="file" name="page-3" class="img-inputer"/>
@@ -68,7 +70,7 @@
                             <li><div class="left-column">PRICING AND FINANCIAL ANALYSIS </div><span class="toc-page-num">14</span></li>
                         </ul>
                     </div>
-                    <div id="side-img" class="background side-img">
+                    <div id="side-img" class="background side-img" :style="{'background-image': 'url(' + require('../assets/Untitled_04.jpg') + ')'}">
                         <button class="image-upload hide-on-save" data-target="side-img"><i class="fas fa-camera"></i></button>
                         <input type="file" name="side-img" class="img-inputer"/>
                     </div>
@@ -80,7 +82,7 @@
                         <section class="page page-5" style="display: none;">
                             <div class="vertical title right">AGENT BIO</div>
                         </section>-->
-            <section class="page page-18">
+            <section class="page page-18" :style="{'background-image': 'url(' + require('../assets/Untitled_07.jpg') + ')'}">
                 <div class="vertical title left letter-spacer">PROPERTY INFORMATION</div>
                 <div id="page-17" class="background">
                     <button class="image-upload hide-on-save" data-target="page-17"><i class="fas fa-camera"></i></button>
@@ -127,9 +129,13 @@
                         </tbody>
                     </table>
                 </div>
+                <div id="side-img-2" class="background side-img">
+                    <button class="image-upload hide-on-save" data-target="side-img-2"><i class="fas fa-camera"></i></button>
+                    <input type="file" name="side-img-2" class="img-inputer"/>
+                </div>
             </section>
 
-            <section class="page page-6">
+            <section class="page page-6" :style="{'background-image': 'url(' + require('../assets/Untitled_05.jpg') + ')'}">
                 <div class="vertical title right letter-spacer">PROPERTY PHOTOS</div>
                 <div id="page-6" class="background">
                     <button class="image-upload hide-on-save" data-target="page-6"><i class="fas fa-camera"></i></button>
@@ -161,14 +167,14 @@
                     </div>
                 </div>
             </section>
-            <section class="page page-8">
+            <section class="page page-8" :style="{'background-image': 'url(' + require('../assets/Untitled_07.jpg') + ')'}">
                 <div class="vertical title left letter-spacer">RECENT SALES</div>
                 <div id="page-8" class="background">
                     <button class="image-upload hide-on-save" data-target="page-8"><i class="fas fa-camera"></i></button>
                     <input type="file" name="page-8" class="img-inputer"/>
                 </div>
             </section>
-            <section class="page page-9">
+            <section class="page page-9" :style="{'background-image': 'url(' + require('../assets/Untitled_03.jpg') + ')'}">
                 <div class="background">
                     <div class="sidebar right">
                         <div class="header">
@@ -235,7 +241,7 @@
                     </div>
                 </div>
             </section>
-            <section class="page page-10">
+            <section class="page page-10" :style="{'background-image': 'url(' + require('../assets/Untitled.jpg') + ')'}">
                 <div class="vertical title right letter-spacer">RENT COMPARABLES</div>
                 <div id="page-10" class="background">
                     <button class="image-upload hide-on-save" data-target="page-10"><i class="fas fa-camera"></i></button>
@@ -366,7 +372,7 @@
                     </div>
                 </div>
             </section>
-            <section class="page page-12">
+            <section class="page page-12" :style="{'background-image': 'url(' + require('../assets/Untitled_10.jpg') + ')'}">
                 <div class="vertical title right letter-spacer">PRICING AND FINANCIAL ANALYSIS</div>
                 <div id="page-12" class="background">
                     <button class="image-upload hide-on-save" data-target="page-12"><i class="fas fa-camera"></i></button>
@@ -573,7 +579,7 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td>&nbsp;</td>
+                            <td>EFFECTIVE RENTAL INCOME</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -583,7 +589,7 @@
                             <td></td>
                         </tr>
                         <tr class="highlighted">
-                            <td>EFFECTIVE RENTAL INCOME</td>
+                            <td>EFFECTIVE GROSS INCOME</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -866,13 +872,13 @@
                     </div>
                 </div>
             </section>
-            <section class="page page-14">
+            <section class="page page-14" :style="{'background-image': 'url(' + require('../assets/Untitled_11.jpg') + ')'}">
                 <div id="page-14" class="background">
                     <button class="image-upload hide-on-save" data-target="page-14"><i class="fas fa-camera"></i></button>
                     <input type="file" name="page-14" class="img-inputer"/>
                 </div>
             </section>
-            <!--            <section class="page page-15">
+            <!--            <section class="page page-15" :style="{'background-image': 'url(' + require('../assets/Untitled_02.jpg') + ')'}">
                             <div id="page-15" class="background">
                                 <button class="image-upload hide-on-save" data-target="page-15"><i class="fas fa-camera"></i></button>
                                 <input type="file" name="page-15" class="img-inputer"/>

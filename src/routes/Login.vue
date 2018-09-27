@@ -46,6 +46,8 @@ export default {
 }
 </script>
 <style scoped>
+@import "../assets/css/main.css";
+
     #wrapper {
         background-image: url(http://www.steamatic.com/images/footer-pattern-grey.jpg);
         background-repeat: repeat;

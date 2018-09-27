@@ -42,13 +42,15 @@ export default {
 }
 </script>
 <style scoped>
-    #logout {
-        padding: 0.25em 0.5em;
-        margin-top: 17px;
-        margin-right: 2em;
-    }
-    .material-icons {
-      font-size: 2.7rem;
-      color:#F2F2F2;
-    }
+@import "../assets/css/main.css";
+
+#logout {
+    padding: 0.25em 0.5em;
+    margin-top: 17px;
+    margin-right: 2em;
+}
+.material-icons {
+  font-size: 2.7rem;
+  color:#F2F2F2;
+}
 </style>

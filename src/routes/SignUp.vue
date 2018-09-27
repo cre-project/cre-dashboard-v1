@@ -35,6 +35,8 @@ export default {
 }
 </script>
 <style scoped>
+@import "../assets/css/main.css";
+
     #wrapper {
         display: grid;
         grid-template-rows: 0.5fr 2fr 4fr 1fr;

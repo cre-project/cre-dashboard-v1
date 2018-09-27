@@ -132,6 +132,8 @@ export default {
 }
 </script>
 <style scoped>
+@import "../assets/css/main.css";
+
   #form-right {
     margin-top: 0;
     margin-left: 2rem;

@@ -235,7 +235,10 @@ export default {
 }
 </script>
 <style>
-h1, main {
+@import "../assets/css/main.css";
+
+h1,
+main {
   padding: 2em;
 }
 </style>
