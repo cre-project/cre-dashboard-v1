@@ -19,10 +19,10 @@
                     </div>
                     <div class="footer">
                         <div class="headline letter-spacer">
-                            1267 NORTH LAURELAVENUE, WEST HOLLYWOOD, CA90046
+                            {{ valuations.selectedValuation.property.address + ' ' + valuations.selectedValuation.property.city }}
                         </div>
                         <div class="subline">
-                            A 22-Unit + One Non-Conforming Unit Apartment Building Located in the Supply-Constrained West Hollywood Submarket of Los Angeles
+                            Built in {{ valuations.selectedValuation.property.yearBuilt }}
                         </div>
                         <div class="underline">
                         </div>
@@ -35,17 +35,17 @@
                     <input type="file" name="page-2" class="img-inputer"/>
                     <div class="sidebar right">
                         <div class="address-num">
-                            1267
+                            {{ valuations.selectedValuation.property.address }}
                         </div>
                         <div class="address-str">
-                            LAUREL AVENUE
+                            {{ valuations.selectedValuation.property.city }}
                         </div>
                         <div class="brand">
-                            MARCUS & MILLICHAP
+                            {{ users.currentUser.companyName }}
                         </div>
                         <div class="logo">
-                            <div class="name">Sjef, Tijssen</div>
-                            <div class="email">sjeftijsen@gmail.com</div>
+                            <div class="name">{{ users.currentUser.firstName + ' ' + users.currentUser.lastName }}</div>
+                            <div class="email">{{ users.currentUser.email }}</div>
                         </div>
                     </div>
                 </div>
@@ -96,35 +96,35 @@
                         <tbody>
                             <tr>
                                 <td>Property Address</td>
-                                <td class="bold">Lorem Ipsum dolor sit amet</td>
+                                <td class="bold">{{ valuations.selectedValuation.property.address }}</td>
                             </tr>
                             <tr>
                                 <td>Property City</td>
-                                <td class="bold">Lorem Ipsum dolor sit amet</td>
+                                <td class="bold">{{ valuations.selectedValuation.property.city }}</td>
                             </tr>
                             <tr>
                                 <td>Property State</td>
-                                <td class="bold">Lorem Ipsum dolor sit amet</td>
+                                <td class="bold">{{ valuations.selectedValuation.property.state }}</td>
                             </tr>
                             <tr>
                                 <td>Property Zip</td>
-                                <td class="bold">Lorem Ipsum dolor sit amet</td>
+                                <td class="bold">{{ valuations.selectedValuation.property.zip }}</td>
                             </tr>
                             <tr>
                                 <td>Number of Stories</td>
-                                <td class="bold">Lorem Ipsum dolor sit amet</td>
+                                <td class="bold">{{ valuations.selectedValuation.property.numberOfStories }}</td>
                             </tr>
                             <tr>
                                 <td>Year Built</td>
-                                <td class="bold">Lorem Ipsum dolor sit amet</td>
+                                <td class="bold">{{ valuations.selectedValuation.property.yearBuilt }}</td>
                             </tr>
                             <tr>
-                                <td>Lot Sizde Acres</td>
-                                <td class="bold">Lorem Ipsum dolor sit amet</td>
+                                <td>Lot Size</td>
+                                <td class="bold">{{ valuations.selectedValuation.property.lotSize }}</td>
                             </tr>
                             <tr>
                                 <td>APN</td>
-                                <td class="bold">Lorem Ipsum dolor sit amet</td>
+                                <td class="bold">{{ valuations.selectedValuation.property.apn }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -181,7 +181,7 @@
                             RECENT SALES
                         </div>
                         <ol>
-                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>{{ valuations.selectedValuation.salesComps.address }}</li>
                             <li>Lorem ipsum dolor sit amet</li>
                             <li>Lorem ipsum dolor sit amet</li>
                             <li>Lorem ipsum dolor sit amet</li>
@@ -199,44 +199,44 @@
                 <div class="sales-items">
                     <div class="item">
                         <img src="~@/assets/Untitled_09.jpg">
-                        <div class="address"> 11 </div>
+                        <div class="address">{{ valuations.selectedValuation.salesComps.address + ' ' + valuations.selectedValuation.salesComps.city }}</div>
                         <ul class="item-list">
-                            <li>No. of Units: <div class="data-right">15</div></li>
-                            <li>Year Built: <div class="data-right">15</div></li>
-                            <li>Sale Price: <div class="data-right">15</div></li>
-                            <li>Price/Unit: <div class="data-right">15</div></li>
-                            <li>Price/SF: <div class="data-right">15</div></li>
-                            <li>CAP Rate: <div class="data-right">15</div></li>
-                            <li>GRM: <div class="data-right">15</div></li>
-                            <li>Close of Escrow: <div class="data-right">15</div></li>
+                            <li>No. of Units: <div class="data-right">{{ valuations.selectedValuation.salesComps.numUnits }}</div></li>
+                            <li>Year Built: <div class="data-right">{{ valuations.selectedValuation.salesComps.yearBuilt }}</div></li>
+                            <li>Sale Price: <div class="data-right">{{ valuations.selectedValuation.salesComps.salesPrice }}</div></li>
+                            <li>Price/Unit: <div class="data-right">{{ valuations.selectedValuation.salesComps.pricePerUnit }}</div></li>
+                            <li>Price/SF: <div class="data-right">{{ valuations.selectedValuation.salesComps.pricePerSf }}</div></li>
+                            <li>CAP Rate: <div class="data-right">{{ valuations.selectedValuation.salesComps.capRate }}</div></li>
+                            <li>GRM: <div class="data-right">{{ valuations.selectedValuation.salesComps.grm }}</div></li>
+                            <li>Close of Escrow: <div class="data-right">{{ valuations.selectedValuation.salesComps.closeOfEscrow }}</div></li>
                         </ul>
                     </div>
                     <div class="item">
                         <img src="~@/assets/Untitled_09.jpg">
-                        <div class="address"> 11 </div>
+                        <div class="address">{{ valuations.selectedValuation.salesComps.address + ' ' + valuations.selectedValuation.salesComps.city }}</div>
                         <ul class="item-list">
-                            <li>No. of Units: <div class="data-right">15</div></li>
-                            <li>Year Built: <div class="data-right">15</div></li>
-                            <li>Sale Price: <div class="data-right">15</div></li>
-                            <li>Price/Unit: <div class="data-right">15</div></li>
-                            <li>Price/SF: <div class="data-right">15</div></li>
-                            <li>CAP Rate: <div class="data-right">15</div></li>
-                            <li>GRM: <div class="data-right">15</div></li>
-                            <li>Close of Escrow: <div class="data-right">15</div></li>
+                            <li>No. of Units: <div class="data-right">{{ valuations.selectedValuation.salesComps.numUnits }}</div></li>
+                            <li>Year Built: <div class="data-right">{{ valuations.selectedValuation.salesComps.yearBuilt }}</div></li>
+                            <li>Sale Price: <div class="data-right">{{ valuations.selectedValuation.salesComps.salesPrice }}</div></li>
+                            <li>Price/Unit: <div class="data-right">{{ valuations.selectedValuation.salesComps.pricePerUnit }}</div></li>
+                            <li>Price/SF: <div class="data-right">{{ valuations.selectedValuation.salesComps.pricePerSf }}</div></li>
+                            <li>CAP Rate: <div class="data-right">{{ valuations.selectedValuation.salesComps.capRate }}</div></li>
+                            <li>GRM: <div class="data-right">{{ valuations.selectedValuation.salesComps.grm }}</div></li>
+                            <li>Close of Escrow: <div class="data-right">{{ valuations.selectedValuation.salesComps.closeOfEscrow }}</div></li>
                         </ul>
                     </div>
                     <div class="item">
                         <img src="~@/assets/Untitled_09.jpg">
-                        <div class="address"> 11 </div>
+                        <div class="address">{{ valuations.selectedValuation.salesComps.address + ' ' + valuations.selectedValuation.salesComps.city }}</div>
                         <ul class="item-list">
-                            <li>No. of Units: <div class="data-right">15</div></li>
-                            <li>Year Built: <div class="data-right">15</div></li>
-                            <li>Sale Price: <div class="data-right">15</div></li>
-                            <li>Price/Unit: <div class="data-right">15</div></li>
-                            <li>Price/SF: <div class="data-right">15</div></li>
-                            <li>CAP Rate: <div class="data-right">15</div></li>
-                            <li>GRM: <div class="data-right">15</div></li>
-                            <li>Close of Escrow: <div class="data-right">15</div></li>
+                            <li>No. of Units: <div class="data-right">{{ valuations.selectedValuation.salesComps.numUnits }}</div></li>
+                            <li>Year Built: <div class="data-right">{{ valuations.selectedValuation.salesComps.yearBuilt }}</div></li>
+                            <li>Sale Price: <div class="data-right">{{ valuations.selectedValuation.salesComps.salesPrice }}</div></li>
+                            <li>Price/Unit: <div class="data-right">{{ valuations.selectedValuation.salesComps.pricePerUnit }}</div></li>
+                            <li>Price/SF: <div class="data-right">{{ valuations.selectedValuation.salesComps.pricePerSf }}</div></li>
+                            <li>CAP Rate: <div class="data-right">{{ valuations.selectedValuation.salesComps.capRate }}</div></li>
+                            <li>GRM: <div class="data-right">{{ valuations.selectedValuation.salesComps.grm }}</div></li>
+                            <li>Close of Escrow: <div class="data-right">{{ valuations.selectedValuation.salesComps.closeOfEscrow }}</div></li>
                         </ul>
                     </div>
                 </div>
@@ -255,8 +255,8 @@
                             RENT COMPARABLES
                         </div>
                         <ol>
-                            <li>2A</li>
-                            <li>11</li>
+                            <li>{{ valuations.selectedValuation.rentComps.address }}</li>
+                            <li>Lorem ipsum dolor sit amet</li>
                             <li>Lorem ipsum dolor sit amet</li>
                             <li>Lorem ipsum dolor sit amet</li>
                             <li>Lorem ipsum dolor sit amet</li>
@@ -274,10 +274,10 @@
                     <div class="item">
                         <img src="~@/assets/Untitled_09.jpg">
                         <div>
-                            <div class="address"> ADDRESS: Lorem ipsum dolor sit amet</div>
+                            <div class="address"> ADDRESS: {{ valuations.selectedValuation.rentComps.address + ' ' + valuations.selectedValuation.rentComps.city }}</div>
                             <div class="rent-data">
                                 <div class="left">
-                                    Year Built: 2018
+                                    Year Built: {{ valuations.selectedValuation.rentComps.yearBuilt }}
                                 </div>
                                 <div class="right">
                                     <table>
@@ -287,16 +287,16 @@
                                                 <th>Rent</th>
                                             </tr>
                                             <tr>
-                                                <td>123</td>
-                                                <td>123</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.bedrooms }} bed, {{ valuations.selectedValuation.rentComps.bathrooms }} bath</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.rent }}</td>
                                             </tr>
                                             <tr>
-                                                <td>123</td>
-                                                <td>123</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.bedrooms }} bed, {{ valuations.selectedValuation.rentComps.bathrooms }} bath</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.rent }}</td>
                                             </tr>
                                             <tr>
-                                                <td>123</td>
-                                                <td>123</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.bedrooms }} bed, {{ valuations.selectedValuation.rentComps.bathrooms }} bath</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.rent }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -307,10 +307,10 @@
                     <div class="item">
                         <img src="~@/assets/Untitled_09.jpg">
                         <div>
-                            <div class="address"> ADDRESS: Lorem ipsum dolor sit amet</div>
+                            <div class="address"> ADDRESS: {{ valuations.selectedValuation.rentComps.address + ' ' + valuations.selectedValuation.rentComps.city }}</div>
                             <div class="rent-data">
                                 <div class="left">
-                                    Year Built: 2018
+                                    Year Built: {{ valuations.selectedValuation.rentComps.yearBuilt }}
                                 </div>
                                 <div class="right">
                                     <table>
@@ -320,16 +320,16 @@
                                                 <th>Rent</th>
                                             </tr>
                                             <tr>
-                                                <td>123</td>
-                                                <td>123</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.bedrooms }} bed, {{ valuations.selectedValuation.rentComps.bathrooms }} bath</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.rent }}</td>
                                             </tr>
                                             <tr>
-                                                <td>123</td>
-                                                <td>123</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.bedrooms }} bed, {{ valuations.selectedValuation.rentComps.bathrooms }} bath</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.rent }}</td>
                                             </tr>
                                             <tr>
-                                                <td>123</td>
-                                                <td>123</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.bedrooms }} bed, {{ valuations.selectedValuation.rentComps.bathrooms }} bath</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.rent }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -340,10 +340,10 @@
                     <div class="item">
                         <img src="~@/assets/Untitled_09.jpg">
                         <div>
-                            <div class="address"> ADDRESS: Lorem ipsum dolor sit amet</div>
+                            <div class="address"> ADDRESS: {{ valuations.selectedValuation.rentComps.address + ' ' + valuations.selectedValuation.rentComps.city }}</div>
                             <div class="rent-data">
                                 <div class="left">
-                                    Year Built: 2018
+                                    Year Built: {{ valuations.selectedValuation.rentComps.yearBuilt }}
                                 </div>
                                 <div class="right">
                                     <table>
@@ -353,16 +353,16 @@
                                                 <th>Rent</th>
                                             </tr>
                                             <tr>
-                                                <td>123</td>
-                                                <td>123</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.bedrooms }} bed, {{ valuations.selectedValuation.rentComps.bathrooms }} bath</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.rent }}</td>
                                             </tr>
                                             <tr>
-                                                <td>123</td>
-                                                <td>123</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.bedrooms }} bed, {{ valuations.selectedValuation.rentComps.bathrooms }} bath</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.rent }}</td>
                                             </tr>
                                             <tr>
-                                                <td>123</td>
-                                                <td>123</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.bedrooms }} bed, {{ valuations.selectedValuation.rentComps.bathrooms }} bath</td>
+                                                <td>{{ valuations.selectedValuation.rentComps.rent }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -384,7 +384,7 @@
                 <table class="rent-rolls" >
                     <thead>
                         <tr>
-                            <th>Unit Number </th>
+                            <th>Unit Number</th>
                             <th>Unit Type</th>
                             <th>Unit SF</th>
                             <th>Current Rent</th>
@@ -394,171 +394,171 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>123</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td> </td>
-                            <td></td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td> </td>
-                            <td> </td>
-                            <td>123</td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td> </td>
-                            <td>123</td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>5</td>
-                            <td> </td>
-                            <td> </td>
-                            <td>123</td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>6</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> 123</td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>7</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> 123</td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>8</td>
-                            <td> </td>
-                            <td>123 </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>9</td>
-                            <td> </td>
-                            <td>123 </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>10</td>
-                            <td> 123</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>11</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> 123</td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>12</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> 123</td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>13</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>14</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> 123</td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>15</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> 123</td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>16</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>17</td>
-                            <td> </td>
-                            <td> 123</td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>18</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>19</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>20</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>21</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>22</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                         <tr>
                             <td>23</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td>{{ valuations.selectedValuation.units.bedrooms }} bed, {{ valuations.selectedValuation.units.bathrooms }} bath</td>
+                            <td>{{ valuations.selectedValuation.units.squareFeet }}</td>
+                            <td>{{ valuations.selectedValuation.units.currentRent }}</td>
+                            <td>{{ valuations.selectedValuation.units.potentialRent }}</td>
                         </tr>
                     </tbody>
                 </table>
             </section>
             <section class="page page-17">
                 <div class="title transparent">INCOME AND EXPENSES</div>
-                <div class="tnou">Total Number of Units: 20A</div>
+                <div class="tnou">Total Number of Units: ???</div>
                 <table class="income-and-expenses" >
                     <thead>
                         <tr>
@@ -570,28 +570,28 @@
                     <tbody>
                         <tr class="highlighted">
                             <td>GROSS POTENTIAL RENT</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ grossRentCurrent }}</td>
+                            <td>{{ grossRentPotential }}</td>
                         </tr>
                         <tr>
-                            <td>Vacancy/Collection Allowence (GPR)</td>
-                            <td></td>
-                            <td></td>
+                            <td>Vacancy/Collection Allowance (GPR) ({{ valuations.selectedValuation.vacancy }}%)</td>
+                            <td>{{ currentVacancy }}</td>
+                            <td>{{ potentialVacancy }}</td>
                         </tr>
                         <tr>
                             <td>EFFECTIVE RENTAL INCOME</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ currentEffectiveRent }}</td>
+                            <td>{{ potentiaEffectiveRent }}</td>
                         </tr>
                         <tr>
                             <td>Total Other Income</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ valuations.selectedValuation.statementCurrent.otherIncome }}</td>
+                            <td>{{ valuations.selectedValuation.statementPotential.otherIncome }}</td>
                         </tr>
                         <tr class="highlighted">
                             <td>EFFECTIVE GROSS INCOME</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ effectiveGrossIncome }}</td>
+                            <td>{{ potentialGrossIncome }}</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -604,49 +604,49 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td>Real Estate Taxes (1.1717%)</td>
-                            <td></td>
-                            <td></td>
+                            <td>Real Estate Taxes ({{ valuations.selectedValuation.taxes }}%)</td>
+                            <td>{{ taxes }}</td>
+                            <td>{{ taxes }}</td>
                         </tr>
                         <tr>
                             <td>Insurance</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ valuations.selectedValuation.statementCurrent.insurance }}</td>
+                            <td>{{ valuations.selectedValuation.statementPotential.insurance }}</td>
                         </tr>
                         <tr>
                             <td>Utilities - Electric</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ valuations.selectedValuation.statementCurrent.electric}}</td>
+                            <td>{{ valuations.selectedValuation.statementPotential.electric }}</td>
                         </tr>
                         <tr>
                             <td>Utilities - Water & Sewer</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ valuations.selectedValuation.statementCurrent.water }}</td>
+                            <td>{{ valuations.selectedValuation.statementPotential.water }}</td>
                         </tr>
                         <tr>
                             <td>Garbage</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ valuations.selectedValuation.statementCurrent.garbage }}</td>
+                            <td>{{ valuations.selectedValuation.statementPotential.garbage }}</td>
                         </tr>
                         <tr>
                             <td>Repairs & Maintenance</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ valuations.selectedValuation.statementCurrent.maintencance }}</td>
+                            <td>{{ valuations.selectedValuation.statementPotential.maintenance }}</td>
                         </tr>
                         <tr>
                             <td>Management Fee</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ currentMgmtFee }}</td>
+                            <td>{{ potentialMgmtFee }}</td>
                         </tr>
                         <tr>
                             <td>Landscaping</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ valuations.selectedValuation.statementCurrent.landscaping }}</td>
+                            <td>{{ valuations.selectedValuation.statementPotential.landscaping }}</td>
                         </tr>
                         <tr>
                             <td>Other Expenses</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ valuations.selectedValuation.statementCurrent.other }}</td>
+                            <td>{{ valuations.selectedValuation.statementPotential.other }}</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -665,18 +665,18 @@
                         </tr>
                         <tr>
                             <td>TOTAL EXPENSES</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ totalExpensesCurrent }}</td>
+                            <td>{{ totalExpensesPotential }}</td>
                         </tr>
                         <tr class="highlighted">
-                            <td>% of EGI</td>
+                            <td>&nbsp;</td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>NET OPERATING INCOME</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ currentNetOperatingIncome }}</td>
+                            <td>{{ potentialNetOperatingIncome }}</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -700,51 +700,55 @@
                             <tbody>
                                 <tr>
                                     <td>LOCATION</td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.property.zip + ' ' + valuations.selectedValuation.property.city + ' ' + valuations.selectedValuation.property.state }}</td>
                                 </tr>
                                 <tr>
                                     <td class="devider">ADDRESS</td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.property.address }}</td>
                                 </tr>
                                 <tr>
                                     <td>Price</td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.price }}</td>
                                 </tr>
                                 <tr>
                                     <td>Number of Units</td>
-                                    <td></td>
+                                    <td>???</td>
                                 </tr>
                                 <tr>
                                     <td>Price/Unit</td>
-                                    <td></td>
+                                    <td>$ {{ pricePerUnit }}</td>
                                 </tr>
                                 <tr>
                                     <td>Gross Square Feet</td>
-                                    <td></td>
+                                    <td>{{ totalSqFt }}</td>
                                 </tr>
                                 <tr>
-                                    <td>PriceSF</td>
-                                    <td></td>
+                                    <td>Price/SF</td>
+                                    <td>$ {{ pricePerSf }}</td>
                                 </tr>
                                 <tr>
-                                    <td>CAP Rate- Current</td>
-                                    <td></td>
+                                    <td>CAP Rate - Current</td>
+                                    <td>{{ stats.currentCapRate }}</td>
                                 </tr>
                                 <tr>
-                                    <td>CAP Rate- Pro Forma</td>
-                                    <td></td>
+                                    <td>CAP Rate - Pro Forma</td>
+                                    <td>{{ stats.potentialCapRate }}</td>
                                 </tr>
                                 <tr>
-                                    <td>GRM- Current GRM-</td>
-                                    <td></td>
+                                    <td>GRM - Current</td>
+                                    <td>{{ stats.currentGrm }}</td>
+                                </tr>
+                                 <tr>
+                                    <td>GRM - Pro Forma</td>
+                                    <td>{{ stats.potentialGrm }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Pro Forma Year Built</td>
-                                    <td></td>
+                                    <td>Year Built</td>
+                                    <td>{{ valuations.selectedValuation.property.yearBuilt }}</td>
                                 </tr>
                                 <tr>
                                     <td>Lot Size</td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.property.lotSize }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -762,38 +766,38 @@
                                 </tr>
                                 <tr class="highlighted">
                                     <td>Gross Potential Rent</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ grossRentCurrent }}</td>
+                                    <td>{{ grossRentPotential }}</td>
                                 </tr>
                                 <tr>
                                     <td>Less: Vacancy/Deductions</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ currentVacancy }}</td>
+                                    <td>{{ potentialVacancy }}</td>
                                 </tr>
                                 <tr>
                                     <td>Gross Potential Income</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ currentEffectiveRent }}</td>
+                                    <td>{{ potentiaEffectiveRent }}</td>
                                 </tr>
                                 <tr>
                                     <td>Other Income</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.statementCurrent.otherIncome }}</td>
+                                    <td>{{ valuations.selectedValuation.statementPotential.otherIncome }}</td>
                                 </tr>
                                 <tr>
                                     <td>Effective Gross Income</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ effectiveGrossIncome }}</td>
+                                    <td>{{ potentialGrossIncome }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Lesss: Expenses</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>Less: Expenses</td>
+                                    <td>{{ totalExpensesCurrent }}</td>
+                                    <td>{{ totalExpensesPotential }}</td>
                                 </tr>
                                 <tr class="highlighted">
                                     <td>Net Operating Income</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ currentNetOperatingIncome }}</td>
+                                    <td>{{ potentialNetOperatingIncome }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -808,49 +812,54 @@
                         <table class="details">
                             <tbody>
                                 <tr>
-                                    <td>Real Estate Taxes Insurance</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>Real Estate Taxes</td>
+                                    <td>{{ taxes }}</td>
+                                    <td>{{ taxes }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Insurance</td>
+                                    <td>{{ valuations.selectedValuation.statementCurrent.insurance }}</td>
+                                    <td>{{ valuations.selectedValuation.statementPotential.insurance }}</td>
                                 </tr>
                                 <tr>
                                     <td>Utilities - Electric</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.statementCurrent.electric}}</td>
+                                    <td>{{ valuations.selectedValuation.statementPotential.electric }}</td>
                                 </tr>
                                 <tr>
                                     <td>Utilities - Water & Sewer</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.statementCurrent.water }}</td>
+                                    <td>{{ valuations.selectedValuation.statementPotential.water }}</td>
                                 </tr>
                                 <tr>
                                     <td>Garbage</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.statementCurrent.garbage }}</td>
+                                    <td>{{ valuations.selectedValuation.statementPotential.garbage }}</td>
                                 </tr>
                                 <tr>
                                     <td>Repairs & Maintenance</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.statementCurrent.maintencance }}</td>
+                                    <td>{{ valuations.selectedValuation.statementPotential.maintenance }}</td>
                                 </tr>
                                 <tr>
                                     <td>Management Fee</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ currentMgmtFee }}</td>
+                                    <td>{{ potentialMgmtFee }}</td>
                                 </tr>
                                 <tr>
                                     <td>Landscaping</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.statementCurrent.landscaping }}</td>
+                                    <td>{{ valuations.selectedValuation.statementPotential.landscaping }}</td>
                                 </tr>
                                 <tr>
                                     <td class="devider">Other Expenses</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ valuations.selectedValuation.statementCurrent.other }}</td>
+                                    <td>{{ valuations.selectedValuation.statementPotential.other }}</td>
                                 </tr>
                                 <tr  class="highlighted">
                                     <td>Total Expenses</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ totalExpensesCurrent }}</td>
+                                    <td>{{ totalExpensesPotential }}</td>
                                 </tr>
                                 <tr  class="highlighted">
                                     <td>Expenses/unit</td>
@@ -863,7 +872,7 @@
                                     <td></td>
                                 </tr>
                                 <tr  class="highlighted">
-                                    <td>% of EGI</td>
+                                    <td>&nbsp;</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
