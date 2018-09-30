@@ -21,7 +21,7 @@
                         <td>Less: Vacancy/Deduction</td>
                         <td class="setting">
                             <button class="percent" @click="decrease('vacancy')">-</button>
-                            <span id="vacancy">  {{ selectedValuation.vacancy }}% </span>
+                            <span id="vacancy">  {{ selectedValuation.vacancy || 0 }}% </span>
                             <button class="percent" @click="increase('vacancy')">+</button>
                         </td>
                         <td>- <span id="vacancy-current">{{ formatPrice (currentVacancy) }}</span></td>
@@ -84,7 +84,7 @@
                         <td class="l-align">Management Fee</td>
                         <td class="setting">
                             <button class="percent" @click="decrease('mgmtFee')">-</button>
-                            <span id="mgmtFee">  {{ selectedValuation.mgmtFee }}% </span>
+                            <span id="mgmtFee">  {{ selectedValuation.mgmtFee || 0 }}% </span>
                             <button class="percent" @click="increase('mgmtFee')">+</button>
                         </td>
                         <td id="mgmt-fee-current">{{ formatPrice (currentMgmtFee) }}</td>
@@ -182,6 +182,8 @@ export default {
       return this.potentialGrossIncome - this.totalExpensesPotential
     },
     currentCapRate () {
+      console.log(this.currentNetOperatingIncome)
+      console.log(this.selectedValuation.price)
       return (Number(this.currentNetOperatingIncome) / (Number(this.selectedValuation.price) || 1)).toFixed(2)
     },
     potentialCapRate () {
@@ -202,18 +204,48 @@ export default {
     SideForm: SideForm
   },
   methods: {
-    ...mapActions('valuations', ['setWipOS', 'persist']),
+    ...mapActions('valuations', ['setWip', 'setWipOS', 'persist']),
     save () {
+      this.current.vacancy = this.currentVacancy
+      this.current.effectiveRent = this.currentEffectiveRent || 0
+      this.current.effectiveGrossIncome = this.effectiveGrossIncome
+      this.current.mgmtFee = this.currentMgmtFee
+      this.current.totalExpenses = this.totalExpensesCurrent
+      this.current.netOperatingIncome = this.currentNetOperatingIncome
+      this.current.capRate = this.currentCapRate
+      this.current.grm = this.currentGrm
+      console.log(this.current)
+
+      this.potential.vacancy = this.potentialVacancy
+      this.potential.effectiveRent = this.potentialEffectiveRent
+      this.potential.effectiveGrossIncome = this.potentialGrossIncome
+      this.potential.mgmtFee = this.potentialMgmtFee
+      this.potential.totalExpenses = this.totalExpensesPotential
+      this.potential.netOperatingIncome = this.potentialNetOperatingIncome
+      this.potential.capRate = this.potentialCapRate
+      this.potential.grm = this.potentialGrm
+
+      console.log('POTential')
+      console.log(this.potential)
+
       // TODO set percentage values (vacancy, mgmtFee, taxes) in Wip (selectedVacancy)
+      this.setWip({val: this.selectedValuation, id: this.selectedValuation.id})
       this.setWipOS({current: this.current, potential: this.potential})
       this.persist()
       router.push('./sales-comparables')
     },
     increase (prop) {
-      this.selectedValuation[prop]++
+      console.log('PROP: ', prop)
+      if (!this.selectedValuation[prop] || this.selectedValuation[prop].isNaN || this.selectedValuation[prop] === 'NaN') {
+        this.selectedValuation[prop] = 1
+        // this.set(this.selectedValuation[prop], 1)
+      } else this.selectedValuation[prop]++
     },
     decrease (prop) {
-      this.selectedValuation[prop]--
+      if (!this.selectedValuation[prop] || this.selectedValuation[prop].isNaN || this.selectedValuation[prop] === 'NaN') {
+        // this.set(this.selectedValuation[prop], 0)
+        this.selectedValuation[prop] = 0
+      } else this.selectedValuation[prop]--
     },
     formatPrice (value) {
       let val = (value / 1).toFixed().replace(',', '.')

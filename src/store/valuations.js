@@ -36,6 +36,7 @@ const mutations = {
   },
   SET_SELECTED_ID (state, id) {
     state.selectedValuationId = id
+    state.selectedValuation.id = id
   },
   SET_WIP (state, {val, id}) {
     state.selectedValuationId = id
@@ -79,7 +80,7 @@ const actions = {
       valuations.forEach(valuation => commit('SET_VALUATION', { valuation: valuation.data(), id: valuation.id }))
     })
   },
-  async persist ({ commit, rootState }) {
+  async persist ({ state, commit, rootState }) {
     // tie the valuation to user
     if (!state.selectedValuation.userId || state.selectedValuation.userId === '') {
       state.selectedValuation.userId = rootState.users.currentId
@@ -87,6 +88,8 @@ const actions = {
     if (!state.selectedValuation.createdOn) {
       state.selectedValuation.createdOn = new Date()
     }
+    console.log(state.selectedValuationId)
+
     persist(rootState, 'valuations', state.selectedValuationId, state.selectedValuation).then((docId) => {
       if (docId && docId !== state.selectedValuationId) {
         console.log('New valuation was inserted')
@@ -94,9 +97,9 @@ const actions = {
         commit('SET_VALUATION', { valuation: state.selectedValuation, id: docId })
         commit('SET_SELECTED_ID', docId)
       } else {
-        console.log('Existing valuation was updated')
+        console.log('Existing valuation was updated:', state.selectedValuation)
       }
-    })
+    }).catch(e => console.log(e))
   },
   // LOCAL STORE ACTIONS
   setWip ({ commit }, {valuation, id}) {

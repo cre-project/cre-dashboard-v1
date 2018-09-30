@@ -15,7 +15,7 @@ export async function fetchAll (state, collection, userId) {
 export async function persist (state, collection, id, data) {
   let tableRef = state.db.collection(collection)
   // add new document
-  if (!id.length) {
+  if (!id || !id.length) {
     return tableRef.add(data)
       .then(docRef => {
         console.log('Document written with ID: ', docRef.id)

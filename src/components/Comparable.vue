@@ -209,7 +209,7 @@ export default {
       if (downloadUrl) {
         vm.loadExistingImage(document.querySelector('#comparable-preview'), document.querySelector('#comparable-icon'), downloadUrl)
       }
-    })
+    }).catch(e => console.log('Image could not be loaded'))
   }
 }
 </script>
