@@ -46,8 +46,8 @@ const mutations = {
     state.selectedValuation.property = property
   },
   SET_WIP_OS (state, {current, potential}) {
-    state.selectedValuation.operatingStatementCurrent = current
-    state.selectedValuation.operatingStatementPotential = potential
+    state.selectedValuation.statementCurrent = current
+    state.selectedValuation.statementPotential = potential
   },
   SET_UNITS (state, units) {
     state.selectedValuation.units = units

@@ -6,7 +6,7 @@
             width="100%"
             height="900"
             frameborder="0"
-            src="">
+            :src="pdfURL">
         </iframe>
     </div>
 </template>
@@ -55,11 +55,17 @@ export default {
   computed: {
     ...mapState({
       selectedValuation: state => state.valuations.selectedValuation,
+      valuationId: state => state.valuations.selectedValuationId,
       company: state => state.users.currentUser.companyName,
       firstname: state => state.users.currentUser.firstName,
       lastname: state => state.users.currentUser.lastName,
-      email: state => state.users.currentUser.email
+      email: state => state.users.currentUser.email,
+      userId: state => state.users.currentId
     }),
+    pdfURL () {
+      console.log(this.valuationId, this.userId)
+      return process.env.PDF_APP + `{"valuationId": "${this.valuationId}","userId": "${this.userId}"}`
+    },
     address () {
       let property = this.selectedValuation.property
       return `${property.address || ''}, ${property.city || ''}`
@@ -101,8 +107,6 @@ export default {
       // return `${emptyUser.ompanyName || ''}`
   },
   mounted () {
-    console.log(JSON.stringify(process.env))
-    document.getElementById('pdf').src = process.env.PDF_APP
   }
 }
 </script>

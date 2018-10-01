@@ -132,7 +132,8 @@ export default {
   },
   computed: {
     ...mapState({
-      selectedValuation: state => state.valuations.selectedValuation
+      selectedValuation: state => state.valuations.selectedValuation,
+      selectedValuationId: state => state.valuations.selectedValuationId
     }),
     ...mapGetters('valuations', ['grossRentCurrent', 'grossRentPotential']),
     currentVacancy () {
@@ -214,22 +215,23 @@ export default {
       this.current.netOperatingIncome = this.currentNetOperatingIncome
       this.current.capRate = this.currentCapRate
       this.current.grm = this.currentGrm
-      console.log(this.current)
+      this.current.grossRent = this.grossRentCurrent
 
       this.potential.vacancy = this.potentialVacancy
-      this.potential.effectiveRent = this.potentialEffectiveRent
+      this.potential.effectiveRent = this.potentialEffectiveRent || 0
       this.potential.effectiveGrossIncome = this.potentialGrossIncome
       this.potential.mgmtFee = this.potentialMgmtFee
       this.potential.totalExpenses = this.totalExpensesPotential
       this.potential.netOperatingIncome = this.potentialNetOperatingIncome
       this.potential.capRate = this.potentialCapRate
       this.potential.grm = this.potentialGrm
+      this.potential.grossRent = this.grossRentPotential
 
       console.log('POTential')
       console.log(this.potential)
 
       // TODO set percentage values (vacancy, mgmtFee, taxes) in Wip (selectedVacancy)
-      this.setWip({val: this.selectedValuation, id: this.selectedValuation.id})
+      this.setWip({val: this.selectedValuation, id: this.selectedValuationId})
       this.setWipOS({current: this.current, potential: this.potential})
       this.persist()
       router.push('./sales-comparables')
