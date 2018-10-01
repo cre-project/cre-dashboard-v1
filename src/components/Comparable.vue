@@ -77,7 +77,7 @@
                     <div class="half-size more-padding">Current Rent/Mo.</div>
                     <vue-numeric input class="half-size" currency="$" separator="," v-model="comp.rent"></vue-numeric>
                 </label>
-              <button class="add" v-show="expanded" @click="add">Add</button>
+              <button class="add" v-show="expanded" @click.prevent="add">Add</button>
             </form>
             <!-- part 3 of the form for sales comps -->
             <form id="form-5" v-if="this.compType !== 'rent'">
@@ -99,7 +99,7 @@
                     <div class="narrow">GRM</div>
                     <input class="narrow" v-model="comp.grm">
                 </label>
-                <button class="add" id="add-sales" v-show="expanded" @click="add">Add</button>
+                <button class="add" id="add-sales" v-show="expanded" @click.prevent="add">Add</button>
             </form>
             <form id="form-7" v-if="this.compType !== 'rent'">
                 <label class="half-size">
@@ -156,8 +156,8 @@ export default {
       this.comp.pricePerUnit = this.pricePerUnit
       this.comp.pricePerSf = this.pricePerSf
       this.addComparable({comparable: this.comp, compType: this.compType})
-      this.reset()
       this.$emit('toggleSaveButton')
+      this.reset()
     },
     expand () {
       this.expanded = true
