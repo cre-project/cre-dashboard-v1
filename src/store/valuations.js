@@ -88,7 +88,6 @@ const actions = {
     if (!state.selectedValuation.createdOn) {
       state.selectedValuation.createdOn = new Date()
     }
-    console.log(state.selectedValuationId)
 
     persist(rootState, 'valuations', state.selectedValuationId, state.selectedValuation).then((docId) => {
       if (docId && docId !== state.selectedValuationId) {

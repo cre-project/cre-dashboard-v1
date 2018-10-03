@@ -24,8 +24,8 @@
                             <span id="vacancy">  {{ selectedValuation.vacancy || 0 }}% </span>
                             <button class="percent" @click="increase('vacancy')">+</button>
                         </td>
-                        <td>- <span id="vacancy-current">{{ formatPrice (currentVacancy) }}</span></td>
-                        <td>- <span id="vacancy-future">{{ formatPrice (potentialVacancy) }}</span></td>
+                        <td>- <span id="vacancy-current">{{ formatPrice (currentVacancy || 0) }}</span></td>
+                        <td>- <span id="vacancy-future">{{ formatPrice (potentialVacancy || 0) }}</span></td>
                     </tr>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">EFFECTIVE RENTAL INCOME</td>
@@ -137,11 +137,11 @@ export default {
     }),
     ...mapGetters('valuations', ['grossRentCurrent', 'grossRentPotential']),
     currentVacancy () {
-      return ((this.grossRentCurrent / 100) * this.selectedValuation.vacancy).toFixed(0)
+      return ((this.grossRentCurrent / 100) * (this.selectedValuation.vacancy || 0)).toFixed(0)
     },
     /* INCOME  */
     potentialVacancy () {
-      return ((this.grossRentPotential / 100) * this.selectedValuation.vacancy).toFixed(0)
+      return ((this.grossRentPotential / 100) * (this.selectedValuation.vacancy || 0)).toFixed(0)
     },
     // actual income coming from rent
     currentEffectiveRent () {
@@ -159,13 +159,13 @@ export default {
     },
     /* EXPENSES  */
     taxes () {
-      return ((this.selectedValuation.price / 100) * this.selectedValuation.taxes).toFixed(0)
+      return ((this.selectedValuation.price / 100) * (this.selectedValuation.taxes || 0)).toFixed(0)
     },
     currentMgmtFee () {
-      return ((this.effectiveGrossIncome / 100) * this.selectedValuation.mgmtFee).toFixed(0)
+      return ((this.effectiveGrossIncome / 100) * (this.selectedValuation.mgmtFee || 0)).toFixed(0)
     },
     potentialMgmtFee () {
-      return ((this.potentialGrossIncome / 100) * this.selectedValuation.mgmtFee).toFixed(0)
+      return ((this.potentialGrossIncome / 100) * (this.selectedValuation.mgmtFee || 0)).toFixed(0)
     },
     // sum of all expenses
     totalExpensesCurrent () {
@@ -227,17 +227,13 @@ export default {
       this.potential.grm = this.potentialGrm
       this.potential.grossRent = this.grossRentPotential
 
-      console.log('POTential')
-      console.log(this.potential)
-
       // TODO set percentage values (vacancy, mgmtFee, taxes) in Wip (selectedVacancy)
-      this.setWip({val: this.selectedValuation, id: this.selectedValuationId})
+      this.setWip({valuation: this.selectedValuation, id: this.selectedValuationId})
       this.setWipOS({current: this.current, potential: this.potential})
       this.persist()
       router.push('./sales-comparables')
     },
     increase (prop) {
-      console.log('PROP: ', prop)
       if (!this.selectedValuation[prop] || this.selectedValuation[prop].isNaN || this.selectedValuation[prop] === 'NaN') {
         this.selectedValuation[prop] = 1
         // this.set(this.selectedValuation[prop], 1)

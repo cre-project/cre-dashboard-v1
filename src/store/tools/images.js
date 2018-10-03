@@ -19,7 +19,6 @@ export function getUrl (fileName) {
   let ref = firebase.storage().ref().child(fileName)
 
   return ref.getDownloadURL().then(url => { return url }).catch(e => {
-    console.error(e.code)
     return null
   })
 }
