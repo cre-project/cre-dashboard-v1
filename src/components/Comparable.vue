@@ -119,7 +119,7 @@ import { mapState, mapActions } from 'vuex'
 import accounting from 'accounting'
 import { uuidv4 } from '../utils'
 import { emptyComparable } from '@/store/tools/templates'
-import { upload, getUrl } from '../store/tools/images'
+import { upload } from '../store/tools/images'
 
 export default {
   data () {
@@ -172,6 +172,7 @@ export default {
       return accounting.formatMoney(number)
     },
     loadNewImage (previewEl, button, imgName, evt) {
+      let vm = this
       let file = evt.target.files[0]
       let reader = new FileReader()
       let fileName = `images/${imgName}`
@@ -182,7 +183,10 @@ export default {
         previewEl.classList.add('clickable')
         button.classList.remove('clickable')
         button.classList.add('hidden')
-        upload(fileName, evt.target.result)
+        upload(fileName, evt.target.result).then(url => {
+          console.log(`done`, url, vm.comp)
+          vm.comp.imageUrl = url
+        })
       })
       reader.readAsDataURL(file)
     },
@@ -196,20 +200,12 @@ export default {
     loadComparablePic (evt) {
       const comparablePreview = document.querySelector('#comparable-preview')
       const comparableIcon = document.querySelector('#comparable-icon')
-      let fileName = `${this.userId}/comparable.png`
+      let fileName = `${this.userId}/${this.comp.id}.png`
       this.loadNewImage(comparablePreview, comparableIcon, fileName, evt)
     }
   },
   created () {
     this.reset()
-
-    let vm = this
-    // load logo and preview if they exist
-    getUrl(`images/${this.$store.state.users.currentId}/comparable.png`).then(downloadUrl => {
-      if (downloadUrl) {
-        vm.loadExistingImage(document.querySelector('#comparable-preview'), document.querySelector('#comparable-icon'), downloadUrl)
-      }
-    }).catch(e => console.log('Image could not be loaded'))
   }
 }
 </script>
@@ -256,6 +252,9 @@ input {
   margin-top: 3em;
 }
 .expanded {
-  min-height: 30em;
+  min-height: 35em;
+}
+#comparable-preview {
+  max-height: 10em;
 }
 </style>

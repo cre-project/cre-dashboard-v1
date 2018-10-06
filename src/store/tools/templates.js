@@ -39,7 +39,8 @@ export const emptyComparable = {
   capRate: null,
   grm: null,
   pricePerSf: null,
-  id: ''
+  id: '',
+  imageUrl: ''
 }
 export const emptyValuation = {
   property: Object.assign({}, emptyProperty),
