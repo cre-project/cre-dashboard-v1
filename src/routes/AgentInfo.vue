@@ -2,40 +2,33 @@
   <div>
     <user-nav/>
     <div class="cre-content">
-      <h1 class="title">User Settings</h1>
-      <div class="columns">
-        <div class="column m-t-1">
-          <label class="half-size">
-            <div class="half-size">First Name</div>
-            <input class="half-size" v-model="user.firstName">
-          </label>
-          <label class="half-size">
-            <div class="half-size">Last Name</div>
-            <input class="half-size" v-model="user.lastName">
-          </label>
-          <label>
-            <div>Position/ Title</div>
-            <input v-model="user.title">
-          </label>
-          <label>
-            <div>Email</div>
-            <input v-model="user.email">
-          </label>
-          <label>
-            <div>Phone Number</div>
-            <input v-model="user.phoneNumber">
-          </label>
+      <h1 class="title">Agent Information</h1>
+        <div class="columns">
+          <div class="column m-t-2">
+            <label>
+              <div>License Number</div>
+              <input v-model="user.licenseNumber">
+            </label>
+
+            <label>
+              <div>Company Name</div>
+              <input v-model="user.companyName">
+            </label>
+            <label>
+              <div>Website URL</div>
+              <input v-model="user.website">
+            </label>
+          </div>
+          <div class="column m-l-2 m-t-1">
+            <label style="height: 12em;">
+              <div class="m-b-1">Company Logo</div>
+              <img class="hidden" id="logo-preview" title="click to change picture">
+              <input type="file" class="save hidden" @input="loadLogo">
+              <i class="large material-icons clickable" id="logo-icon">add_a_photo</i>
+            </label>
+            <button class="save" style="width: 35%; margin-top: 3em; margin-left: 18em;" type="submit" @click="save">Save</button>
+          </div>
         </div>
-        <div class="column m-t-2 m-l-2">
-          <label style="height: 12em;">
-            <div class="m-b-1">Profile Picture</div>
-            <img class="hidden" id="profile-preview">
-            <input type="file" class="save hidden" @input="loadProfilePic">
-            <i class="large material-icons clickable" id="profile-icon">add_a_photo</i>
-          </label>
-          <button class="save" style="width: 35%; margin-top: 4em; margin-left: 18em;" type="submit" @click="save">Save</button>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -46,13 +39,13 @@ import { upload, getUrl } from '../store/tools/images'
 import UserNav from '@/components/UserNav'
 
 export default {
+  components: {
+    UserNav
+  },
   data () {
     return {
       user: {}
     }
-  },
-  components: {
-    UserNav
   },
   methods: {
     ...mapActions('users', ['set']),

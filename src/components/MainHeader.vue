@@ -1,20 +1,19 @@
 <template>
-    <header>
-        <router-link class="header-image" to="/valuations">
-          <i class="material-icons">home</i>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <router-link class="navbar-item" to="/valuations">
+        <i class="material-icons">home</i>
+      </router-link>
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <router-link class="header-image" to="/user-settings" v-if="isAuthenticated">
+            <i class="material-icons">person</i>
         </router-link>
-        <div id="menu">
-            <!-- <div id="beta-tag">BETA</div> -->
-          <router-link class="header-image" to="/user-settings" v-if="isAuthenticated">
-              <i class="material-icons">person</i>
-          </router-link>
-          <i class="material-icons" v-if="isAuthenticated" @click="logOut" title="log out">exit_to_app</i>
-          <div class="header-image" id="search">
-            <!-- <div id="symbol">&#8964;</div> -->
-                <!-- <img class="header-image" src="~@/assets/search-icon.png" alt="Search" /> -->
-            </div>
-        </div>
-    </header>
+        <i class="material-icons" v-if="isAuthenticated" @click="logOut" title="log out">exit_to_app</i>
+      </div>
+    </div>
+  </nav>
 </template>
 <script>
 import firebase from 'firebase/app'

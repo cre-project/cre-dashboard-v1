@@ -17,6 +17,7 @@ import RentComparables from '@/routes/RentComparables'
 import SalesComparables from '@/routes/SalesComparables'
 import OperatingStatement from '@/routes/OperatingStatement'
 import UserSettings from '@/routes/UserSettings'
+import AgentInfo from '@/routes/AgentInfo'
 
 // Sub-components
 import MainHeader from '@/components/MainHeader'
@@ -45,7 +46,8 @@ export const routes = [
   { path: '/sales-comparables', name: 'SALES COMPARABLES', component: SalesComparables, meta: { requiresAuth: true, isNav: true } },
   { path: '/rent-comparables', name: 'RENT COMPARABLES', component: RentComparables, meta: { requiresAuth: true, isNav: true } },
   { path: '/preview', name: 'PREVIEW', component: Preview, meta: { requiresAuth: true, isNav: true } },
-  { path: '/user-settings', name: 'User Settings', component: UserSettings, meta: { requiresAuth: true } }
+  { path: '/user-settings', name: 'User Settings', component: UserSettings, meta: { requiresAuth: true } },
+  { path: '/agent-info', name: 'Agent Information', component: AgentInfo, meta: { requiresAuth: true } }
 ]
 
 let router = new Router({

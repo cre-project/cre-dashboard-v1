@@ -1,5 +1,5 @@
 <template>
-    <div id="wrapper" class="signup">
+    <div id="cre-content" class="signup">
         <img id="logo" src="~@/assets/logo.png" alt="Your logo here" width="200" />
         <form>
             <label>
@@ -35,30 +35,11 @@ export default {
 }
 </script>
 <style scoped>
-    #wrapper {
-        display: grid;
-        grid-template-rows: 0.5fr 2fr 4fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-row-gap: 2em;
-        grid-template-areas:
-        'x y z'
-        'a b c'
-        'd e f'
-        'j k l';
-    }
-    form {
-        grid-area: e;
-    }
-    #logo {
-        grid-area: b;
-        margin: auto;
-    }
-    #bottom {
-        grid-area: k;
-        width: 50%;
-        margin: auto;
-    }
-    input[type='checkbox'] {
-        width: auto;
-    }
+#bottom {
+    width: 50%;
+    margin: auto;
+}
+input[type='checkbox'] {
+    width: auto;
+}
 </style>

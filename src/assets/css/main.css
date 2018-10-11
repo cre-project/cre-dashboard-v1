@@ -2,6 +2,7 @@
   --header-blue: #1F2833;
   --button-blue: #1b6aff;
   --light-brown: #1B6AFF;
+  --light-grey: #f1f1f1; 
 }
 
 /* Reset */
@@ -19,9 +20,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     display: block;
 }
 
+
 body {
+    min-height: 100vh;
     line-height: 1;
     padding-bottom: 2em;
+    background-color: var(--light-grey);
 }
 
 ol, ul {
@@ -66,54 +70,19 @@ body {
 }
 
 /* Header and sub-header */
-header {
+.navbar {
     width: 100%;
     height: 4em;
-    /* background-color: #2CC0BE; */
     background-color: var(--header-blue);
-}
-
-header div {
-    display: inline-block;
-    color: white;
-}
-
-.header-image {
-    display: inline-block;
-    height: 4em;
-    width: 4em;
-}
-
-nav ul {
-    position: relative;
-    top: 1.5em;
-    text-align: center;
-}
-
-nav ul li {
-    display: inline-block;
-    margin-left: 3em;
-    margin-right: 3em;
-    padding-bottom: 0.5em;
-    font-size: 0.9em;
-    border-bottom: 2px solid transparent;
-}
-
-nav ul li:hover {
-    border-bottom-color: var(--header-blue);
-}
-
-nav ul li a {
-    color: #5D5D5D;
-    text-decoration: none;
 }
 
 #selected {
     background-color: var(--button-blue);
 }
 
-#sub-header {
+.sub-header {
     background-color: #C5C6C7;
+    /* box-shadow: 2px 5px 3px rgba(98, 99, 100, 0.3); */
 }
 
 #menu {
@@ -160,6 +129,7 @@ nav ul li a {
         "top    right"
         "left   right";
     height: 100vh;
+    background-color: white;
 }
 
 .two-rows {
@@ -178,6 +148,8 @@ iframe {
 
 aside {
     grid-area: right;
+    margin-top: 7em;
+    margin-right: 1em;
 }
 
 aside table {
@@ -257,7 +229,7 @@ td input[disabled] {
 
 th, td {
   height: 3em;
-  min-width: 15em;
+  /* min-width: 15em; */
   padding: 1em;
   text-align: center;
   vertical-align: middle;
@@ -291,8 +263,7 @@ td button {
 }
 
 .total {
-    background-color: #D8D8D8;
-    /* background-color: #B1A29; */
+    background-color: #d0ecb4    
 }
 
 .sub-section {
@@ -316,7 +287,6 @@ td button {
 
 /* Forms */
 form {
-  width: 50%;
   margin: 0 auto;
 }
 
@@ -439,13 +409,6 @@ label:hover input {
   /* border-bottom: 2px solid #2CC0BE; */
 }
 
-.box {
-  display: flex;
-  flex: wrap;
-  grid-column-start: 2;
-  grid-column-end: 5;
-}
-
 .half-size {
   width: 9em;
   margin-right: 5em;
@@ -499,6 +462,7 @@ span.add-more-content {
 
 button {
   max-height: 2.5em;
+  padding: 5px 20px;
   border-radius: 100px;
   color: white;
   font-size: 1.1em;
@@ -673,7 +637,7 @@ img {
     float: right;
     background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.5); /* Black see-through */
-    color: #f1f1f1; 
+    color: #fa8383; 
     width: 100%;
     transition: .5s ease;
     opacity:0;
@@ -765,5 +729,66 @@ br {
 }
 .material-icons {
     padding: 0.5rem;
-    cursor: pointer;
+    cursor: pointer
+}
+
+.cre-content {
+  padding: 3em;
+  margin-top: 3em;
+  margin-left: 8em;
+  margin-right: 6em;
+  max-width: 90%;
+  background-color: white;
+}
+
+
+.half-size {
+margin-right: 2em;
+}
+.clickable {
+cursor: pointer;
+}
+.columns {
+margin: 4em 5em;
+}
+.m-t-2 {
+margin-top: 2em;
+}
+.m-t-3 {
+margin-top: 3em;
+}
+.m-l-2 {
+margin-left: 2em;
+}
+.m-b-1 {
+margin-bottom: 1em;
+}
+
+nav ul {
+    position: relative;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 8em;
+    margin-right: 2em;
+    font-size: 0.9em;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+}
+
+nav ul li a {
+    color: #5D5D5D;
+    text-decoration: none;
+}
+
+.navbar-item {
+  padding: unset;
+  line-height: unset;
+}
+
+.router-link-active {
+  color: var(--header-blue);
+  font-weight: bold;
 }

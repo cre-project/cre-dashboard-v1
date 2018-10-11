@@ -15,7 +15,7 @@
                     <div>City</div>
                     <input v-model="comp.city">
                 </label>
-                <div class="box">
+                <div>
                   <label class="side-by-side">
                       <div>State</div>
                       <input class="side-by-side" v-model="comp.state">

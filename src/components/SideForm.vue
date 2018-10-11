@@ -5,9 +5,9 @@
       <vue-numeric input id="os-right" currency="$" separator="," v-model.number="localPrice"></vue-numeric>
       <!-- price per unit/ sf - units & sf from unit mix -->
       <p class="bold l-align">
-      Price/Unit: <span>$ {{ formatPrice (pricePerUnit) }}</span>
+      Price/Unit: {{ pricePerUnit | money }}
       <br>
-      Price/SF: <span>$ {{ formatPrice (pricePerSf) }}</span>
+      Price/SF: {{ pricePerSf | money }}
       </p>
     </div>
     <table>
@@ -58,11 +58,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('valuations', ['setPrice']),
-    formatPrice (value) {
-      let val = (value / 1).toFixed().replace(',', '.')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '', '')
-    }
+    ...mapActions('valuations', ['setPrice'])
   }
 }
 </script>

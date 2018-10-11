@@ -1,7 +1,7 @@
 <template>
     <div>
         <navigation-header selected="sales-comparables"></navigation-header>
-        <div class="wrapper">
+        <div class="cre-content">
             <h1>Sales Comparables</h1>
             <table>
                 <tr>
@@ -13,9 +13,9 @@
                 </tr>
                 <tr v-for="(comp, i) in comparables" :key="comp.name + i">
                     <th>{{ comp.address }}</th>
-                    <th>{{ format(comp.salesPrice) }}</th>
+                    <th>{{ comp.salesPrice | money }}</th>
                     <th>{{ comp.capRate }}</th>
-                    <th>{{ format(comp.pricePerUnit) }}</th>
+                    <th>{{ comp.pricePerUnit | money }}</th>
                     <th>
                         <i class="material-icons">edit</i>
                         <i class="material-icons" @click="deleteComparable({compId: comp.id, compType: 'sales'})">delete_forever</i>
@@ -30,7 +30,6 @@
 <script>
 import Comparable from '@/components/Comparable'
 import router from '../router/index'
-import accounting from 'accounting'
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -55,9 +54,6 @@ export default {
     },
     toggle () {
       this.showButton = !this.showButton
-    },
-    format (number) {
-      return accounting.formatMoney(number)
     }
   }
 }

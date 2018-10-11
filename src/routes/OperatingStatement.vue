@@ -14,8 +14,8 @@
                     </thead>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">GROSS POTENTIAL RENT</td>
-                        <td>$<span id="gpr-current">{{ formatPrice (grossRentCurrent) }}</span></td>
-                        <td>$<span id="gpr-future">{{ formatPrice (grossRentPotential) }}</span></td>
+                        <td><span id="gpr-current">{{ grossRentCurrent | money }}</span></td>
+                        <td><span id="gpr-future">{{ grossRentPotential | money }}</span></td>
                     </tr>
                     <tr>
                         <td>Less: Vacancy/Deduction</td>
@@ -24,13 +24,13 @@
                             <span id="vacancy">  {{ selectedValuation.vacancy || 0 }}% </span>
                             <button class="percent" @click="increase('vacancy')">+</button>
                         </td>
-                        <td>- <span id="vacancy-current">{{ formatPrice (currentVacancy || 0) }}</span></td>
-                        <td>- <span id="vacancy-future">{{ formatPrice (potentialVacancy || 0) }}</span></td>
+                        <td>- <span id="vacancy-current">{{  (currentVacancy || 0) | money }}</span></td>
+                        <td>- <span id="vacancy-future">{{  (potentialVacancy || 0) | money }}</span></td>
                     </tr>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">EFFECTIVE RENTAL INCOME</td>
-                        <td>${{ formatPrice (currentEffectiveRent) }}</td>
-                        <td>${{ formatPrice (potentiaEffectiveRent) }}</td>
+                        <td>{{ currentEffectiveRent | money }}</td>
+                        <td>{{ potentiaEffectiveRent | money }}</td>
                     </tr>
                     <tr>
                         <td colspan="2">Total Other Income</td>
@@ -39,8 +39,8 @@
                     </tr>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">EFFECTIVE GROSS INCOME</td>
-                        <td>${{ formatPrice (effectiveGrossIncome) }}</td>
-                        <td>${{ formatPrice (potentialGrossIncome) }}</td>
+                        <td>{{ effectiveGrossIncome | money }}</td>
+                        <td>{{ potentialGrossIncome | money }}</td>
                     </tr>
                     <tr>
                         <td class="sub-section l-align bolder" span="4">Expenses</td>
@@ -51,8 +51,8 @@
                             <vue-numeric input class="inline-edit" v-bind:precision="4" v-model.number="selectedValuation.taxes"></vue-numeric>%
                         </td>
                         <!-- ONLY ONE TAX VALUE - NO DISTINCTION BETWEEN CURRENT AND POTENTIAL -->
-                        <td id="taxes-current">{{ formatPrice (taxes) }}</td>
-                        <td id="taxes-future">{{ formatPrice (taxes) }}</td>
+                        <td id="taxes-current">{{ taxes | money  }}</td>
+                        <td id="taxes-future">{{ taxes | money }}</td>
                     </tr>
                     <tr>
                         <td class="l-align" colspan="2">Insurance</td>
@@ -87,8 +87,8 @@
                             <span id="mgmtFee">  {{ selectedValuation.mgmtFee || 0 }}% </span>
                             <button class="percent" @click="increase('mgmtFee')">+</button>
                         </td>
-                        <td id="mgmt-fee-current">{{ formatPrice (currentMgmtFee) }}</td>
-                        <td id="mgmt-fee-future">{{ formatPrice (potentialMgmtFee) }}</td>
+                        <td id="mgmt-fee-current">{{ currentMgmtFee | money }}</td>
+                        <td id="mgmt-fee-future">{{ potentialMgmtFee | money }}</td>
                     </tr>
                     <tr>
                         <td class="l-align" colspan="2">Landscaping</td>
@@ -102,14 +102,14 @@
                     </tr>
                     <tr class="total">
                         <td class="l-align bold" colspan="2">TOTAL EXPENSES</td>
-                        <td>${{ formatPrice (totalExpensesCurrent) }}</td>
-                        <td>${{ formatPrice (totalExpensesPotential) }}</td>
+                        <td>{{ totalExpensesCurrent | money }}</td>
+                        <td>{{ totalExpensesPotential | money }}</td>
                     </tr>
                     <tr>
                         <!-- effective gross income minus total expenses -->
                         <td class="l-align bold" colspan="2">Net Operating Income</td>
-                        <td class="bold">${{ formatPrice (currentNetOperatingIncome) }}</td>
-                        <td class="bold">${{ formatPrice (potentialNetOperatingIncome) }}</td>
+                        <td class="bold">{{ currentNetOperatingIncome | money }}</td>
+                        <td class="bold">{{ potentialNetOperatingIncome | money }}</td>
                     </tr>
                 </table>
                 <button class="save" id="operating-statement" type="submit" @click="save">Save & Next</button>
@@ -244,10 +244,6 @@ export default {
         // this.set(this.selectedValuation[prop], 0)
         this.selectedValuation[prop] = 0
       } else this.selectedValuation[prop]--
-    },
-    formatPrice (value) {
-      let val = (value / 1).toFixed().replace(',', '.')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
     formatPercentage (value) {
       let val = (value / 10).toFixed(1).replace(',', '.')

@@ -1,7 +1,7 @@
 <template>
     <div>
         <navigation-header selected="unit-mix"></navigation-header>
-        <div class="wrapper">
+        <div class="cre-content">
             <h1>Unit Mix</h1>
             <table>
                 <thead>

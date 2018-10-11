@@ -1,19 +1,22 @@
 <template>
     <div>
-        <navigation-header selected="property-info"></navigation-header>
-        <div class="wrapper">
-            <h1 class="auto-margin">Property Information</h1>
-            <!-- part 1 of the form -->
-            <form id="form-left">
-                <label>
-                    <div>Property Address</div>
-                    <input v-model="property.address">
-                </label>
-                <label>
-                    <div>State</div>
-                    <input v-model="property.state">
-                </label>
-                <div class="box">
+      <navigation-header selected="property-info"></navigation-header>
+        <div class="cre-content">
+          <h1 class="auto-margin">Property Information</h1>
+          <div class="columns">
+            <div class="column">
+
+              <h2 class="subtitle is-size-5">Property Address</h2>
+              <form>
+                  <label>
+                      <div>Street</div>
+                      <input v-model="property.address">
+                  </label>
+                  <label>
+                      <div>State</div>
+                      <input v-model="property.state">
+                  </label>
+                  <div>
                   <label class="half-size">
                       <div class="half-size">City</div>
                       <input class="half-size" v-model="property.city">
@@ -22,34 +25,39 @@
                       <div class="half-size">ZIP</div>
                       <input class="half-size" v-model="property.zip">
                   </label>
-                </div>
-            </form>
-            <!-- part 2 of the form -->
-            <form id="form-right">
-              <div class="box">
-                  <label class="half-size">
-                      <div class="half-size">Number of Stories</div>
-                      <input class="half-size" v-model="property.numberOfStories">
+                  </div>
+              </form>
+            </div>
+
+          <div class="column">
+            <h2 class="subtitle is-size-5">Property Details</h2>
+            <form>
+              <div>
+                  <label>
+                      <div>Number of Stories</div>
+                      <input v-model="property.numberOfStories">
                   </label>
-                  <label class="half-size">
-                      <div class="half-size">Year built</div>
-                      <input class="half-size" v-model="property.yearBuilt">
-                  </label>
-              </div>
-              <div class="box">
-                  <label class="half-size">
-                      <div class="half-size">Lot Size Acres</div>
-                      <vue-numeric input class="half-size" separator="," v-model="property.lotSize"></vue-numeric>
-                  </label>
-                  <label class="half-size">
-                      <div class="half-size">APN</div>
-                      <input class="half-size" v-model="property.apn">
+                  <label>
+                      <div >Year built</div>
+                      <input  v-model="property.yearBuilt">
                   </label>
               </div>
-            </form>
-            <button class="save" id="property-info" type="submit" @click="save">Save & Next</button>
+              <div>
+                  <label>
+                      <div>Lot Size Acres</div>
+                      <vue-numeric input separator="," v-model="property.lotSize"></vue-numeric>
+                  </label>
+                  <label >
+                      <div>APN</div>
+                      <input v-model="property.apn">
+                  </label>
+              </div>
+          </form>
+          <button class="save m-t-2" style="margin-left:18em;" id="property-info" type="submit" @click="save">Save & Next</button>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 import { mapActions } from 'vuex'
@@ -83,5 +91,9 @@ export default {
 <style>
 h1 {
   width: unset;
+}
+h2 {
+    margin-left: 0;
+    margin-bottom: 2em;
 }
 </style>
