@@ -3,11 +3,11 @@
       <nav class="navbar sub-header" style="height: unset;" role="navigation">
         <div id="index" class="navbar-brand">All Valuations</div>
         <div class="navbar-end">
-          <router-link 
-            id="header-button" 
-            to="/property-info" 
-            tag="button" 
-            style="font-weight: 500;" 
+          <router-link
+            id="header-button"
+            to="/property-info"
+            tag="button"
+            style="font-weight: 500;"
             @click.native="startNew">Add New Valuation</router-link>
         </div>
       </nav>

@@ -1,66 +1,18 @@
 <template>
-    <div>
-        <navigation-header selected="sales-comparables"></navigation-header>
-        <div class="cre-content">
-            <h1>Sales Comparables</h1>
-            <table>
-                <tr>
-                    <th>Address</th>
-                    <th>Price</th>
-                    <th>Cap Rate</th>
-                    <th>Price / Unit</th>
-                    <th></th>
-                </tr>
-                <tr v-for="(comp, i) in comparables" :key="comp.name + i">
-                    <th>{{ comp.address }}</th>
-                    <th>{{ comp.salesPrice | money }}</th>
-                    <th>{{ comp.capRate }}</th>
-                    <th>{{ comp.pricePerUnit | money }}</th>
-                    <th>
-                        <i class="material-icons">edit</i>
-                        <i class="material-icons" @click="deleteComparable({compId: comp.id, compType: 'sales'})">delete_forever</i>
-                    </th>
-                </tr>
-            </table>
-            <new-comparable :compType="'sales'" v-on:toggleSaveButton="toggle"></new-comparable>
-            <button v-show="showButton" class="save" type="submit" @click="save">Save & Next</button>
-        </div>
-    </div>
+  <comparables compType="sale" :comparables="comparables"/>
 </template>
 <script>
-import Comparable from '@/components/Comparable'
-import router from '../router/index'
-import { mapState, mapActions } from 'vuex'
+import Comparables from '@/components/Comparables'
+import { mapState } from 'vuex'
 
 export default {
-  data () {
-    return {
-      showButton: true
-    }
-  },
   components: {
-    newComparable: Comparable
+    Comparables
   },
   computed: {
     ...mapState({
       comparables: state => state.valuations.selectedValuation.salesComps
     })
-  },
-  methods: {
-    ...mapActions('valuations', ['persist', 'deleteComparable']),
-    save () {
-      this.persist()
-      router.push('./rent-comparables')
-    },
-    toggle () {
-      this.showButton = !this.showButton
-    }
   }
 }
 </script>
-<style scoped>
-input {
-  width: 100%;
-  text-align: center;
-}
-</style>

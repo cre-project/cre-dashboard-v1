@@ -12,7 +12,7 @@
                             <th class="sub-section">Pro Forma</th>
                         </tr>
                     </thead>
-                    <tr class="total">
+                    <tr class="is-grey">
                         <td class="l-align bold" colspan="2">GROSS POTENTIAL RENT</td>
                         <td><span id="gpr-current">{{ grossRentCurrent | money }}</span></td>
                         <td><span id="gpr-future">{{ grossRentPotential | money }}</span></td>
@@ -27,7 +27,7 @@
                         <td>- <span id="vacancy-current">{{  (currentVacancy || 0) | money }}</span></td>
                         <td>- <span id="vacancy-future">{{  (potentialVacancy || 0) | money }}</span></td>
                     </tr>
-                    <tr class="total">
+                    <tr class="is-grey">
                         <td class="l-align bold" colspan="2">EFFECTIVE RENTAL INCOME</td>
                         <td>{{ currentEffectiveRent | money }}</td>
                         <td>{{ potentiaEffectiveRent | money }}</td>
@@ -37,7 +37,7 @@
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.otherIncome"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.otherIncome"></vue-numeric></td>
                     </tr>
-                    <tr class="total">
+                    <tr class="is-grey">
                         <td class="l-align bold" colspan="2">EFFECTIVE GROSS INCOME</td>
                         <td>{{ effectiveGrossIncome | money }}</td>
                         <td>{{ potentialGrossIncome | money }}</td>
@@ -100,7 +100,7 @@
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.other"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.other"></vue-numeric></td>
                     </tr>
-                    <tr class="total">
+                    <tr class="is-grey">
                         <td class="l-align bold" colspan="2">TOTAL EXPENSES</td>
                         <td>{{ totalExpensesCurrent | money }}</td>
                         <td>{{ totalExpensesPotential | money }}</td>

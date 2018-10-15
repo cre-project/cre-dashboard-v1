@@ -1,5 +1,6 @@
 import { emptyValuation, emptyProperty } from './tools/templates'
 import { fetchAll, persist } from './tools/db'
+import Vue from 'vue'
 
 const state = {
   all: {},
@@ -61,6 +62,20 @@ const mutations = {
   ADD_SALES_COMPARABLE (state, comparable) {
     state.selectedValuation.salesComps.push(comparable)
   },
+  UPDATE_SALES_COMPARABLE (state, comparable) {
+    state.selectedValuation.salesComps.forEach((c, i) => {
+      if (c.id === comparable.id) {
+        Vue.set(state.selectedValuation.salesComps, i, comparable)
+      }
+    })
+  },
+  UPDATE_RENT_COMPARABLE (state, comparable) {
+    state.selectedValuation.rentComps.forEach((c, i) => {
+      if (c.id === comparable.id) {
+        Vue.set(state.selectedValuation.rentComps, i, comparable)
+      }
+    })
+  },
   DELETE_COMPARABLE (state, { compId, compType }) {
     // filter comps by id (filter creates new array)
     if (compType === 'rent') {
@@ -121,10 +136,18 @@ const actions = {
     commit('SET_PRICE', price || 0)
   },
   addComparable ({ commit }, {comparable, compType}) {
+    console.log('store', comparable, compType)
     if (compType === 'rent') {
       commit('ADD_RENT_COMPARABLE', comparable)
     } else if (compType === 'sales') {
       commit('ADD_SALES_COMPARABLE', comparable)
+    }
+  },
+  updateComparable ({ commit }, {comparable, compType}) {
+    if (compType === 'rent') {
+      commit('UPDATE_RENT_COMPARABLE', comparable)
+    } else if (compType === 'sales') {
+      commit('UPDATE_SALES_COMPARABLE', comparable)
     }
   },
   deleteComparable ({ commit }, {compId, compType}) {

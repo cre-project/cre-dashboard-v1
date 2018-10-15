@@ -128,7 +128,6 @@ body {
     grid-template-areas:
         "top    right"
         "left   right";
-    height: 100vh;
     background-color: white;
 }
 
@@ -219,7 +218,6 @@ td input, tr input {
   font-size: 0.9em;
   width: 3em;
   align-content: center;
-  border: none;
 }
 
 td input[disabled] {
@@ -255,6 +253,7 @@ td button {
 .setting {
     min-width: 3em;
     padding: 0;
+    vertical-align: middle;
 }
 
 .narrow {
@@ -432,18 +431,8 @@ label:hover input {
 }
 
 #add-more {
-    margin: auto;
-    margin-left: 0;
-    margin-top: 0;
-    max-height: 4.3em;
-    width: 85%;
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 4;
-    grid-row-end: 5;
+    background-color: white;
     padding: 0.5em 0.8em;
-    border: 1px dashed darkgray;
-    border-radius: 20px;
     vertical-align: middle;
 }
 
@@ -480,11 +469,6 @@ img {
    vertical-align: middle;
 }
 
-/* Pop-ups */
-.expanded {
-  min-height: 25em;
-}
-
 .resized {
   grid-template-rows: 8em 3fr 1em 1em 1em;
 }
@@ -495,7 +479,7 @@ img {
   grid-column-end: 4;
   grid-row-start: 5;
   grid-row-end: 6;
-  width: 40%;
+  width: 13em;
   vertical-align: middle;
   margin: auto 0;
   padding: 0.5em 2em;
@@ -531,25 +515,15 @@ img {
 }
 
 #operating-statement {
-    margin-left: 35em;
-    margin-top: 1em;
+    margin-left: 29em;
+    margin-top: 2em;
     width: 15em;
+    font-weight: 500;
 }
 
 #property-info {
   grid-row-start: 3;
   grid-row-end: 4;
-}
-
-#plus {
-    width: 2.5em;
-    text-align: center;
-    font-size: 1.3em;
-    font-weight: bold;
-    border: 1px dashed darkgray;
-    border-radius: 25%;
-    float: left;
-    cursor: pointer;
 }
 
 #header-button {
@@ -749,7 +723,7 @@ margin-right: 2em;
 cursor: pointer;
 }
 .columns {
-margin: 4em 5em;
+margin: 2em 5em;
 }
 .m-t-2 {
 margin-top: 2em;
@@ -791,4 +765,14 @@ nav ul li a {
 .router-link-active {
   color: var(--header-blue);
   font-weight: bold;
+}
+
+.is-grey {
+  background-color: var(--light-grey);
+}
+
+.float-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 3em;
 }
