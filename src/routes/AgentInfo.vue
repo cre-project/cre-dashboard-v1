@@ -75,12 +75,6 @@ export default {
       button.classList.remove('clickable')
       button.classList.add('hidden')
     },
-    loadProfilePic (evt) {
-      const profilePreview = document.querySelector('#profile-preview')
-      const profileIcon = document.querySelector('#profile-icon')
-      let fileName = `${this.userId}/profile.png`
-      this.loadNewImage(profilePreview, profileIcon, fileName, evt)
-    },
     loadLogo (evt) {
       const logoPreview = document.querySelector('#logo-preview')
       const logoIcon = document.querySelector('#logo-icon')

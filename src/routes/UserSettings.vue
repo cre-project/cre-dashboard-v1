@@ -87,12 +87,6 @@ export default {
       const profileIcon = document.querySelector('#profile-icon')
       let fileName = `${this.userId}/profile.png`
       this.loadNewImage(profilePreview, profileIcon, fileName, evt)
-    },
-    loadLogo (evt) {
-      const logoPreview = document.querySelector('#logo-preview')
-      const logoIcon = document.querySelector('#logo-icon')
-      let fileName = `${this.userId}/logo.png`
-      this.loadNewImage(logoPreview, logoIcon, fileName, evt)
     }
   },
   computed: {
