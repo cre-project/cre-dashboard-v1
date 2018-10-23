@@ -5,18 +5,16 @@
     <div class="cre-content">
       <h1 class="m-l-0">{{ compType === 'sale' ? 'Sales' : 'Rent' }} Comparables</h1>
 
-      <div v-show="comparables.length > 0 && detailed.length === 0" class="float-right">
-        <a class="button buttonize" @click="addRow()">Add a new comparable</a>
-      </div>
-
       <b-table
           :data="comparables"
           detailed
           :opened-detailed="detailed"
           detail-key="id"
           style="min-height: 20vh;"
+          class="m-t-5"
+          hoverable
+          @details-open="setWip($event)"
       >
-
           <template slot-scope="props">
               <b-table-column :visible="compType === 'rent'" label="Address" class="p-t-1-3" sortable centered>
                   {{ props.row.address }}
@@ -50,7 +48,7 @@
                   {{ props.row.pricePerUnit | money }}
               </b-table-column>
 
-              <b-table-column width="150" centered>
+              <b-table-column width="150" label="Delete" centered>
                   <!-- <i class="material-icons">edit</i> -->
                   <i class="material-icons" @click="deleteComparable({compId: props.row.id, compType: compType})">delete_forever</i>
               </b-table-column>
@@ -59,7 +57,7 @@
           <template slot="detail" slot-scope="props">
             <div id="add-more" class="expanded">
                 <span class="add-more-content text ita bold">Property Information</span>
-                <span class="add-more-content text ita bold right">subTitle</span>
+                <span class="add-more-content text ita bold right">{{ compType === 'rent' ? 'Rent' : 'Financial' }} Information</span>
                 <div class="popup-form">
                     <!-- part 1 of the form -->
                     <form id="form-1">
@@ -83,9 +81,14 @@
                         </div>
                         <label class="m-t-10">
                             <div>Property Picture</div>
-                            <img class="hidden" :id="`preview-${props.row.id}`">
+                            <img
+                              :src="props.row.imageUrl && props.row.imageUrl !== '' ? props.row.imageUrl : ''" 
+                              :class="props.row.imageUrl && props.row.imageUrl !== '' ? 'clickable' : 'hidden'" 
+                              :id="`preview-${props.row.id}`">
                             <input type="file" class="save hidden" @input="loadComparablePic($event, props.row.id)">
-                            <i class="large material-icons clickable" :id="`icon-${props.row.id}`">add_a_photo</i>
+                            <i 
+                              :class="props.row.imageUrl && props.row.imageUrl !== '' ? 'hidden' : 'large material-icons clickable'" 
+                              :id="`icon-${props.row.id}`">add_a_photo</i>
                         </label>
                     </form>
                     <!-- part 2 of the form -->
@@ -163,7 +166,7 @@
                           <input class="narrow" :value="pricePerUnit(props.row)" readonly>
                       </label>
                     </form>
-                    <button class="add" id="add-sales" @click.prevent="add">Save</button>
+                    <button class="add" id="add-sales" @click.prevent="add()">Save</button>
                 </div>
             </div>
           </template>
@@ -178,6 +181,10 @@
             </template>
       </b-table>
       <div class="float-right m-t-2">
+        <div v-show="comparables.length > 0 && detailed.length === 0">
+          <a id="g" class="button buttonize m-r-1" @click="addRow()">Add a new comparable</a>
+        </div>
+
         <button v-show="detailed.length === 0" class="save" type="submit" @click="save">Save & Next</button>
       </div>
     </div>
@@ -200,21 +207,18 @@ export default {
   data () {
     return {
       showButton: true,
-      newComp: {},
-      detailed: []
+      detailed: [],
+      wipComp: {}
     }
   },
   computed: {
     ...mapState({
       savedRentComparables: state => state.valuations.selectedValuation.rentComps,
-      savedSalesComparables: state => state.valuations.selectedValuation.salesComps
+      savedSalesComparables: state => state.valuations.selectedValuation.salesComps,
+      userId: state => state.users.currentId,
     }),
     comparables () {
-      let savedComparables = this.compType === 'rent' ? this.savedRentComparables : this.savedSalesComparables
-      if (this.newComp && this.newComp.id) {
-        return [this.newComp].concat(savedComparables)
-      }
-      return savedComparables
+      return this.compType === 'rent' ? this.savedRentComparables : this.savedSalesComparables
     }
   },
   methods: {
@@ -226,6 +230,8 @@ export default {
     },
     add () {
       this.persist()
+      this.wipComp = Object.assign({}, emptyComparable)
+      this.detailed = []
     },
     toggle () {
       this.showButton = !this.showButton
@@ -248,11 +254,10 @@ export default {
       c.id = id
       c.pricePerUnit = this.pricePerUnit
       c.pricePerSf = this.pricePerSf
-      this.newComp = c
+      this.wipComp = c
       this.$store.dispatch('valuations/addComparable', {comparable: c, compType: this.compType})
     },
     loadNewImage (previewEl, button, imgName, evt) {
-      console.log(previewEl, button, imgName, evt)
       let vm = this
       let file = evt.target.files[0]
       let reader = new FileReader()
@@ -265,24 +270,20 @@ export default {
         button.classList.remove('clickable')
         button.classList.add('hidden')
         upload(fileName, evt.target.result).then(url => {
-          console.log(`done`, url, vm.newComp)
-          vm.newComp.imageUrl = url
+          vm.wipComp.imageUrl = url
         })
       })
       reader.readAsDataURL(file)
-    },
-    loadExistingImage (previewEl, button, url) {
-      previewEl.src = url
-      previewEl.classList.remove('hidden')
-      previewEl.classList.add('clickable')
-      button.classList.remove('clickable')
-      button.classList.add('hidden')
     },
     loadComparablePic (evt, compId) {
       const comparablePreview = document.querySelector(`#preview-${compId}`)
       const comparableIcon = document.querySelector(`#icon-${compId}`)
       let fileName = `${this.userId}/${compId}.png`
       this.loadNewImage(comparablePreview, comparableIcon, fileName, evt)
+    },
+    setWip (row) {
+      this.detailed = [row.id]
+      this.wipComp = this.comparables.filter(c => c.id === row.id)[0]
     }
   }
 }
@@ -297,8 +298,17 @@ export default {
   background-color: var(--button-blue);
 }
 
+#g {
+  background-color: var(--bright-green);
+  /* color: unset; */
+}
+
 .p-t-1-3 {
   padding-top: 1.3em;
+}
+
+.m-r-1 {
+  margin-right: 1em;
 }
 
 .m-l-0 {
@@ -313,6 +323,10 @@ export default {
   margin-top: 1em;
 }
 
+.m-t-5 {
+  margin-top: 5em;
+}
+
 .m-t-10 {
   margin-top: 8em;
 }
@@ -322,6 +336,9 @@ input {
 }
 .down-arrow {
  margin-bottom: 2em;
+ margin-top: 0.5em;
+ height: 2em;
+ background-color: var(--bright-green);
 }
 #form-1 {
   margin-left: 3em;
@@ -355,9 +372,11 @@ input {
   grid-row-end: 5;
 }
 #add-sales {
-  margin-top: 15em;
-  margin-left: 10em;
-  font-weight: bold;
+  margin-left: 35em;
+  font-size: 1.1em;
+  padding-left: 5em;
+  padding-right: 5em;
+  font-weight: 600;
 }
 .expanded {
   min-height: 35em;

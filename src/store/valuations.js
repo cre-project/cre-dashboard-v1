@@ -139,7 +139,7 @@ const actions = {
     console.log('store', comparable, compType)
     if (compType === 'rent') {
       commit('ADD_RENT_COMPARABLE', comparable)
-    } else if (compType === 'sales') {
+    } else if (compType === 'sale') {
       commit('ADD_SALES_COMPARABLE', comparable)
     }
   },

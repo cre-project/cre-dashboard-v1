@@ -2,7 +2,9 @@
   --header-blue: #1F2833;
   --button-blue: #1b6aff;
   --light-brown: #1B6AFF;
-  --light-grey: #f1f1f1; 
+  --light-grey: #f1f1f1;
+  --light-green: #d0ecb4; 
+  --bright-green: rgb(76, 175, 80);
 }
 
 /* Reset */
@@ -262,7 +264,7 @@ td button {
 }
 
 .total {
-    background-color: #d0ecb4    
+    background-color: var(--light-green);    
 }
 
 .sub-section {
@@ -537,7 +539,7 @@ img {
 }
 
 #header-button:hover{
-    background-color: rgb(76, 175, 80); /* Green */
+    background-color: var(--bright-green); /* Green */
     color: white;
 }
 

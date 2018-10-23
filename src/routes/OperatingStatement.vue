@@ -183,8 +183,6 @@ export default {
       return this.potentialGrossIncome - this.totalExpensesPotential
     },
     currentCapRate () {
-      console.log(this.currentNetOperatingIncome)
-      console.log(this.selectedValuation.price)
       return (Number(this.currentNetOperatingIncome) / (Number(this.selectedValuation.price) || 1)).toFixed(2)
     },
     potentialCapRate () {
