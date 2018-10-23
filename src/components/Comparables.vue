@@ -82,12 +82,12 @@
                         <label class="m-t-10">
                             <div>Property Picture</div>
                             <img
-                              :src="props.row.imageUrl && props.row.imageUrl !== '' ? props.row.imageUrl : ''" 
-                              :class="props.row.imageUrl && props.row.imageUrl !== '' ? 'clickable' : 'hidden'" 
+                              :src="props.row.imageUrl && props.row.imageUrl !== '' ? props.row.imageUrl : ''"
+                              :class="props.row.imageUrl && props.row.imageUrl !== '' ? 'clickable' : 'hidden'"
                               :id="`preview-${props.row.id}`">
                             <input type="file" class="save hidden" @input="loadComparablePic($event, props.row.id)">
-                            <i 
-                              :class="props.row.imageUrl && props.row.imageUrl !== '' ? 'hidden' : 'large material-icons clickable'" 
+                            <i
+                              :class="props.row.imageUrl && props.row.imageUrl !== '' ? 'hidden' : 'large material-icons clickable'"
                               :id="`icon-${props.row.id}`">add_a_photo</i>
                         </label>
                     </form>
@@ -215,7 +215,7 @@ export default {
     ...mapState({
       savedRentComparables: state => state.valuations.selectedValuation.rentComps,
       savedSalesComparables: state => state.valuations.selectedValuation.salesComps,
-      userId: state => state.users.currentId,
+      userId: state => state.users.currentId
     }),
     comparables () {
       return this.compType === 'rent' ? this.savedRentComparables : this.savedSalesComparables
