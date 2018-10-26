@@ -1,5 +1,6 @@
 <template>
   <tr class="editable">
+      <td/>
       <td>
           <select class="buttonize down-arrow" v-model="unit.type">
               <option disabled value="">Please select one</option>
@@ -20,9 +21,8 @@
               <option>3</option>
           </select>
       </td>
-      <td><vue-numeric input class="inline-edit" separator="," v-model="unit.squareFeet" value=""></vue-numeric></td>
-      <td>$ <vue-numeric input class="inline-edit" separator="," v-model="unit.currentRent" value=""></vue-numeric></td>
-      <td>$ <vue-numeric input class="inline-edit" separator="," v-model="unit.potentialRent" value=""></vue-numeric></td>
+      <td>$ <vue-numeric input class="inline-edit" separator="," v-model="unit.currentRent"></vue-numeric></td>
+      <td>$ <vue-numeric input class="inline-edit" separator="," v-model="unit.potentialRent"></vue-numeric></td>
   </tr>
 </template>
 <script>

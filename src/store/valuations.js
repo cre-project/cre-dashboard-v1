@@ -56,6 +56,9 @@ const mutations = {
   SET_PRICE (state, price) {
     state.selectedValuation.price = price
   },
+  SET_TOTAL_SQFT (state, totalSqFt) {
+    Vue.set(state.selectedValuation, 'totalSqFt', totalSqFt)
+  },
   ADD_RENT_COMPARABLE (state, comparable) {
     state.selectedValuation.rentComps.push(comparable)
   },
@@ -151,11 +154,13 @@ const actions = {
     }
   },
   deleteComparable ({ commit }, {compId, compType}) {
-    console.log('deleting comparable:', compId)
     commit('DELETE_COMPARABLE', {compId, compType})
   },
   addUnits ({ commit }, units) {
     commit('SET_UNITS', units)
+  },
+  addTotalSqFt ({ commit }, totalSqFt) {
+    commit('SET_TOTAL_SQFT', totalSqFt)
   },
   toggleEditing ({ commit }) {
     commit('TOGGLE_EDITING')
