@@ -2,10 +2,10 @@
   <div>
     <user-nav/>
     <div class="cre-content">
-      <h1 class="title">User Settings</h1>
-      <div class="columns">
+      <h1 class="subtitle is-size-4 has-text-weight-semibold">User Settings</h1>
+      <div class="columns block">
         <div class="column m-t-1">
-          <label class="half-size">
+          <label class="half-sze">
             <div class="half-size">First Name</div>
             <input class="half-size" v-model="user.firstName">
           </label>

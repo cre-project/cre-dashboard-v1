@@ -3,7 +3,7 @@
   <div>
     <navigation-header selected="rent-comparables"></navigation-header>
     <div class="cre-content">
-      <h1 class="m-l-0">{{ compType === 'sale' ? 'Sales' : 'Rent' }} Comparables</h1>
+      <h1 class="subtitle is-size-4 has-text-weight-semibold m-l-0">{{ compType === 'sale' ? 'Sales' : 'Rent' }} Comparables</h1>
 
       <b-table
           :data="comparables"

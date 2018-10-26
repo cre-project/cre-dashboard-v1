@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar sub-header" role="navigation">
+  <nav id="bottom" class="navbar cre-nav sub-header" role="navigation">
     <ul class="navbar-menu" style="margin-left: 25em;">
       <li class="navbar-item is-hoverable">
         <router-link to="/user-settings">ACCOUNT SETTINGS</router-link>
@@ -19,3 +19,9 @@ export default {
 
 }
 </script>
+
+<style scoped>
+#bottom {
+  background-color: var(--medium-grey);
+}
+</style>

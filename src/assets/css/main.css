@@ -3,6 +3,7 @@
   --button-blue: #1b6aff;
   --light-brown: #1B6AFF;
   --light-grey: #f1f1f1;
+  --medium-grey: #C5C6C7;
   --light-green: #d0ecb4; 
   --bright-green: rgb(76, 175, 80);
 }
@@ -72,7 +73,7 @@ body {
 }
 
 /* Header and sub-header */
-.navbar {
+.cre-nav {
     width: 100%;
     height: 4em;
     background-color: var(--header-blue);
@@ -80,11 +81,6 @@ body {
 
 #selected {
     background-color: var(--button-blue);
-}
-
-.sub-header {
-    background-color: #C5C6C7;
-    /* box-shadow: 2px 5px 3px rgba(98, 99, 100, 0.3); */
 }
 
 #menu {
@@ -123,16 +119,6 @@ body {
     grid-template-rows: 8em auto 1em 1fr 1fr;
   }
 
-.two-columns {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr 9fr;
-    grid-template-areas:
-        "top    right"
-        "left   right";
-    background-color: white;
-}
-
 .two-rows {
     display: grid;
     grid-template-columns: 1.5fr 7fr 2fr;
@@ -145,12 +131,6 @@ iframe {
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-}
-
-aside {
-    grid-area: right;
-    margin-top: 7em;
-    margin-right: 1em;
 }
 
 aside table {
@@ -173,31 +153,7 @@ aside td {
     grid-area: top;
     height: 3em;
     line-height: 3em;
-    margin-left: 7em;
-}
-
-h1 {
-    width: 50%;
-    margin: auto;
     margin-left: 2em;
-    font-size: 1.5em;
-    font-weight: bold;
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
-}
-
-h2 {
-    width: 50%;
-    margin: auto;
-    margin-left: 40em;
-    font-size: 1.5em;
-    font-weight: bold;
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
 }
 
 /* Tables */
@@ -273,10 +229,10 @@ td button {
 }
 
 #os {
-    margin: auto auto auto 10em;
-    grid-area: left;
+    margin: auto;
     font-size: 0.9em;
     text-align: left;
+    background-color: white
 }
 
 #pi {
@@ -417,9 +373,15 @@ label:hover input {
 
 .side-form {
     margin-top: 1em;
-    margin-left: 2em;
+    padding:1.5em;
     line-height: 3em;
     font-size:1.5em;
+}
+
+.block {
+  margin-top: 3em;
+  margin-left: 5em;
+  width: 90%
 }
 
 #os-right {
@@ -489,7 +451,7 @@ img {
 }
 
 .save:hover{
-    background-color: rgb(76, 175, 80); /* Green */
+    background-color: var(--bright-green);
     color: white;
 }
 
@@ -517,7 +479,7 @@ img {
 }
 
 #operating-statement {
-    margin-left: 29em;
+    margin-left: 25em;
     margin-top: 2em;
     width: 15em;
     font-weight: 500;
@@ -584,6 +546,7 @@ img {
     vertical-align: middle;
     font-size: 1.5em;
     font-weight: bold;
+    background-color: var(--medium-grey);
     color: #5D5D5D;
 }
 
@@ -723,9 +686,6 @@ margin-right: 2em;
 }
 .clickable {
 cursor: pointer;
-}
-.columns {
-margin: 2em 5em;
 }
 .m-t-2 {
 margin-top: 2em;

@@ -2,8 +2,8 @@
     <div>
         <navigation-header selected="unit-mix"></navigation-header>
         <div class="cre-content">
-            <h1 class="auto-margin">Unit Mix</h1>
-            <table style="margin-left:5em;margin-top:1em;width:90%;margin-bottom:2em;">
+            <h1 class="subtitle is-size-4 has-text-weight-semibold auto-margin">Unit Mix</h1>
+            <table style="margin-left:5em;margin-top:5em;width:90%;margin-bottom:2em;">
                 <thead>
                     <tr>
                         <th>Bedrooms</th>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav id="top" class="navbar cre-nav" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <router-link class="navbar-item" to="/valuations">
         <i class="material-icons">home</i>
@@ -41,13 +41,19 @@ export default {
 }
 </script>
 <style scoped>
-    #logout {
-        padding: 0.25em 0.5em;
-        margin-top: 17px;
-        margin-right: 2em;
-    }
-    .material-icons {
-      font-size: 2.7rem;
-      color:#F2F2F2;
-    }
+#logout {
+    padding: 0.25em 0.5em;
+    margin-top: 17px;
+    margin-right: 2em;
+}
+
+.material-icons {
+  font-size: 2.7rem;
+  color:#F2F2F2;
+}
+
+#top {
+  background-color: var(--header-blue);
+}
+
 </style>

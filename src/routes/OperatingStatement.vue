@@ -1,8 +1,10 @@
 <template>
     <div>
-        <navigation-header selected="operating-statement"></navigation-header>
-        <div class="two-columns">
-            <h1 id="tc-header">Operating Statement</h1>
+      <navigation-header selected="operating-statement"></navigation-header>
+      <div class="cre-content">
+        <div class="columns">
+          <div class="column is-two-thirds">
+            <h1 class="subtitle is-size-4 has-text-weight-semibold " id="tc-header">Operating Statement</h1>
             <main>
                 <table id="os">
                     <thead>
@@ -114,8 +116,10 @@
                 </table>
                 <button class="save" id="operating-statement" type="submit" @click="save">Save & Next</button>
             </main>
-            <side-form :stats="stats"></side-form>
+          </div>
+          <side-form class="column" :stats="stats"></side-form>
         </div>
+      </div>
     </div>
 </template>
 <script>
@@ -258,8 +262,9 @@ export default {
   }
 }
 </script>
-<style>
-h1, main {
-  padding: 2em;
+
+<style scoped>
+.columns {
+  margin: auto;
 }
 </style>

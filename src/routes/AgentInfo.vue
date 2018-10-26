@@ -2,8 +2,8 @@
   <div>
     <user-nav/>
     <div class="cre-content">
-      <h1 class="title">Agent Information</h1>
-        <div class="columns">
+      <h1 class="subtitle is-size-4 has-text-weight-semibold">Agent Information</h1>
+        <div class="columns block">
           <div class="column m-t-2">
             <label>
               <div>License Number</div>

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <nav class="navbar sub-header" style="height: unset;" role="navigation">
+      <nav id="bottom" class="navbar cre-nav sub-header" style="height: unset;" role="navigation">
         <div id="index" class="navbar-brand">All Valuations</div>
         <div class="navbar-end">
           <router-link
@@ -60,3 +60,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#bottom {
+  background-color: var(--medium-grey);
+}
+</style>
