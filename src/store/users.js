@@ -9,7 +9,9 @@ const emptyUser = {
   phoneNumber: '',
   companyName: '',
   websiteUrl: '',
-  title: ''
+  title: '',
+  description: '',
+  closings: []
 }
 const state = {
   currentUser: emptyUser,

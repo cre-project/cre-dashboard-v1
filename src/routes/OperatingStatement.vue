@@ -12,12 +12,14 @@
                             <th class="sub-section l-align bolder" colspan="2">Income</th>
                             <th class="sub-section">Current</th>
                             <th class="sub-section">Pro Forma</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tr class="is-grey">
                         <td class="l-align bold" colspan="2">GROSS POTENTIAL RENT</td>
                         <td><span id="gpr-current">{{ grossRentCurrent | money }}</span></td>
                         <td><span id="gpr-future">{{ grossRentPotential | money }}</span></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Less: Vacancy/Deduction</td>
@@ -28,62 +30,72 @@
                         </td>
                         <td>- <span id="vacancy-current">{{  (currentVacancy || 0) | money }}</span></td>
                         <td>- <span id="vacancy-future">{{  (potentialVacancy || 0) | money }}</span></td>
+                        <td></td>
                     </tr>
                     <tr class="is-grey">
                         <td class="l-align bold" colspan="2">EFFECTIVE RENTAL INCOME</td>
                         <td>{{ currentEffectiveRent | money }}</td>
                         <td>{{ potentiaEffectiveRent | money }}</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td colspan="2">Total Other Income</td>
+                        <td colspan="2"><input class="input is-small" value="Total Other Income"/></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.otherIncome"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.otherIncome"></vue-numeric></td>
+                        <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
                     <tr class="is-grey">
                         <td class="l-align bold" colspan="2">EFFECTIVE GROSS INCOME</td>
                         <td>{{ effectiveGrossIncome | money }}</td>
                         <td>{{ potentialGrossIncome | money }}</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="sub-section l-align bolder" span="4">Expenses</td>
+                        <td class="sub-section l-align bolder" colspan="5">Expenses</td>
                     </tr>
                     <tr>
-                        <td class="l-align">Real Estate Taxes</td>
-                        <td class="setting">
-                            <vue-numeric input class="inline-edit" v-bind:precision="4" v-model.number="selectedValuation.taxes"></vue-numeric>%
+                        <td class="l-align"><input class="input is-small" value="Real Estate Taxes"/></td>
+                        <td >
+                            <vue-numeric input class="input is-small" :precision="4" currency="%" currency-symbol-position="suffix" v-model.number="selectedValuation.taxes"></vue-numeric>
                         </td>
                         <!-- ONLY ONE TAX VALUE - NO DISTINCTION BETWEEN CURRENT AND POTENTIAL -->
                         <td id="taxes-current">{{ taxes | money  }}</td>
                         <td id="taxes-future">{{ taxes | money }}</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="l-align" colspan="2">Insurance</td>
+                        <td class="l-align" colspan="2"><input class="input is-small" value="Insurance"/></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.insurance"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.insurance"></vue-numeric></td>
+                        <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
                     <tr>
-                        <td class="l-align" colspan="2">Utilities - Electric</td>
+                        <td class="l-align" colspan="2"><input class="input is-small" value="Utilities - Electric"/></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.electric"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.electric"></vue-numeric></td>
+                        <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
                     <tr>
-                        <td class="l-align" colspan="2">Utilities - Water & Sewer</td>
+                        <td class="l-align" colspan="2"><input class="input is-small" value="Utilities - Water & Sewer"/></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.water"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.water"></vue-numeric></td>
+                        <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
                     <tr>
-                        <td class="l-align" colspan="2">Garbage</td>
+                        <td class="l-align" colspan="2"><input class="input is-small" value="Garbage"/></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.garbage"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.garbage"></vue-numeric></td>
+                        <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
                     <tr>
-                        <td class="l-align" colspan="2">Repairs & Maintenance</td>
+                        <td class="l-align" colspan="2"><input class="input is-small" value="Repairs & Maintenance"/></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.maintenance"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.maintenance"></vue-numeric></td>
+                        <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
                     <tr>
                         <!-- PERCENTAGE OF EFFECTIVE GROSS INCOME -->
-                        <td class="l-align">Management Fee</td>
+                        <td class="l-align"><input class="input is-small" value="Management Fee"/></td>
                         <td class="setting">
                             <button class="percent" @click="decrease('mgmtFee')">-</button>
                             <span id="mgmtFee">  {{ selectedValuation.mgmtFee || 0 }}% </span>
@@ -91,27 +103,37 @@
                         </td>
                         <td id="mgmt-fee-current">{{ currentMgmtFee | money }}</td>
                         <td id="mgmt-fee-future">{{ potentialMgmtFee | money }}</td>
+                        <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
                     <tr>
-                        <td class="l-align" colspan="2">Landscaping</td>
+                        <td class="l-align" colspan="2"><input class="input is-small" value="Landscaping"/></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.landscaping"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.landscaping"></vue-numeric></td>
+                        <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
                     <tr>
-                        <td class="l-align" colspan="2">Other Expenses</td>
+                        <td class="l-align" colspan="2"><input class="input is-small" value="Other Expenses"/></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.other"></vue-numeric></td>
                         <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.other"></vue-numeric></td>
+                        <td><i class="icon is-small material-icons">delete_forever</i></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"/>
+                        <td>Add Expense Item</td>
+                        <td><i class="material-icons icon is-small">add_circle</i></td>
                     </tr>
                     <tr class="is-grey">
                         <td class="l-align bold" colspan="2">TOTAL EXPENSES</td>
                         <td>{{ totalExpensesCurrent | money }}</td>
                         <td>{{ totalExpensesPotential | money }}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <!-- effective gross income minus total expenses -->
                         <td class="l-align bold" colspan="2">Net Operating Income</td>
                         <td class="bold">{{ currentNetOperatingIncome | money }}</td>
                         <td class="bold">{{ potentialNetOperatingIncome | money }}</td>
+                        <td></td>
                     </tr>
                 </table>
                 <button class="save" id="operating-statement" type="submit" @click="save">Save & Next</button>
@@ -131,7 +153,9 @@ export default {
   data () {
     return {
       current: {},
-      potential: {}
+      potential: {},
+      expenses: [],
+      incomes: []
     }
   },
   computed: {

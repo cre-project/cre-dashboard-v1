@@ -1,6 +1,5 @@
 <template>
   <tr class="editable">
-      <td/>
       <td>
           <select class="buttonize down-arrow" v-model="unit.type">
               <option disabled value="">Please select one</option>

@@ -14,10 +14,6 @@
             <input class="half-size" v-model="user.lastName">
           </label>
           <label>
-            <div>Position/ Title</div>
-            <input v-model="user.title">
-          </label>
-          <label>
             <div>Email</div>
             <input v-model="user.email">
           </label>

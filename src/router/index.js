@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store/index'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import VueNumeric from 'vue-numeric'
-import * as VueGoogleMaps from 'vue2-google-maps'
-// import store from ''
-import store from '@/store/index'
-// import * as actions from 'vuex/actions'
+
 import Login from '@/routes/Login'
 import SignUp from '@/routes/SignUp'
 import Preview from '@/routes/Preview'
@@ -18,6 +16,7 @@ import SalesComparables from '@/routes/SalesComparables'
 import OperatingStatement from '@/routes/OperatingStatement'
 import UserSettings from '@/routes/UserSettings'
 import AgentInfo from '@/routes/AgentInfo'
+import CompanySettings from '@/routes/CompanySettings'
 
 // Sub-components
 import MainHeader from '@/components/MainHeader'
@@ -26,12 +25,6 @@ import NavigationHeader from '@/components/NavigationHeader'
 Vue.component('main-header', MainHeader)
 Vue.component('navigation-header', NavigationHeader)
 
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: 'AIzaSyAV978wJfYOfnbwRESDjQEhlp8sZOqdSe0',
-    libraries: 'places' // necessary for places input
-  }
-})
 Vue.use(Router)
 Vue.use(VueNumeric)
 
@@ -47,6 +40,7 @@ export const routes = [
   { path: '/rent-comparables', name: 'RENT COMPARABLES', component: RentComparables, meta: { requiresAuth: true, isNav: true } },
   { path: '/preview', name: 'PREVIEW', component: Preview, meta: { requiresAuth: true, isNav: true } },
   { path: '/user-settings', name: 'User Settings', component: UserSettings, meta: { requiresAuth: true } },
+  { path: '/company-settings', name: 'Company Settings', component: CompanySettings, meta: { requiresAuth: true } },
   { path: '/agent-info', name: 'Agent Information', component: AgentInfo, meta: { requiresAuth: true } }
 ]
 

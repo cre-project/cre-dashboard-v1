@@ -3,15 +3,15 @@
         <navigation-header selected="unit-mix"></navigation-header>
         <div class="cre-content">
             <h1 class="subtitle is-size-4 has-text-weight-semibold auto-margin">Unit Mix</h1>
-            <div class="float-right" style="width:90%;">
+            <div class="float-right" style="margin-right: 2em; margin-bottom: 0;">
               <b-field class="half-size" label="Total SqFt">
                   <b-input v-model.number="totalSqFt"></b-input>
               </b-field>
             </div>
-            <table style="margin-left:5em;margin-top:5em;width:90%;margin-bottom:2em;">
+            <table style="margin-left:5em;margin-top:2em;width:90%;margin-bottom:2em;">
                 <thead>
-                    <tr>
-                      <th/>
+                    <tr class="centered">
+                      <!-- <th/> -->
                       <th>Bedrooms</th>
                       <th>Bathrooms</th>
                       <th>Current Rent/Mo.</th>
@@ -20,9 +20,8 @@
                 </thead>
                 <tbody>
                     <unit v-for="unit in units" :key="unit.id" :unit="unit"></unit>
-                    <tr class="is-grey">
-                        <td class="half-size">Total</td>
-                        <td>{{ numUnits }} units</td>
+                    <tr class="centered is-grey">
+                        <td >Total: {{ numUnits }} units</td>
                         <td> {{ totalSqFt }} SF</td>
                         <td>{{ totalRentCurrent | money }}</td>
                         <td>{{ totalRentPotential | money }}</td>

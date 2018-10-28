@@ -1,6 +1,6 @@
 <template>
-    <div id="cre-content" class="signup">
-        <img id="logo" src="~@/assets/logo.png" alt="Your logo here" width="200" />
+    <div id="signup-wrapper">
+        <img src="~@/assets/logo.png" alt="Your logo here" width="200" />
         <form>
             <label>
                 <div>Email</div>
@@ -12,7 +12,7 @@
             </label>
             <button @click="signUp">Sign Up</button>
         </form>
-        <div id="bottom">Already a user? <router-link to="/login">Log in</router-link></div>
+        <div class="m-t-3">Already a user? <router-link to="/login">Log in</router-link></div>
     </div>
 </template>
 <script>
@@ -35,11 +35,12 @@ export default {
 }
 </script>
 <style scoped>
-#bottom {
-    width: 50%;
+#signup-wrapper {
+    width: 45%;
+    background-color: white;
+    padding: 5em 10em;
+    width: 45%;
     margin: auto;
-}
-input[type='checkbox'] {
-    width: auto;
+    margin-top: 5em;
 }
 </style>

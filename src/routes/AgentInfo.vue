@@ -2,33 +2,28 @@
   <div>
     <user-nav/>
     <div class="cre-content">
-      <h1 class="subtitle is-size-4 has-text-weight-semibold">Agent Information</h1>
-        <div class="columns block">
-          <div class="column m-t-2">
-            <label>
-              <div>License Number</div>
-              <input v-model="user.licenseNumber">
-            </label>
+      <h1 class="subtitle is-size-4 has-text-weight-semibold">Agent Bio</h1>
+      <div style="margin: 5em;">
+        <label>
+          <h2 class="has-text-weight-semibold">Position/ Title</h2>
+          <input v-model="user.title">
+        </label>
 
-            <label>
-              <div>Company Name</div>
-              <input v-model="user.companyName">
-            </label>
-            <label>
-              <div>Website URL</div>
-              <input v-model="user.website">
-            </label>
-          </div>
-          <div class="column m-l-2 m-t-1">
-            <label style="height: 12em;">
-              <div class="m-b-1">Company Logo</div>
-              <img class="hidden" id="logo-preview" title="click to change picture">
-              <input type="file" class="save hidden" @input="loadLogo">
-              <i class="large material-icons clickable" id="logo-icon">add_a_photo</i>
-            </label>
-            <button class="save" style="width: 35%; margin-top: 3em; margin-left: 18em;" type="submit" @click="save">Save</button>
-          </div>
-        </div>
+        <label>
+          <h2 class="has-text-weight-semibold">License Number</h2>
+          <input v-model="user.licenseNumber">
+        </label>
+
+        <label>
+          <h2 class="has-text-weight-semibold">Description</h2>
+          <b-input class="m-t-2" type="textarea" v-model="user.description"/>
+        </label>
+        
+        <label>
+          <h2 class="m-t-3 has-text-weight-semibold">List of Recent Closings</h2>
+        </label>
+        <comparables compType="sale" :comparables="closings"/>
+      </div>
     </div>
   </div>
 </template>
@@ -37,9 +32,11 @@ import { mapActions, mapState } from 'vuex'
 import router from '../router/index'
 import { upload, getUrl } from '../store/tools/images'
 import UserNav from '@/components/UserNav'
+import Comparables from '@/components/Comparables'
 
 export default {
   components: {
+    Comparables,
     UserNav
   },
   data () {
@@ -49,6 +46,9 @@ export default {
   },
   methods: {
     ...mapActions('users', ['set']),
+    ...mapState({
+      closings: state => state.users.closings
+    }),
     save () {
       this.set(this.user)
       router.push('./valuations')

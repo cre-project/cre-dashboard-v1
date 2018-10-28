@@ -8,7 +8,7 @@
         <router-link to="/agent-info">AGENT INFORMATION</router-link>
       </li>
       <li class="navbar-item m-l-2">
-        <router-link disabled style="color:grey; cursor:default;" to="/user-settings">COMPANY SETTINGS</router-link>
+        <router-link to="/company-settings">COMPANY SETTINGS</router-link>
       </li>
     </ul>
   </nav>

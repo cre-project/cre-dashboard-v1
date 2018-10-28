@@ -188,7 +188,7 @@ th, td {
   /* min-width: 15em; */
   padding: 1em;
   text-align: center;
-  vertical-align: middle;
+  vertical-align: middle !important;
 }
 
 td button {
@@ -737,4 +737,9 @@ nav ul li a {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 3em;
+}
+
+.centered {
+    vertical-align: middle;
+    text-align: center;
 }
