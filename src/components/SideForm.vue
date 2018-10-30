@@ -20,8 +20,8 @@
       </thead>
       <tr>
         <td>CAP Rate</td>
-        <td>{{ stats.currentCapRate }}</td>
-        <td>{{ stats.potentialCapRate }}</td>
+        <td>{{ stats.currentCapRate }}%</td>
+        <td>{{ stats.potentialCapRate }}%</td>
       </tr>
       <tr>
         <td>GRM</td>

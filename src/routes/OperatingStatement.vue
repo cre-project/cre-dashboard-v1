@@ -211,10 +211,10 @@ export default {
       return this.potentialGrossIncome - this.totalExpensesPotential
     },
     currentCapRate () {
-      return (Number(this.currentNetOperatingIncome) / (Number(this.selectedValuation.price) || 1)).toFixed(2)
+      return ((Number(this.currentNetOperatingIncome) / (Number(this.selectedValuation.price) || 1)) * 100).toFixed(2)
     },
     potentialCapRate () {
-      return (Number(this.potentialNetOperatingIncome) / (Number(this.selectedValuation.price) || 1)).toFixed(2)
+      return ((Number(this.potentialNetOperatingIncome) / (Number(this.selectedValuation.price) || 1)) * 100).toFixed(2)
     },
     currentGrm () {
       return (Number(this.selectedValuation.price) / (this.grossRentCurrent || 1)).toFixed(2)

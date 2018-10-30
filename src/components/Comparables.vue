@@ -16,12 +16,12 @@
           @details-open="setWip($event)"
       >
           <template slot-scope="props">
-              <b-table-column :visible="compType === 'rent'" label="Address" class="p-t-1-3" sortable centered>
+              <b-table-column label="Address" class="p-t-1-3" sortable centered>
                   {{ props.row.address }}
               </b-table-column>
 
               <b-table-column :visible="compType === 'rent'"  label="Year Built" class="p-t-1-3" width="150" sortable centered numeric>
-                  {{ props.row.year_built }}
+                  {{ props.row.yearBuilt }}
               </b-table-column>
 
               <b-table-column :visible="compType === 'rent'"   label="Bedrooms" class="p-t-1-3" width="150" sortable centered numeric>
@@ -45,7 +45,7 @@
               </b-table-column>
 
               <b-table-column :visible="compType === 'sale'" label="Price / Unit" class="p-t-1-3" sortable centered numeric>
-                  {{ props.row.pricePerUnit | money }}
+                  {{ pricePerUnit(props.row) | money }}
               </b-table-column>
 
               <b-table-column width="150" label="Delete" centered>
@@ -225,7 +225,7 @@ export default {
     ...mapActions('valuations', ['persist', 'deleteComparable']),
     save () {
       this.persist()
-      let next = this.compType === 'rent' ? './sales-comps' : './preview'
+      let next = this.compType === 'sale' ? './rent-comparables' : './preview'
       router.push(next)
     },
     add () {

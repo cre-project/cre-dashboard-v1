@@ -29,7 +29,7 @@
                 </tbody>
             </table>
             <div class="spaced">
-              <button class="save is-outlined transparent" @click.prevent="addUnit">Add Another Unit</button>
+              <button class="save green" @click.prevent="addUnit">Add Another Unit</button>
               <button class="save" type="submit" @click="save">Save & Next</button>
             </div>
         </div>
@@ -92,12 +92,7 @@ export default {
   justify-content: space-between;
 }
 
-.transparent {
-  background-color: white;
-  color: #5D5D5D;
-}
-
-.transparent:hover{
+.green{
     background-color: rgb(76, 175, 80); /* Green */
     color: white;
 }
