@@ -20,7 +20,7 @@ export const emptyFinancials = {
     landscaping: 0,
     other: 0
   },
-  otherIncome: 0
+  otherIncome: {label: 'Total Other Income', value: 0}
 }
 export const emptyComparable = {
   name: '',
@@ -49,9 +49,18 @@ export const emptyValuation = {
   salesComps: [],
   rentComps: [],
   price: 0,
-  taxes: 1.1212,
+  taxes: {label: 'Real Estate Taxes', value: 1.1212},
   vacancy: 5,
-  mgmtFee: 5,
+  mgmtFee: {label: 'Management Fee', value: 5},
   statementCurrent: Object.assign({}, emptyFinancials),
-  statementPotential: Object.assign({}, emptyFinancials)
+  statementPotential: Object.assign({}, emptyFinancials),
+  expenses: [
+    {label: 'Insurance', current: 0, potential: 0},
+    {label: 'Utilities - Electric', current: 0, potential: 0},
+    {label: 'Utilities - Water & Sewer', current: 0, potential: 0},
+    {label: 'Garbage', current: 0, potential: 0},
+    {label: 'Repairs & Maintenance', current: 0, potential: 0},
+    {label: 'Landscaping', current: 0, potential: 0},
+    {label: 'Other Expenses', current: 0, potential: 0}
+  ]
 }

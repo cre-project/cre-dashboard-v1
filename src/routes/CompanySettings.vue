@@ -2,40 +2,38 @@
   <div>
     <user-nav/>
     <div class="cre-content">
-      <h1 class="subtitle is-size-4 has-text-weight-semibold">Agent Bio</h1>
-      <div style="margin: 5em;">
-        <label>
-          <h2 class="has-text-weight-semibold">Position/ Title</h2>
-          <input v-model="user.title">
-        </label>
-
-        <label>
-          <h2 class="has-text-weight-semibold">License Number</h2>
-          <input v-model="user.licenseNumber">
-        </label>
-
-        <label>
-          <h2 class="has-text-weight-semibold">Description</h2>
-          <b-input class="m-t-2" type="textarea" v-model="user.description"/>
-        </label>
-        <label>
-          <h2 class="m-t-3 has-text-weight-semibold">List of Recent Closings</h2>
-        </label>
-        <comparables compType="sale" :comparables="closings"/>
+      <h1 class="subtitle is-size-4 has-text-weight-semibold">Company Settings</h1>
+      <div class="columns block">
+        <div class="column m-t-1">
+          <label class="half-sze">
+          <h2 class="has-text-weight-semibold">Company Name</h2>
+          <input v-model="user.companyName">
+          </label>
+          <label class="half-size">
+          <h2 class="has-text-weight-semibold">Website URL</h2>
+          <input v-model="user.websiteURL">
+          </label>
+        </div>
+        <div class="column m-t-2 m-l-2">
+          <label style="height: 12em;">
+          <h2 class="has-text-weight-semibold m-b-1">Company Logo</h2>
+            <img class="hidden" id="logo-preview">
+            <input type="file" class="save hidden" @input="loadLogo">
+            <i class="large material-icons clickable" id="logo-icon">add_a_photo</i>
+          </label>
+          <button class="save" style="width: 35%; margin-top: 4em; margin-left: 18em;" type="submit" @click="save">Save</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 import { mapActions, mapState } from 'vuex'
-import router from '../router/index'
 import { upload, getUrl } from '../store/tools/images'
 import UserNav from '@/components/UserNav'
-import Comparables from '@/components/Comparables'
 
 export default {
   components: {
-    Comparables,
     UserNav
   },
   data () {
@@ -45,12 +43,13 @@ export default {
   },
   methods: {
     ...mapActions('users', ['set']),
-    ...mapState({
-      closings: state => state.users.closings
-    }),
     save () {
       this.set(this.user)
-      router.push('./valuations')
+      this.$toast.open({
+        message: 'Your changes were saved.',
+        type: 'is-success',
+        position: 'is-bottom'
+      })
     },
     loadNewImage (previewEl, button, imgName, evt) {
       let file = evt.target.files[0]
@@ -90,12 +89,7 @@ export default {
     // fill up the local user object
     this.user = this.$store.state.users.currentUser
     let vm = this
-    // load logo and preview if they exist
-    getUrl(`images/${this.$store.state.users.currentId}/profile.png`).then(downloadUrl => {
-      if (downloadUrl) {
-        vm.loadExistingImage(document.querySelector('#profile-preview'), document.querySelector('#profile-icon'), downloadUrl)
-      }
-    })
+    // load and preview if it exists
     getUrl(`images/${this.$store.state.users.currentId}/logo.png`).then(downloadUrl => {
       if (downloadUrl) {
         vm.loadExistingImage(document.querySelector('#logo-preview'), document.querySelector('#logo-icon'), downloadUrl)

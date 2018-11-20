@@ -89,6 +89,13 @@ const mutations = {
   },
   TOGGLE_EDITING (state) {
     state.isEditing = !state.isEditing
+  },
+  ADD_EXPENSE (state, {name, current, potential}) {
+    let expense = {label: name, current: current || 0, potential: potential || 0}
+    state.selectedValuation.expenses.push(expense)
+  },
+  REMOVE_EXPENSE (state, index) {
+    state.selectedValuation.expenses.splice(index, 1)
   }
 }
 const actions = {
@@ -118,6 +125,7 @@ const actions = {
       }
     }).catch(e => console.log(e))
   },
+
   // LOCAL STORE ACTIONS
   setWip ({ commit }, {valuation, id}) {
     let val = valuation || JSON.parse(JSON.stringify(emptyValuation))
@@ -164,6 +172,12 @@ const actions = {
   },
   toggleEditing ({ commit }) {
     commit('TOGGLE_EDITING')
+  },
+  addExpense ({ commit }, {name, current, potential}) {
+    commit('ADD_EXPENSE', {name, current, potential})
+  },
+  removeExpense ({ commit }, index) {
+    commit('REMOVE_EXPENSE', index)
   }
 }
 

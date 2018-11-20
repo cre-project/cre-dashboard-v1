@@ -39,9 +39,9 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input class="input is-small" value="Total Other Income"/></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.otherIncome"></vue-numeric></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.otherIncome"></vue-numeric></td>
+                        <td colspan="2"><input class="input is-small" :value="current.otherIncome.label"/></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.otherIncome.value"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.otherIncome.value"></vue-numeric></td>
                         <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
                     <tr class="is-grey">
@@ -54,9 +54,9 @@
                         <td class="sub-section l-align bolder" colspan="5">Expenses</td>
                     </tr>
                     <tr>
-                        <td class="l-align"><input class="input is-small" value="Real Estate Taxes"/></td>
+                        <td class="l-align"><input class="input is-small" :value="selectedValuation.taxes.label"/></td>
                         <td >
-                            <vue-numeric input class="input is-small" :precision="4" currency="%" currency-symbol-position="suffix" v-model.number="selectedValuation.taxes"></vue-numeric>
+                            <vue-numeric input class="input is-small" :precision="4" currency="%" currency-symbol-position="suffix" v-model.number="selectedValuation.taxes.value"></vue-numeric>
                         </td>
                         <!-- ONLY ONE TAX VALUE - NO DISTINCTION BETWEEN CURRENT AND POTENTIAL -->
                         <td id="taxes-current">{{ taxes | money  }}</td>
@@ -64,63 +64,27 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td class="l-align" colspan="2"><input class="input is-small" value="Insurance"/></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.insurance"></vue-numeric></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.insurance"></vue-numeric></td>
-                        <td><i class="icon is-small material-icons">delete_forever</i></td>
-                    </tr>
-                    <tr>
-                        <td class="l-align" colspan="2"><input class="input is-small" value="Utilities - Electric"/></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.electric"></vue-numeric></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.electric"></vue-numeric></td>
-                        <td><i class="icon is-small material-icons">delete_forever</i></td>
-                    </tr>
-                    <tr>
-                        <td class="l-align" colspan="2"><input class="input is-small" value="Utilities - Water & Sewer"/></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.water"></vue-numeric></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.water"></vue-numeric></td>
-                        <td><i class="icon is-small material-icons">delete_forever</i></td>
-                    </tr>
-                    <tr>
-                        <td class="l-align" colspan="2"><input class="input is-small" value="Garbage"/></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.garbage"></vue-numeric></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.garbage"></vue-numeric></td>
-                        <td><i class="icon is-small material-icons">delete_forever</i></td>
-                    </tr>
-                    <tr>
-                        <td class="l-align" colspan="2"><input class="input is-small" value="Repairs & Maintenance"/></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.maintenance"></vue-numeric></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.maintenance"></vue-numeric></td>
-                        <td><i class="icon is-small material-icons">delete_forever</i></td>
-                    </tr>
-                    <tr>
                         <!-- PERCENTAGE OF EFFECTIVE GROSS INCOME -->
-                        <td class="l-align"><input class="input is-small" value="Management Fee"/></td>
+                        <td class="l-align"><input class="input is-small" :value="selectedValuation.mgmtFee.label"/></td>
                         <td class="setting">
                             <button class="percent" @click="decrease('mgmtFee')">-</button>
-                            <span id="mgmtFee">  {{ selectedValuation.mgmtFee || 0 }}% </span>
+                            <span id="mgmtFee">  {{ selectedValuation.mgmtFee.value || 0 }}% </span>
                             <button class="percent" @click="increase('mgmtFee')">+</button>
                         </td>
                         <td id="mgmt-fee-current">{{ currentMgmtFee | money }}</td>
                         <td id="mgmt-fee-future">{{ potentialMgmtFee | money }}</td>
                         <td><i class="icon is-small material-icons">delete_forever</i></td>
                     </tr>
-                    <tr>
-                        <td class="l-align" colspan="2"><input class="input is-small" value="Landscaping"/></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.landscaping"></vue-numeric></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.landscaping"></vue-numeric></td>
-                        <td><i class="icon is-small material-icons">delete_forever</i></td>
-                    </tr>
-                    <tr>
-                        <td class="l-align" colspan="2"><input class="input is-small" value="Other Expenses"/></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="current.expenses.other"></vue-numeric></td>
-                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="potential.expenses.other"></vue-numeric></td>
-                        <td><i class="icon is-small material-icons">delete_forever</i></td>
+                    <tr v-for="(e, index) in selectedValuation.expenses" :key="index">
+                        <td class="l-align" colspan="2"><input class="input is-small" :value="e.label"/></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="e.current"></vue-numeric></td>
+                        <td><vue-numeric input class="inline-edit" separator="," v-model.number="e.potential"></vue-numeric></td>
+                        <td><i class="icon is-small material-icons" @click="removeItem(index)">delete_forever</i></td>
                     </tr>
                     <tr>
                         <td colspan="3"/>
                         <td>Add Expense Item</td>
-                        <td><i class="material-icons icon is-small">add_circle</i></td>
+                        <td><i class="material-icons icon is-small" @click="addItem()">add_circle</i></td>
                     </tr>
                     <tr class="is-grey">
                         <td class="l-align bold" colspan="2">TOTAL EXPENSES</td>
@@ -187,13 +151,13 @@ export default {
     },
     /* EXPENSES  */
     taxes () {
-      return ((this.selectedValuation.price / 100) * (this.selectedValuation.taxes || 0)).toFixed(0)
+      return ((this.selectedValuation.price / 100) * (this.selectedValuation.taxes.value || 0)).toFixed(0)
     },
     currentMgmtFee () {
-      return ((this.effectiveGrossIncome / 100) * (this.selectedValuation.mgmtFee || 0)).toFixed(0)
+      return ((this.effectiveGrossIncome / 100) * (this.selectedValuation.mgmtFee.value || 0)).toFixed(0)
     },
     potentialMgmtFee () {
-      return ((this.potentialGrossIncome / 100) * (this.selectedValuation.mgmtFee || 0)).toFixed(0)
+      return ((this.potentialGrossIncome / 100) * (this.selectedValuation.mgmtFee.value || 0)).toFixed(0)
     },
     // sum of all expenses
     totalExpensesCurrent () {
@@ -231,7 +195,7 @@ export default {
     SideForm: SideForm
   },
   methods: {
-    ...mapActions('valuations', ['setWip', 'setWipOS', 'persist']),
+    ...mapActions('valuations', ['setWip', 'setWipOS', 'persist', 'addExpense', 'removeExpense']),
     save () {
       this.current.vacancy = this.currentVacancy
       this.current.effectiveRent = this.currentEffectiveRent || 0
@@ -258,6 +222,26 @@ export default {
       this.setWipOS({current: this.current, potential: this.potential})
       this.persist()
       router.push('./sales-comparables')
+    },
+    removeItem (name) {
+      this.$dialog.confirm({
+          title: 'Deleting Expense Item',
+          message: 'Are you sure you want to delete this item?',
+          type: 'is-danger',
+          hasIcon: true,
+          confirmText: 'Delete Expense',
+          onConfirm: () => this.removeExpense(name)
+      })
+    },
+    addItem () {
+      this.$dialog.prompt({
+        title: 'New Expense Line Item',
+        message: 'Please enter the expense name',
+        inputAttrs: {
+          placeholder: 'e.g. Property Tax'
+        },
+        onConfirm: (value) => this.addExpense({name: value})
+      })
     },
     increase (prop) {
       if (!this.selectedValuation[prop] || this.selectedValuation[prop].isNaN || this.selectedValuation[prop] === 'NaN') {
